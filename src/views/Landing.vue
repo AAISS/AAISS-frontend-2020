@@ -64,6 +64,10 @@
         bottom: 80px;
     }
 
+    .btn-more-info:hover{
+        box-shadow: 10px 20px 30px 0 rgba(0, 0, 0, 0.4);
+    }
+
     @media only screen and (min-width: 0) and (max-width: 760px) {
         .wrapper{
             width: 100%;
