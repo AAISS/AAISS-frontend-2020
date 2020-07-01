@@ -63,4 +63,37 @@
         left: 0;
         bottom: 80px;
     }
+
+    @media only screen and (min-width: 0) and (max-width: 760px) {
+        .wrapper{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img{
+            position: relative;
+            width: 80vw;
+            height: 70vw;
+        }
+        .detail-frame{
+            position: relative;
+            left: auto;
+            bottom: auto;
+            padding: 3vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        p{
+            font-size: 5vw;
+        }
+        .btn-more-info{
+            font-size: 4vw;
+        }
+
+    }
 </style>
