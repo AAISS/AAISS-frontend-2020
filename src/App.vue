@@ -1,5 +1,7 @@
 <template>
     <div class="h-100">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
         <vue-particles
                 color="#b2b4ae"
                 :particleOpacity="1"
@@ -19,17 +21,15 @@
                 class="particles"
         >
         </vue-particles><!-- stats - count particles -->
-        <TopMenu></TopMenu>
+<!--        <TopMenu></TopMenu>-->
         <transition name="fade" mode="out-in">
-            <router-view/>
+            <router-view class="iransans "/>
         </transition>
-        <Footer></Footer>
+<!--        <Footer></Footer>-->
     </div>
 </template>
 
 <script>
-    import TopMenu from '@/components/TopMenu'
-    import Footer from '@/components/Footer'
 
     export default {
         name: 'App',
@@ -37,7 +37,6 @@
             return {}
         },
         components: {
-            TopMenu, Footer
         }, methods: {},
         mounted() {
         }
@@ -54,6 +53,14 @@
         height: 100%;
     }
 
+    @font-face {
+        font-family: 'iransans';
+        src : url('assets/fonts/iranSansFarsiNumber.ttf') format('truetype');
+    }
+
+    .iransans {
+        font-family : 'iransans';
+    }
     .fade-enter-active,
     .fade-leave-active {
         transition-duration: 0.3s;
