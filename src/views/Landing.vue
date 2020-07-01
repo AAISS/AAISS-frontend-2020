@@ -18,7 +18,7 @@
             return {
                 buttonValue: 'اطلاعات مربوط به دوره قبل',
                 startingDate: 'شروع از هفته دوم مردادماه ۹۹',
-                previousEventLink: 'http://aaiss.ceit.aut.ac.ir'
+                previousEventLink: 'http://aaiss.ceit.aut.ac.ir/2019'
             }
         }
     }
