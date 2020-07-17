@@ -45,10 +45,10 @@
     #headerSection {
         min-height: 100vh;
         width: 100%;
-        background: #e4e3df;
-        background: -moz-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
-        background: -webkit-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
-        background: radial-gradient(ellipse at center, #e4e3df 0%, #c6c4b6 100%);
+        background: #ceccc0;
+        /*background: -moz-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);*/
+        /*background: -webkit-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);*/
+        /*background: radial-gradient(ellipse at center, #e4e3df 0%, #c6c4b6 100%);*/
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4e3df', endColorstr='#c6c4b6', GradientType=1);
         padding-bottom: 20px;
     }

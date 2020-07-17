@@ -5,27 +5,25 @@
                 <div class=" row pt-5">
                     <div class="col-md-12 titleCol">
                         <h1 class="noSelect text-center">
-                            Amirkabir
                             <br>
-                            Artificial Intelligence
                             <br>
-                            Summer Summit
                         </h1>
                     </div>
                     <div class="col-md-12 subTitleCol">
                         <h4 class="text-center">
-                            Advanced topics in Machine Learning, Deep Learning, and Neurosciences
                         </h4>
                     </div>
                 </div>
             </div>
-            <img src="../assets/img/brain.png" alt="brain image" class="img-fluid brainImage noSelect"
+            <img src="../assets/img/bigLogoLanding.png" alt="logo image" class="img-fluid brainImage noSelect"
                  draggable="false">
 
             <img src="../assets/img/autLogo.png" class="position-absolute autLogo noSelect"
                  alt="amirkabir logo" draggable="false">
         </section>
-        <section id="aboutSection">
+
+
+        <section id="aboutSection" class="sub-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 justify-content-center">
@@ -41,6 +39,8 @@
                 </div>
             </div>
         </section>
+
+
         <section id="committeeSection">
             <div class="container">
                 <div class="row pt-5">
@@ -56,6 +56,8 @@
                 </div>
             </div>
         </section>
+
+
         <section id="speakersSection">
             <div class="container">
                 <div class="row pt-5">
@@ -70,6 +72,8 @@
                 </div>
             </div>
         </section>
+
+
         <section id="scheduleSection">
             <div class="container">
                 <div class="row pt-5">
@@ -320,6 +324,7 @@
                 </div>
             </div>
         </section>
+
         <section id="organizerSection">
             <div class="container">
                 <div class="row pt-5">
@@ -407,12 +412,14 @@
     #headerSection {
         min-height: 100vh;
         width: 100%;
-        background: #e4e3df;
-        background: -moz-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
-        background: -webkit-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
-        background: radial-gradient(ellipse at center, #e4e3df 0%, #c6c4b6 100%);
+        background: #16375a;
+        background: -moz-radial-gradient(center, ellipse cover, #102e48 0%, #535053 100%);
+        background: -webkit-radial-gradient(center, ellipse cover, #3f494c 0%, #1D4176 100%);
+        background: radial-gradient(ellipse at center, #484c5a 0%, #16375 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4e3df', endColorstr='#c6c4b6', GradientType=1);
     }
+
+
 
     .titleContainer {
         top: 42%;
@@ -465,7 +472,7 @@
 
     #aboutSection {
         width: 100%;
-        background-color: #B7867E;
+        background-color: #ceccc0;
         color: white;
         min-height: 100%;
     }
@@ -480,7 +487,7 @@
     }
 
     #speakersSection {
-        background-color: #B7867E;
+        background-color: #ceccc0;
         min-height: 100vh;
     }
 
@@ -490,11 +497,11 @@
 
 
     #committeeSection {
-        background-color: #B7867E;
+        background-color: #ceccc0;
     }
 
     #scheduleSection {
-        background-color: #B7867E;
+        background-color: #ceccc0;
         min-height: 100vh;
     }
 
@@ -504,7 +511,7 @@
     }
 
     #organizerSection {
-        background-color: #B7867E;
+        background-color: #16375a;
     }
 
     .organizerEmail {
@@ -550,6 +557,11 @@
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
+    }
+
+    .aboutText{
+        font-weight: bolder;
+        font-size: 20px;
     }
 
     td:first-child {

@@ -93,11 +93,11 @@
 
     .nav-link {
         cursor:pointer;
-        color: #c1766e !important;
+        color: #bc8f89 !important;
     }
 
     .navbar-brand {
-        color: #797B7F;
+        color: #9c9ea2;
         font-size: 30px;
     }
 

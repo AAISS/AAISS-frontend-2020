@@ -1,0 +1,229 @@
+<template>
+    <div id="registerSection">
+        <div class="pt-5">
+            <div class="col-md-12">
+                <h1 class="text-center font-weight-bold">Register</h1>
+            </div>
+        </div>
+
+        <div class="register-wrapper">
+            <div class="pt-5  sub-register">
+                <div class="register-container im ">
+                    <div class="col-md-12">
+                        <h5 class="text-center font-weight-bold">Personal Information</h5>
+                    </div>
+
+                    <form
+                            id="app"
+                            @submit="checkForm"
+                            action="https://vuejs.org/"
+                            method="post"
+                    >
+
+
+
+                        <p>Name</p>
+                        <input class="user-data" v-model="user.name" type="text" placeholder="">
+
+                        <p>Phone Number</p>
+                        <input class="user-data" v-model="user.phone_number" type="text" placeholder="">
+
+                        <p>Email</p>
+                        <input class="user-data" v-model="user.email" type="email" placeholder="">
+
+                        <p>National Code</p>
+                        <input class="user-data" v-model="user.national_code" type="text" placeholder="">
+
+                        <p>Fields Of Interest</p>
+                        <div class="check-box-wrapper">
+                            <div v-for="field in checkBox_fields_of_interest" class="choice-wrapper">
+                                <p>{{field}}</p>
+                                <input class="check-box" type="checkbox" :value="field" v-model="user.fields_of_interest">
+                            </div>
+                        </div>
+
+                        <div v-if="errors.length" class="text-danger errors">
+                            <b>Please correct the following error(s):</b>
+                        <ul>
+                            <li v-for="error in errors">{{ error }}</li>
+                        </ul>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="sub-register">
+
+                <input @click="checkForm" class="button" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "UserRegister",
+        data: function () {
+            return {
+                user: {
+                    name: "",
+                    email: "",
+                    national_code: "",
+                    fields_of_interest:[],
+                    phone_number: ""
+                },
+                errors: [],
+                checkBox_fields_of_interest:['asghar','bagher','mohammad','in','oon','dard','kooft']
+
+            }
+        },
+        methods: {
+            checkForm: function (e) {
+
+                this.errors = [];
+
+                if (!this.user.name) {
+                    this.errors.push("Name required.");
+                }
+                if (!this.user.phone_number) {
+                    this.errors.push("Phone number required.");
+                }
+                if (!this.user.national_code) {
+                    this.errors.push("National code required.");
+                }
+                if (!this.user.email) {
+                    this.errors.push('Email required.');
+                } else if (!this.validEmail(this.user.email)) {
+                    this.errors.push('Valid email required.');
+                }
+
+                if (!this.errors.length) {
+                    return true;
+                }
+
+                e.preventDefault();
+            },
+            validEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            },
+
+        }
+    }
+</script>
+
+<style scoped>
+    #registerSection {
+        background-color: #ceccc0;
+        min-height: 100vh;
+        min-width: 100vw;
+        background: -moz-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
+        background: -webkit-radial-gradient(center, ellipse cover, #e4e3df 0%, #c6c4b6 100%);
+        background: radial-gradient(ellipse at center, #e4e3df 0%, #c6c4b6 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4e3df', endColorstr='#c6c4b6', GradientType=1);
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        color: #787c7f;
+        padding: 20px;
+    }
+
+    .register-container {
+        border-radius: 15px;
+        background-color: #ffffff;
+        min-height: 100px;
+        min-width: 40vw;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 20;
+        padding: 3vw;
+    }
+
+    .register-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .sub-register {
+        display: flex;
+        justify-content: center;
+    }
+
+    h5 {
+        color: #bc8f89;
+    }
+
+    .user-data {
+        border-radius: 2px;
+        border: none;
+        background-color: #f4f4f4;
+        width: 100%;
+        height: 35px;
+        color: #556266;
+    }
+
+    p {
+        margin: 0;
+        padding-top: 20px;
+        color: #16375a;
+    }
+
+    .button {
+        background-color: #16375a;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-weight: bolder;
+        border-radius: 30px;
+        min-width: 40vw;
+        min-height: 50px;
+        margin-top: 20px;
+        z-index: 20;
+    }
+    .check-box{
+        color: #3f494c;
+    }
+
+    .check-box-wrapper{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+    }
+    .choice-wrapper{
+        padding: 0 20px 0 20px;
+    }
+    .errors{
+        margin-top: 30px;
+    }
+
+    @media only screen and (min-width: 500px) and (max-width: 767.98px) {
+        .register-container{
+            width: 60vw;
+        }
+        .button{
+            width: 60vw;
+        }
+        h1{
+            padding-top: 50px;
+        }
+    }
+    @media only screen and (min-width: 0) and (max-width: 500px) {
+        .register-container{
+            width: 90vw;
+        }
+        .button{
+            width: 90vw;
+        }
+        h1{
+            padding-top: 50px;
+        }
+    }
+</style>

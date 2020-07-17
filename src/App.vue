@@ -21,7 +21,7 @@
                 class="particles"
         >
         </vue-particles><!-- stats - count particles -->
-<!--        <TopMenu></TopMenu>-->
+        <TopMenu></TopMenu>
         <transition name="fade" mode="out-in">
             <router-view class="iransans "/>
         </transition>
@@ -31,12 +31,15 @@
 
 <script>
 
+    import TopMenu from "./components/TopMenu";
+
     export default {
         name: 'App',
         data: function () {
             return {}
         },
         components: {
+            TopMenu,
         }, methods: {},
         mounted() {
         }
