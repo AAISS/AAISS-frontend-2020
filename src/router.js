@@ -6,6 +6,7 @@ import Speaker from "./views/Speaker";
 import Staff from "./views/Staff";
 import UserRegister from "./views/UserRegister";
 import PresentationRegister from "./views/PresentationRegister";
+import PresentationDescription from "./views/PresentationDescription";
 
 Vue.use(Router);
 
@@ -40,6 +41,10 @@ export default new Router({
             path: '/register/presentation',
             name: 'register_presentation',
             component: PresentationRegister
+        },{
+            path: '/presentation/:id',
+            name: 'description_presentation',
+            component: PresentationDescription
         }
 
     ]

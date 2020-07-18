@@ -51,18 +51,6 @@
                             </tbody>
 
                         </table>
-                        <!--                        <div class="check-box-wrapper">-->
-                        <!--                            <div v-for="presentation in checkBox_presentations" v-bind:key="presentation" class="choice-wrapper">-->
-                        <!--                                <div class="presentation-wrapper">-->
-                        <!--                                    <input class="check-box" type="checkbox" :value="presentation.name" v-model="selected_presentations">-->
-                        <!--                                    <p>{{presentation.name}}</p>-->
-                        <!--                                    <p>{{presentation.price}}</p>-->
-                        <!--                                    <router-link :to="'/presentations/' + presentation.name">-->
-                        <!--                                        More Information-->
-                        <!--                                    </router-link>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
 
                         <div v-if="checkItems()" class="text-danger errors">
                             <b>Please select at least one presentation to buy</b>
@@ -229,6 +217,12 @@
         padding: 5px 15px 5px 15px;
         border-radius: 15px;
         font-weight: bolder;
+    }
+
+    .more-info:hover{
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+        background-color: #626264;
+
     }
 
     .table-responsive {

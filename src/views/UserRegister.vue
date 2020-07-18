@@ -134,7 +134,7 @@
         border-radius: 15px;
         background-color: #ffffff;
         min-height: 100px;
-        min-width: 40vw;
+        min-width: 80vw;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);

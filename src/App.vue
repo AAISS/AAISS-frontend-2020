@@ -48,6 +48,19 @@
 </script>
 
 <style>
+
+    .slider-btn-left {
+        background: linear-gradient(90deg,rgb(230 230 230 / 10%),rgba(0,0,0,0)) !important;
+    }
+
+    .slider-btn-right {
+        background: linear-gradient(90deg,rgb(230 230 230 / 10%),rgba(0,0,0,0)) !important;
+    }
+
+    .slider-icon{
+        border-left: 2px solid rgb(39 35 35 / 60%) !important;
+        border-bottom: 2px solid rgb(0 0 0 / 60%) !important;
+    }
     *{
         scroll-behavior: smooth;
     }
