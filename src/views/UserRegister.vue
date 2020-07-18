@@ -36,9 +36,9 @@
 
                         <p>Fields Of Interest</p>
                         <div class="check-box-wrapper">
-                            <div v-for="field in checkBox_fields_of_interest" class="choice-wrapper">
-                                <p>{{field}}</p>
-                                <input class="check-box" type="checkbox" :value="field" v-model="user.fields_of_interest">
+                            <div v-for="field in FOI" class="choice-wrapper">
+                                <p>{{field.name}}</p>
+                                <input class="check-box" type="checkbox" :value="field.id" v-model="user.fields_of_interest">
                             </div>
                         </div>
 
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+
     export default {
         name: "UserRegister",
         data: function () {
@@ -74,8 +75,6 @@
                     phone_number: ""
                 },
                 errors: [],
-                checkBox_fields_of_interest:['asghar','bagher','mohammad','in','oon','dard','kooft']
-
             }
         },
         methods: {
@@ -109,6 +108,16 @@
                 return re.test(email);
             },
 
+
+        },
+        created() {
+            this.$store.dispatch('getFieldsOfInterest');
+        },
+        computed:{
+            FOI: function () {
+                console.log(this.$store.getters.getFOI)
+                return this.$store.getters.getFOI;
+            }
         }
     }
 </script>

@@ -1,10 +1,10 @@
 <template>
-    <router-link :to="'/presenters/' + speaker.id" class="speakerBlock d-block">
+    <router-link :to="'/teachers/' + speaker.id" class="speakerBlock d-block">
         <div class="text-center imgWrapper">
             <img :src="speaker.pic" alt="img" class="rounded-circle img-fluid" draggable="false">
         </div>
         <div class="text-center speakerInfo">
-            <router-link :to="'/speakers/' + speaker.id">
+            <router-link :to="'/teachers/' + speaker.id">
                 {{speaker.name}}
             </router-link>
             <h6>{{speaker.workplace}}</h6>
@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        name: "SpeakerBlock",
+        name: "TeacherBlock",
         data: function () {
             return {}
         },

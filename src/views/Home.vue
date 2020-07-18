@@ -31,7 +31,7 @@
                             <div class="col-md-12 mx-auto">
                                 <h2 class="font-weight-bold text-center">About the Event</h2>
                                 <p class="text-justify aboutText">
-                                    {{staticParts[0].about}}
+                                    {{about}}
                                 </p>
                             </div>
                         </div>
@@ -41,38 +41,52 @@
         </section>
 
 
-        <section id="committeeSection">
-            <div class="container">
-                <div class="row pt-5">
-                    <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-white">Scientific Committee</h1>
-                    </div>
-                </div>
-                <div class="row pt-3">
-                    <div class="col-lg" :key="scientificCommittee.indexOf(member)"
-                         v-for="member in scientificCommittee">
-                        <CommitteMemberBlock :member="member"></CommitteMemberBlock>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!--        <section id="committeeSection">-->
+<!--            <div class="container">-->
+<!--                <div class="row pt-5">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h1 class="text-center font-weight-bold text-white">Scientific Committee</h1>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row pt-3">-->
+<!--                    <div class="col-lg" :key="scientificCommittee.indexOf(member)"-->
+<!--                         v-for="member in scientificCommittee">-->
+<!--                        <CommitteMemberBlock :member="member"></CommitteMemberBlock>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
 
 
         <section id="speakersSection">
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-white">Invited Speakers</h1>
+                        <h1 class="text-center font-weight-bold text-white">Invited Presenters</h1>
                     </div>
                 </div>
                 <div class="row pt-3">
-                    <div class="col-lg-3" :key="speaker.id" v-for="speaker in speakers">
+                    <div class="col-lg-3" :key="speaker.id" v-for="speaker in presenters">
                         <SpeakerBlock :speaker="speaker"></SpeakerBlock>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="teacherSection">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-md-12">
+                        <h1 class="text-center font-weight-bold text-white">Invited Teachers</h1>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-lg-3" :key="speaker.id" v-for="speaker in teachers">
+                        <TeacherBlock :speaker="speaker"></TeacherBlock>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="scheduleSection">
             <div class="container">
@@ -310,13 +324,13 @@
                         <div class="row">
                             <div class="col-md-12 mx-auto">
                                 <button @click.prevent="showRegisterSoonMessage()"
-                                        v-if="staticParts[0].register_link == '/'"
+                                        v-if="register_link === '/'"
                                         class="btn btn-primary btn-lg btn-block float-left regBtn">
                                     <span v-bind:class="{'small' : smallerFontSize}">
                                     {{registerValue}}
                                     </span>
                                 </button>
-                                <a v-else :href="staticParts[0].register_link"
+                                <a v-else :href="register_link"
                                    class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>
                             </div>
                         </div>
@@ -362,30 +376,38 @@
 
 <script>
     // @ is an alias to /src
-    import SpeakerBlock from '../components/SpeakerBlock'
-    import CommitteMemberBlock from '../components/CommitteeMemberBlock'
+    import SpeakerBlock from '../components/SpeakerBlock';
+    import TeacherBlock from "../components/TeacherBlock";
+
 
     export default {
         name: 'Home',
         data: function () {
             return {
+                register_link: "/",
                 registerValue: 'Registration',
                 smallerFontSize: false,
+                about: "This Summer Summit in Artificial Intelligence is a three-day event from 23rd to 25th of July 2019," +
+                    " held by the Students' Scientific Chapter of the Computer Engineering and Information Technology Department " +
+                    "of Amirkabir University of Technology. This event consists of advanced talks on various topics in machine learning," +
+                    " deep learning, and neurosciences. This event focuses on the latest state of the art researches and works to exchange " +
+                    "ideas and spread the knowledge of artificial intelligence for Persian language researchers from all around the globe."
             }
         },
         computed: {
-            speakers: function () {
-                return this.$store.getters.getSpeakers;
+            presenters: function () {
+                console.log(this.$store.getters.getPresenters)
+                return this.$store.getters.getPresenters;
             },
-            staticParts: function () {
-                return this.$store.getters.getStaticParts;
+            teachers: function () {
+                console.log(this.$store.getters.getTeachers)
+                return this.$store.getters.getTeachers;
             },
-            scientificCommittee: function () {
-                return this.$store.getters.getScientificCommittee;
-            }
+
         },
         components: {
-            SpeakerBlock, CommitteMemberBlock
+            TeacherBlock,
+            SpeakerBlock,
         },
         methods: {
             showRegisterSoonMessage: function () {
@@ -398,9 +420,8 @@
             }
         },
         created() {
-            let staticPartsPromise = this.$store.dispatch('getStaticParts');
-            let scientificCommiteePromise = this.$store.dispatch('getScientificCommittee');
-            let speakersPromise = this.$store.dispatch('getSpeakers');
+            let promisedTeachers = this.$store.dispatch('getTeachers');
+            let promisedPresenters = this.$store.dispatch('getPresenters');
         },
         mounted() {
             scrollTo(0, 0);
@@ -496,7 +517,7 @@
     }
 
 
-    #committeeSection {
+    #teacherSection {
         background-color: #ceccc0;
     }
 

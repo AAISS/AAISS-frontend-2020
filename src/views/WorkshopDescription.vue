@@ -2,73 +2,68 @@
     <div id="headerSection">
         <div class=" pt-5">
             <div class="col-md-12">
-                <h1 class="text-center font-weight-bold">{{presentation.name}}</h1>
+                <h1 class="text-center font-weight-bold">{{workshop.name}}</h1>
             </div>
         </div>
 
         <div class="main-wrapper">
             <div class="pt-5  sub-wrapper">
-                <div class="all-presentations-wrapper">
-                    <div class="presentation-container im " v-for="presentation in presentations"
-                         :key="presentation.id">
-                        <div id="wrapper-description">
-                            <div id="right" class="sub-description">
-                                <h4 class="text-center">Speakers</h4>
-                                <Slider
-                                        animation="fade"
-                                        v-model="sliderValue"
-                                        :duration="5000"
-                                        :speed="1000"
-                                        class="slider"
+                <div class="presentation-container im ">
+                    <div id="wrapper-description">
+                        <div id="right" class="sub-description">
+                            <h4 class="text-center">Speakers</h4>
+                            <Slider
+                                    animation="fade"
+                                    v-model="sliderValue"
+                                    :duration="5000"
+                                    :speed="1000"
+                                    class="slider"
+                            >
+                                <SliderItem
+                                        v-for="speaker in speakers"
+                                        :key="speaker.img_path"
+                                        @click="changeIndex(1)"
+                                        :style="speaker"
+                                        class="item slider-item"
                                 >
-                                    <SliderItem
-                                            v-for="speaker in presenters"
-                                            :key="speaker.id"
-                                            @click="changeIndex(1)"
-                                            :style="speaker"
-                                            class="item slider-item"
-                                    >
-                                        <div class="content-wrapper">
-                                            <img :src="speaker.pic" alt="speaker img"
-                                                 class="rounded-circle img-fluid">
-                                            <p class="text-center">{{speaker.name}}</p>
-                                            <p class="text-center">{{speaker.workplace}}</p>
-                                        </div>
-                                    </SliderItem>
-                                </Slider>
+                                    <div class="content-wrapper">
+                                        <img :src="speaker.img_path" alt="speaker img" class="rounded-circle img-fluid">
+                                        <p class="text-center">{{speaker.name}}</p>
+                                        <p class="text-center">Works at Google</p>
+                                    </div>
+                                </SliderItem>
+                            </Slider>
 
-                            </div>
+                        </div>
 
 
-                            <div class="vl"></div>
+                        <div class="vl"></div>
 
 
-                            <div id="left" class="sub-description">
-                                <h4 class="text-center">Description</h4>
-                                <p class="text-justify description">{{presentation.desc}}</p>
-                                <div class="date-time-wrapper">
-                                    <div class="minor-date-time">
-                                        <h5>Date</h5>
-                                        <span class="material-icons">
+                        <div id="left" class="sub-description">
+                            <h4 class="text-center">Description</h4>
+                            <p class="text-justify description">{{workshop.desc}}</p>
+                            <div class="date-time-wrapper">
+                                <div class="minor-date-time">
+                                    <h5>Date</h5>
+                                    <span class="material-icons">
                                     event
                                     </span>
-                                        <p>{{presentation.date}}</p>
-                                    </div>
-                                    <div class="minor-date-time">
-                                        <h5>Time</h5>
-                                        <span class="material-icons">
+                                    <p>{{presentation.date}}</p>
+                                </div>
+                                <div class="minor-date-time">
+                                    <h5>Time</h5>
+                                    <span class="material-icons">
                                     schedule
                                     </span>
-                                        <p>{{presentation.time}}</p>
-                                    </div>
+                                    <p>{{presentation.time}}</p>
                                 </div>
-                                <input @click="buy()" class="register-button button" type="submit"
-                                       value="Register and Buy">
                             </div>
+                            <input @click="buy()" class="register-button button" type="submit" value="Register and Buy">
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
@@ -76,9 +71,10 @@
 
 <script>
     import {Slider, SliderItem} from "vue-easy-slider";
+    import axios from "axios";
 
     export default {
-        name: "PresentationDescription",
+        name: "WorkshopDescription",
         components: {
             Slider,
             SliderItem
@@ -86,7 +82,8 @@
         data: function () {
             return {
                 sliderValue: 2,
-                presenters: [],
+                workshop: {},
+                speakers: []
             }
         },
         methods: {
@@ -96,22 +93,37 @@
             buy: function () {
 
             },
+            getWorkshopById:function (id) {
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/workshop/' + id,
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'GET',
+                    }).then((response) => {
+                        this.workshop = response.data
+                        resolve(response.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                })
+            },
             getAllSpeakers: function () {
-                let eachPresentation = [];
-                for (let i = 0; i <this.$store.getters.getPresentations; i++) {
-                    for (let j = 0; j <this.$store.getters.getPresentations.presenters.length ; j++) {
-                        let newPresenter = this.$store.commit('getPresenterById', this.$store.getters.getPresentations.presenters.get(i));
-                        eachPresentation.push(newPresenter);
-                    }
-                    this.presenters.push(eachPresentation);
-                    eachPresentation= [];
+                for (let i = 0; i <this.workshop.teachers.length ; i++) {
+                    let newTeacher = this.$store.commit('getTeacherById', this.workshop.teachers.get(i));
+                    this.speakers.push(newTeacher);
                 }
             },
-        },
-        computed: {
-            presentations: function () {
-                console.log(this.$store.getters.getPresentations);
-                return this.$store.getters.getPresentations;
+            sendRequest: async function () {
+                try {
+                    await this.getWorkshopById(this.$route.params.id)
+                    this.getAllSpeakers()
+                    return true
+                } catch (e) {
+                    console.log(e);
+                    return false
+                }
             }
         },
         mounted() {
@@ -119,11 +131,11 @@
                 () =>
                     1000
             );
+            console.log(this.presentation.speakers);
         },
         created() {
-            this.$store.dispatch('getPresentations');
-        },
-
+          this.sendRequest()
+        }
     }
 </script>
 
@@ -157,8 +169,7 @@
         padding: 20px;
         font-weight: bolder;
     }
-
-    h5, .material-icons {
+    h5, .material-icons{
         color: #B7867E;
         padding: 20px 1px 20px 1px;
         font-weight: bolder;
@@ -270,10 +281,6 @@
         min-height: 30px;
         margin-top: 20px;
     }
-    .all-presentations-wrapper{
-        display: flex;
-        flex-direction: column;
-    }
 
     @media only screen and (min-width: 600px) and (max-width: 1000px) {
         .presentation-container {
@@ -289,30 +296,25 @@
         h1 {
             padding-top: 50px;
         }
-
-        #wrapper-description {
-            flex-direction: column-reverse;
-        }
-
-        .sub-description {
-            min-width: 100%;
-        }
-
-        #right {
-            min-height: 40%;
-        }
-
-        #left {
-            min-height: 55%;
-        }
-
-        .vl {
-            border-left: none;
-            border-bottom: 2px solid #ceccc0;
-            min-width: 90%;
-            min-height: 0px;
-            margin: 15px 3vw 15px 3vw;
-        }
+         #wrapper-description{
+             flex-direction: column-reverse;
+         }
+         .sub-description{
+             min-width: 100%;
+         }
+         #right{
+             min-height: 40%;
+         }
+         #left{
+             min-height: 55%;
+         }
+         .vl{
+             border-left: none;
+             border-bottom: 2px solid #ceccc0;
+             min-width: 90%;
+             min-height: 0px;
+             margin: 15px 3vw 15px 3vw;
+         }
 
     }
 
@@ -328,31 +330,25 @@
         h1 {
             padding-top: 50px;
         }
-
-        #wrapper-description {
+        #wrapper-description{
             flex-direction: column-reverse;
         }
-
-        .sub-description {
+        .sub-description{
             min-width: 100%;
         }
-
-        #right {
+        #right{
             min-height: 30%;
         }
-
-        #left {
+        #left{
             min-height: 65%;
         }
-
-        .vl {
+        .vl{
             border-left: none;
             border-bottom: 2px solid #ceccc0;
             min-width: 90%;
             min-height: 0px;
             margin: 15px 3vw 15px 3vw;
         }
-
         img {
             width: 30vw;
             height: 30vw;

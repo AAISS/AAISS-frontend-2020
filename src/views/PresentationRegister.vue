@@ -10,7 +10,8 @@
             <div class="pt-5  sub-register">
                 <div class="register-container im ">
                     <div class="col-md-12">
-                        <h5 class="text-center font-weight-bold">Presentations</h5>
+                        <h5 v-if="presentations.length !== 0" class="text-center font-weight-bold">Presentations</h5>
+                        <h5 v-else class="text-center font-weight-bold">Workshops</h5>
                     </div>
 
                     <form
@@ -33,16 +34,36 @@
 
                             <tbody>
 
+                            <tr v-if="presentations.length !== 0"
+                                class="choice-wrapper">
+                                <td><input class="check-box" type="checkbox" :value="true"
+                                           v-model="selected_presentations"></td>
+                                <td><p>presentation</p></td>
+                                <td><p>{{presentation_fee}}</p>
+                                </td>
+                                <td>
+                                    <router-link to="/presentations" class="more-info">
+                                        More Information
+                                    </router-link>
+                                </td>
+                            </tr>
 
-                                <tr v-for="presentation in checkBox_presentations" v-bind:key="presentation"
+                            <tr>
+                                <td v-if="workshops.length !== 0 && presentations.length !== 0" colspan="4" class="text-center font-weight-bold">
+                                    <h5  class="text-center font-weight-bold">Workshops</h5>
+                                </td>
+
+                            </tr>
+
+                                <tr v-for="workshop in workshops" v-bind:key="workshop"
                                     class="choice-wrapper">
-                                    <td><input class="check-box" type="checkbox" :value="presentation.name"
+                                    <td><input class="check-box" type="checkbox" :value="workshop.name"
                                                v-model="selected_presentations"></td>
-                                    <td><p>{{presentation.name}}</p></td>
-                                    <td><p>{{presentation.price}}</p>
+                                    <td><p>{{workshop.name}}</p></td>
+                                    <td><p>{{workshop.cost}}</p>
                                     </td>
                                     <td>
-                                        <router-link :to="'/presentation/' + presentation.id" class="more-info">
+                                        <router-link :to="'/workshop/' + workshop.id" class="more-info">
                                             More Information
                                         </router-link>
                                     </td>
@@ -52,8 +73,8 @@
 
                         </table>
 
-                        <div v-if="checkItems()" class="text-danger errors">
-                            <b>Please select at least one presentation to buy</b>
+                        <div v-if="error" class="text-danger errors">
+                            <b>Please select at least one item to buy</b>
 
                         </div>
 
@@ -70,22 +91,16 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         name: "PresentationRegister",
         data: function () {
             return {
                 errors: [],
-                checkBox_presentations: [
-                    {price: "200", name: "asghar", id:1},
-                    {price: "30000", name: "bagher", id:2},
-                    {price: "1000000", name: "mohammad", id:3},
-                    {price: '700', name: 'in', id:4},
-                    {price: '90000', name: 'oon', id:5},
-                    {price: '980', name: 'dard', id:6},
-                    {price: '6789', name: 'kooft', id:7}
-                ]
-                ,
-                selected_presentations: []
+                selected_presentations: [],
+                error: false,
+                presentation_fee: "default",
 
             }
         },
@@ -95,12 +110,44 @@
             },
             checkItems: function () {
                 if (this.selected_presentations.length === 0) {
-                    return true
-                } else return false
+                    console.log(this.presentation_fee);
+
+                    this.error = true
+                } else this.error = false
+            },
+            getPresentationPrice: function () {
+                    return new Promise((resolve, reject) => {
+                        axios({
+                            url: this.$store.getters.getApi + '/misc/presentation_fee',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            method: 'GET',
+                        }).then((response) => {
+                            this.presentation_fee = response.data.desc;
+                            resolve(response.data);
+                        }).catch((error) => {
+                            reject(error);
+                        })
+                    })
+
             }
         },
-        mounted() {
+        created() {
+            this.$store.dispatch('getWorkshops');
+            this.$store.dispatch('getPresentations');
+            this.getPresentationPrice()
+        },
 
+        computed:{
+            workshops: function () {
+                console.log(this.$store.getters.getWorkshops);
+                return this.$store.getters.getWorkshops;
+            },
+            presentations: function () {
+                console.log(this.$store.getters.getPresentations);
+                return this.$store.getters.getPresentations;
+            }
         }
     }
 </script>
@@ -245,6 +292,11 @@
         font-weight: bolder;
     }
     tr:hover {background-color: #f5f5f5;}
+    .workshop-title{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
 
 

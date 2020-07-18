@@ -6,41 +6,54 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        api: 'http://aaiss.ceit.aut.ac.ir/api',
-        speakers: [],
-        staffList: [],
-        scientificCommittee: [],
-        staticParts: [],
-        currentSpeaker: {},
+        api: 'http://localhost:8000/api',
+        presenters: [],
+        teachers: [],
+        presentations: [],
+        workshops: [],
+        FOI: [],
+        currentPresenter: {},
+        currentTeacher: {},
+        currentWorkshop: {}
     },
     mutations: {
-        updateSpeakers(state, newSpeakers) {
-            state.speakers = newSpeakers;
+        updatePresenters(state, newPresenter) {
+            state.presenters = newPresenter;
         },
-        updateStaffList(state, newStaffLIst) {
-            state.staffList = newStaffLIst;
+        updateTeachers(state, newTeacher) {
+            state.teachers = newTeacher;
         },
-        updateStaticParts(state, newStaticParts) {
-            state.staticParts = newStaticParts;
+        updateCurrentTeacher(state, newTeacher) {
+            state.currentTeacher = newTeacher;
         },
-        updateScientificCommittee(state, newCommittee) {
-            state.scientificCommittee = newCommittee;
+        updateCurrentPresenter(state, newPresenter) {
+            state.currentPresenter = newPresenter;
         },
-        updateCurrentSpeaker(state, newSpeaker) {
-            state.currentSpeaker = newSpeaker;
-        }
+        updateFOI(state, newFOI) {
+            state.FOI = newFOI;
+        },
+        updateWorkshops(state, newWorkshops) {
+            state.workshops = newWorkshops
+        },
+        updatePresentations(state, newPresentation) {
+            state.presentations = newPresentation
+        },
+        updateCurrentWorkshop(state, newWorkshop) {
+            state.currentWorkshop = newWorkshop
+        },
+
     },
     actions: {
-        getSpeakers: function ({commit}) {
+        getPresenters: function ({commit}) {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: this.getters.getApi + '/speakers/',
+                    url: this.getters.getApi + '/presenter/',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     method: 'GET',
                 }).then((response) => {
-                    commit('updateSpeakers', response.data);
+                    commit('updatePresenters', response.data);
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
@@ -48,92 +61,149 @@ export default new Vuex.Store({
             })
 
         },
-
-        getStaticParts: function ({commit}) {
-            return new Promise((resolve, reject) => {
-                axios({
-                    url: this.getters.getApi + '/static_parts/',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'GET',
-                }).then((response) => {
-                    commit('updateStaticParts', response.data);
-                    resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
-                })
-            })
-        },
-
-        getScientificCommittee: function ({commit}) {
-            return new Promise((resolve, reject) => {
-                axios({
-                    url: this.getters.getApi + '/scientific_committee/',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'GET',
-                }).then((response) => {
-                    commit('updateScientificCommittee', response.data);
-                    resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
-                })
-            })
-        },
-
-        getStaff: function ({commit}) {
-            return new Promise((resolve, reject) => {
-                axios({
-                    url: this.getters.getApi + '/staff/',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'GET',
-                }).then((response) => {
-                    commit('updateStaffList', response.data);
-                    resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
-                })
-            })
-        },
-        getSpeakerById: function ({commit}, id) {
+        getPresenterById: function ({commit}, id) {
             window.console.log('getting speaker with id:', id);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: this.getters.getApi + '/speakers/' + id,
+                    url: this.getters.getApi + '/presenter/' + id,
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     method: 'GET',
                 }).then((response) => {
-                    commit('updateCurrentSpeaker', response.data);
+                    commit('updateCurrentPresenter', response.data);
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
                 })
             })
-        }
+        },
+        getTeachers: function ({commit}) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/teacher/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateTeachers', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+
+        },
+        getTeacherById: function ({commit}, id) {
+            window.console.log('getting speaker with id:', id);
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/teacher/' + id,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateCurrentTeacher', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+        getFieldsOfInterest: function ({commit}, id) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/foi/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateFOI', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+        getWorkshops: function ({commit}) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/workshop/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateWorkshops', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+        getWorkshopById: function ({commit}, id) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/teacher/' + id,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateCurrentWorkshop', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+        getPresentations: function ({commit}) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/presentation/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updatePresentations', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+
     },
+
+
     getters: {
         getApi: state => {
             return state.api;
         },
-        getSpeakers: state => {
-            return state.speakers;
-        },
-        getStaffList: state => {
-            return state.staffList;
-        },
-        getStaticParts: state => {
-            return state.staticParts;
-        },
-        getScientificCommittee: state => {
-            return state.scientificCommittee;
-        }, getCurrentSpeaker: state => {
-            return state.currentSpeaker;
-        }
+        getPresenters:
+            state => {
+                return state.presenters;
+            },
+        getTeachers:
+            state => {
+                return state.teachers;
+            },
+        getFOI:
+            state => {
+                return state.FOI;
+            },
+        getWorkshops:
+            state => {
+                return state.workshops;
+            },
+        getPresentations:
+            state => {
+                return state.presentations;
+            },
+
     }
 })
