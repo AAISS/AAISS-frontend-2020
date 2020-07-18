@@ -42,7 +42,7 @@
                                     <td><p>{{presentation.price}}</p>
                                     </td>
                                     <td>
-                                        <router-link :to="'/presentations/' + presentation.name" class="more-info">
+                                        <router-link :to="'/presentation/' + presentation.id" class="more-info">
                                             More Information
                                         </router-link>
                                     </td>
@@ -76,13 +76,13 @@
             return {
                 errors: [],
                 checkBox_presentations: [
-                    {price: "200", name: "asghar"},
-                    {price: "30000", name: "bagher"},
-                    {price: "1000000", name: "mohammad"},
-                    {price: '700', name: 'in'},
-                    {price: '90000', name: 'oon'},
-                    {price: '980', name: 'dard'},
-                    {price: '6789', name: 'kooft'}
+                    {price: "200", name: "asghar", id:1},
+                    {price: "30000", name: "bagher", id:2},
+                    {price: "1000000", name: "mohammad", id:3},
+                    {price: '700', name: 'in', id:4},
+                    {price: '90000', name: 'oon', id:5},
+                    {price: '980', name: 'dard', id:6},
+                    {price: '6789', name: 'kooft', id:7}
                 ]
                 ,
                 selected_presentations: []

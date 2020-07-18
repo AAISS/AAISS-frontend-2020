@@ -134,7 +134,7 @@
         border-radius: 15px;
         background-color: #ffffff;
         min-height: 100px;
-        min-width: 80vw;
+        width: 40vw;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -171,8 +171,8 @@
 
     p {
         margin: 0;
-        padding-top: 20px;
         color: #16375a;
+        padding: 2px;
     }
 
     .button {
@@ -189,6 +189,7 @@
     }
     .check-box{
         color: #3f494c;
+        margin-top: 6px;
     }
 
     .check-box-wrapper{
@@ -198,7 +199,9 @@
 
     }
     .choice-wrapper{
-        padding: 0 20px 0 20px;
+        padding:  10px 20px 10px 20px;
+        display: flex;
+        flex-direction: row-reverse;
     }
     .errors{
         margin-top: 30px;

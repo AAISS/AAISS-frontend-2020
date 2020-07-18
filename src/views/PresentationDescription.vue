@@ -274,13 +274,15 @@
         margin-top: 20px;
     }
 
-    @media only screen and (min-width: 460px) and (max-width: 1000px) {
+    @media only screen and (min-width: 600px) and (max-width: 1000px) {
         .presentation-container {
             max-width: 80vw;
         }
 
-        .button {
+        .register-button {
             width: 100%;
+            margin-top: 2px;
+            padding: 5px;
         }
 
         h1 {
@@ -308,12 +310,12 @@
 
     }
 
-    @media only screen and (min-width: 0px) and (max-width: 460px) {
+    @media only screen and (min-width: 0px) and (max-width: 600px) {
         .presentation-container {
             max-width: 90vw;
         }
 
-        .button {
+        .register-button {
             width: 100%;
         }
 
@@ -340,8 +342,8 @@
             margin: 15px 3vw 15px 3vw;
         }
         img {
-            width: 40vw;
-            height: 40vw;
+            width: 30vw;
+            height: 30vw;
             margin: 5px 5px 20px 5px;
         }
     }
