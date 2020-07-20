@@ -49,14 +49,14 @@
                                     <span class="material-icons">
                                     event
                                     </span>
-                                    <p>{{presentation.date}}</p>
+                                    <p>{{workshop.start_date}}</p>
                                 </div>
                                 <div class="minor-date-time">
                                     <h5>Time</h5>
                                     <span class="material-icons">
                                     schedule
                                     </span>
-                                    <p>{{presentation.time}}</p>
+                                    <p>{{workshop.end_date}}</p>
                                 </div>
                             </div>
                             <input @click="buy()" class="register-button button" type="submit" value="Register and Buy">
