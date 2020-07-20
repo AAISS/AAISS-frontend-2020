@@ -2,7 +2,7 @@
     <div id="headerSection">
         <div class=" pt-5">
             <div class="col-md-12">
-                <h1 class="text-center font-weight-bold">{{presentation.name}}</h1>
+                <h1 class="text-center font-weight-bold">Presentation</h1>
             </div>
         </div>
 
@@ -52,14 +52,14 @@
                                         <span class="material-icons">
                                     event
                                     </span>
-                                        <p>{{presentation.date}}</p>
+                                        <p>{{datePicker(presentation.start_date)}}</p>
                                     </div>
                                     <div class="minor-date-time">
                                         <h5>Time</h5>
                                         <span class="material-icons">
                                     schedule
                                     </span>
-                                        <p>{{presentation.time}}</p>
+                                        <p>{{timePicker(presentation.start_date)}}</p>
                                     </div>
                                 </div>
                                 <input @click="buy()" class="register-button button" type="submit"
@@ -106,6 +106,13 @@
                     this.presenters.push(eachPresentation);
                     eachPresentation= [];
                 }
+            },
+            datePicker: function (date){
+                return  date.split('T')[0];
+            },
+            timePicker: function (date){
+                var d= date.split('T')[1];
+                return  d.split('.')[0]
             },
         },
         computed: {
@@ -182,6 +189,7 @@
         justify-content: center;
         z-index: 20;
         padding: 3vw;
+        margin-top: 30px;
     }
 
     #wrapper-description {
@@ -204,7 +212,7 @@
     }
 
     #left {
-        max-width: 65%;
+        max-width: 60%;
     }
 
     .text-center {
