@@ -49,14 +49,14 @@
                                     <span class="material-icons">
                                     event
                                     </span>
-                                    <p>{{workshop.start_date}}</p>
+                                    <p>{{this.datePicker(workshop.start_date)}}</p>
                                 </div>
                                 <div class="minor-date-time">
                                     <h5>Time</h5>
                                     <span class="material-icons">
                                     schedule
                                     </span>
-                                    <p>{{workshop.end_date}}</p>
+                                    <p>{{this.timePicker(workshop.start_date)}}</p>
                                 </div>
                             </div>
                             <input @click="buy()" class="register-button button" type="submit" value="Register and Buy">
@@ -124,7 +124,14 @@
                     console.log(e);
                     return false
                 }
-            }
+            },
+            datePicker: function (date){
+                return  date.split('T')[0];
+            },
+            timePicker: function (date){
+                var d= date.split('T')[1];
+                return  d.split('.')[0]
+            },
         },
         mounted() {
             setTimeout(
@@ -205,7 +212,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        min-height: 100%;
+        max-height: 100%;
 
     }
 
@@ -215,7 +222,7 @@
     }
 
     #left {
-        max-width: 65%;
+        max-width: 60%;
     }
 
     .text-center {

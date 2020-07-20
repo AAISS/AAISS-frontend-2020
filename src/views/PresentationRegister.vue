@@ -9,9 +9,9 @@
         <div class="register-wrapper">
             <div class="pt-5  sub-register">
                 <div class="register-container im ">
-                    <div class="col-md-12">
+                    <div class="col-md-12 workshop">
                         <h5 v-if="presentations.length !== 0" class="text-center font-weight-bold">Presentations</h5>
-                        <h5 v-else class="text-center font-weight-bold">Workshops</h5>
+                        <h5 v-else class="text-center font-weight-bold ">Workshops</h5>
                     </div>
 
                     <form
@@ -24,7 +24,7 @@
 
                         <table class="table table-sm">
                             <thead>
-                            <tr>
+                            <tr class="workshop">
                                 <th scope="col"></th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Price</th>
@@ -48,9 +48,9 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="workshop">
                                 <td v-if="workshops.length !== 0 && presentations.length !== 0" colspan="4" class="text-center font-weight-bold">
-                                    <h5  class="text-center font-weight-bold">Workshops</h5>
+                                    <h5  class="text-center font-weight-bold ">Workshops</h5>
                                 </td>
 
                             </tr>
@@ -292,6 +292,7 @@
         font-weight: bolder;
     }
     tr:hover {background-color: #f5f5f5;}
+    .workshop:hover{background-color: white;}
     .workshop-title{
         display: flex;
         flex-direction: row;

@@ -29,8 +29,8 @@
                     <div class="col-md-12 justify-content-center">
                         <div class="row">
                             <div class="col-md-12 mx-auto">
-                                <h2 class="font-weight-bold text-center">About the Event</h2>
-                                <p class="text-justify aboutText">
+                                <h2 class="font-weight-bold text-center text-color-blue">About the Event</h2>
+                                <p class="text-justify aboutText text-color-blue">
                                     {{about}}
                                 </p>
                             </div>
@@ -62,7 +62,7 @@
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-white">Invited Presenters</h1>
+                        <h1 class="text-center font-weight-bold text-color-blue">Invited Presenters</h1>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-white">Invited Teachers</h1>
+                        <h1 class="text-center font-weight-bold  text-color-blue">Invited Teachers</h1>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -92,7 +92,7 @@
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-white">Schedule</h1>
+                        <h1 class="text-center font-weight-bold text-color-blue">Schedule</h1>
                     </div>
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -578,6 +578,9 @@
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
+    }
+    .text-color-blue{
+        color: #787c7f;
     }
 
     .aboutText{
