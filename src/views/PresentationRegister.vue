@@ -37,7 +37,7 @@
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
                                 <td><input class="check-box" type="checkbox" :value="true"
-                                           v-model="selected_presentations"></td>
+                                           v-model="presentation"></td>
                                 <td><p>presentation</p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
@@ -55,10 +55,10 @@
 
                             </tr>
 
-                                <tr v-for="workshop in workshops" v-bind:key="workshop"
+                                <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                     class="choice-wrapper">
                                     <td><input class="check-box" type="checkbox" :value="workshop.name"
-                                               v-model="selected_presentations"></td>
+                                               v-model="payment.workshops"></td>
                                     <td><p>{{workshop.name}}</p></td>
                                     <td><p>{{workshop.cost}}</p>
                                     </td>
@@ -97,20 +97,40 @@
         name: "PresentationRegister",
         data: function () {
             return {
-                errors: [],
-                selected_presentations: [],
+                presentation: [],
                 error: false,
                 presentation_fee: "default",
+                user: {
+                    name: "",
+                    email: "",
+                    national_code: "",
+                    fields_of_interest: [],
+                    phone_number: ""
+                },
+                payment: {
+                    email: "",
+                    workshops: [],
+                    presentations: false
+                }
 
             }
         },
         methods: {
-            buy: function () {
-                this.checkItems()
+            buy: async function () {
+                this.checkItems();
+                if (this.error === false) {
+                    try {
+                        await this.registerUser();
+                        this.makePayment();
+                        return true
+                    } catch (e) {
+                        console.log(e);
+                        return false
+                    }
+                }
             },
             checkItems: function () {
-                if (this.selected_presentations.length === 0) {
-                    console.log(this.presentation_fee);
+                if (this.payment.workshops.length === 0 && this.presentation.length === 0) {
 
                     this.error = true
                 } else this.error = false
@@ -130,8 +150,42 @@
                             reject(error);
                         })
                     })
+            },
+            registerUser: function () {
+                    return new Promise((resolve, reject) => {
+                        axios({
+                            url: this.$store.getters.getApi + '/user',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            data: this.userData,
+                            method: 'POST',
+                        }).then((response) => {
+                            console.log(response.data)
+                            resolve(response.data);
+                        }).catch((error) => {
+                            reject(error);
+                        })
+                    })
+            },
+            makePayment: function () {
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/payment',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        data: this.paymentData,
+                        method: 'POST',
+                    }).then((response) => {
+                        console.log(response.data)
+                        resolve(response.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                })
+            },
 
-            }
         },
         created() {
             this.$store.dispatch('getWorkshops');
@@ -141,12 +195,23 @@
 
         computed:{
             workshops: function () {
-                console.log(this.$store.getters.getWorkshops);
                 return this.$store.getters.getWorkshops;
             },
             presentations: function () {
-                console.log(this.$store.getters.getPresentations);
                 return this.$store.getters.getPresentations;
+            },
+            userData: function () {
+                this.user.name = this.$route.params.name;
+                this.user.phone_number = this.$route.params.phone_number;
+                this.user.email = this.$route.params.email;
+                this.user.national_code = this.$route.params.national_code;
+                this.user.fields_of_interest = localStorage.getItem('FOI') || '';
+                return this.user ;
+            },
+            paymentData: function () {
+                this.payment.email = this.$route.params.email;
+                this.payment.presentations = this.presentation[0];
+                return this.payment
             }
         }
     }

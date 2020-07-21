@@ -8,6 +8,7 @@ import UserRegister from "./views/UserRegister";
 import PresentationRegister from "./views/PresentationRegister";
 import PresentationDescription from "./views/PresentationDescription";
 import WorkshopDescription from "./views/WorkshopDescription";
+import Teacher from "./views/Teacher";
 
 Vue.use(Router);
 
@@ -26,25 +27,26 @@ export default new Router({
             component: Home
         },
         {
-            path: '/presenter/:id',
+            path: '/presenters/:id',
             name: 'presenter',
             component: Speaker,
         },
         {
-            path: '/teacher/:id',
+            path: '/teachers/:id',
             name: 'teacher',
-            component: Speaker,
+            component: Teacher,
         },
+        // {
+        //     path: '/staff',
+        //     name: 'Staff',
+        //     component: Staff
+        // },
         {
-            path: '/staff',
-            name: 'Staff',
-            component: Staff
-        },{
             path: '/register/user',
             name: 'register_user',
             component: UserRegister
         },{
-            path: '/register/presentation',
+            path: '/register/presentation/:name/:email/:national_code/:phone_number',
             name: 'register_presentation',
             component: PresentationRegister
         },{
@@ -56,7 +58,8 @@ export default new Router({
             path: '/workshop/:id',
             name: 'description_workshop',
             component: WorkshopDescription
-        }
+        },
+        {path: "*", component: Home}
 
     ]
 })

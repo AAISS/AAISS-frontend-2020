@@ -1,10 +1,10 @@
 <template>
     <section id="speakersSection">
         <!--        <div id="particles-js" class="position-absolute"></div>-->
-        <div class="container pt-5" v-if="presenter != null">
+        <div class="container pt-5" v-if="teacher != null">
             <div class="row mt-5">
                 <div class="col-lg-3">
-                    <SpeakerBlock :speaker="presenter"></SpeakerBlock>
+                    <TeacherBlock :speaker="teacher"></TeacherBlock>
 <!--                    <button @click.prevent="showRegisterSoonMessage()"-->
 <!--                            v-if="staticParts[0].register_link == '/'"-->
 <!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
@@ -17,9 +17,9 @@
 <!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
                 </div>
                 <div class="col-lg-9 infoBlock">
-                    <h1 class="display-5">
-                        {{presenter.paper}}
-                    </h1>
+<!--                    <h1 class="display-5">-->
+<!--                        {{teacher.paper}}-->
+<!--                    </h1>-->
 
 <!--                    <strong>-->
 <!--                        Location-->
@@ -31,18 +31,18 @@
 <!--                    <strong>Date and Time</strong>-->
 <!--                    <p>-->
 <!--                        <time>-->
-<!--                            {{presenter.date_and_time}}-->
+<!--                            {{speaker.date_and_time}}-->
 <!--                        </time>-->
 <!--                    </p>-->
 
                     <strong>Abstract</strong>
                     <p class="text-justify" style="line-height:30px;">
-                        {{presenter.desc}}
+                        {{teacher.desc}}
                     </p>
 
                     <strong>Bio</strong>
                     <p class="text-justify" style="line-height:30px">
-                        {{presenter.cv_path}}
+                        {{teacher.cv_path}}
                     </p>
 
                 </div>
@@ -53,7 +53,8 @@
 </template>
 
 <script>
-    import SpeakerBlock from '../components/SpeakerBlock'
+
+    import TeacherBlock from "../components/TeacherBlock";
 
     export default {
         name: "Speaker",
@@ -63,13 +64,13 @@
                 smallerFontSize: false,
             }
         }, computed: {
-            presenter: function () {
-                console.log(this.$store.getters.getCurrentPresenter)
-                return this.$store.getters.getCurrentPresenter;
+
+            teacher: function () {
+                return this.$store.getters.getCurrentTeacher;
             }
         },
         components: {
-            SpeakerBlock
+            TeacherBlock
         },
         methods: {
             showRegisterSoonMessage: function () {
@@ -82,8 +83,7 @@
             }
         },
         created() {
-           this.$store.dispatch('getPresenterById', this.$route.params.id);
-
+            let speakerPromise = this.$store.dispatch('getTeacherById', this.$route.params.id);
         },
         mounted() {
             scrollTo(0, 0);
@@ -117,6 +117,7 @@
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         margin-top: 15px;
+        padding: 20px;
     }
 
     .infoBlock p, address {

@@ -21,7 +21,6 @@
                     >
 
 
-
                         <p>Name</p>
                         <input class="user-data" v-model="user.name" type="text" placeholder="">
 
@@ -38,15 +37,16 @@
                         <div class="check-box-wrapper">
                             <div v-for="field in FOI" class="choice-wrapper">
                                 <p>{{field.name}}</p>
-                                <input class="check-box" type="checkbox" :value="field.id" v-model="user.fields_of_interest">
+                                <input class="check-box" type="checkbox" :value="field.id"
+                                       v-model="user.fields_of_interest">
                             </div>
                         </div>
 
                         <div v-if="errors.length" class="text-danger errors">
                             <b>Please correct the following error(s):</b>
-                        <ul>
-                            <li v-for="error in errors">{{ error }}</li>
-                        </ul>
+                            <ul>
+                                <li v-for="error in errors">{{ error }}</li>
+                            </ul>
                         </div>
 
                     </form>
@@ -55,7 +55,7 @@
             </div>
             <div class="sub-register">
 
-                <input @click="checkForm" class="button" type="submit" value="Submit">
+                <input @click="[checkForm() , navigateToNextPage()]" class="button" type="submit" value="Submit">
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
                     name: "",
                     email: "",
                     national_code: "",
-                    fields_of_interest:[],
+                    fields_of_interest: [],
                     phone_number: ""
                 },
                 errors: [],
@@ -101,25 +101,45 @@
                     return true;
                 }
 
-                e.preventDefault();
+
             },
             validEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
             },
+            navigateToNextPage: function () {
+                // this.checkForm()
+                if (this.errors.length === 0) {
+                    console.log("hi")
+                    this.$router.push({
+                        name: 'register_presentation',
+                        params: {
+                            name: this.user.name,
+                            email: this.user.email,
+                            national_code: this.user.national_code,
+                            // fields_of_interest: this.user.fields_of_interest,
+                            phone_number: this.user.phone_number
+                        }
+                    })
+
+                    localStorage.setItem('FOI', this.user.fields_of_interest)
+
+                }
+            }
 
 
         },
         created() {
             this.$store.dispatch('getFieldsOfInterest');
         },
-        computed:{
+        computed: {
             FOI: function () {
                 console.log(this.$store.getters.getFOI)
                 return this.$store.getters.getFOI;
             }
         }
     }
+
 </script>
 
 <style scoped>
@@ -196,45 +216,53 @@
         margin-top: 20px;
         z-index: 20;
     }
-    .check-box{
+
+    .check-box {
         color: #3f494c;
         margin-top: 6px;
     }
 
-    .check-box-wrapper{
+    .check-box-wrapper {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
 
     }
-    .choice-wrapper{
-        padding:  10px 20px 10px 20px;
+
+    .choice-wrapper {
+        padding: 10px 20px 10px 20px;
         display: flex;
         flex-direction: row-reverse;
     }
-    .errors{
+
+    .errors {
         margin-top: 30px;
     }
 
     @media only screen and (min-width: 500px) and (max-width: 767.98px) {
-        .register-container{
+        .register-container {
             width: 60vw;
         }
-        .button{
+
+        .button {
             width: 60vw;
         }
-        h1{
+
+        h1 {
             padding-top: 50px;
         }
     }
+
     @media only screen and (min-width: 0) and (max-width: 500px) {
-        .register-container{
+        .register-container {
             width: 90vw;
         }
-        .button{
+
+        .button {
             width: 90vw;
         }
-        h1{
+
+        h1 {
             padding-top: 50px;
         }
     }
