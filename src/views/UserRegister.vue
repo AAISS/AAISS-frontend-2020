@@ -91,6 +91,9 @@
                 if (!this.user.national_code) {
                     this.errors.push("National code required.");
                 }
+                if (this.user.national_code.length !== 10) {
+                    this.errors.push("National code must be 10 characters.");
+                }
                 if (!this.user.email) {
                     this.errors.push('Email required.');
                 } else if (!this.validEmail(this.user.email)) {

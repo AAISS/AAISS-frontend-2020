@@ -205,7 +205,9 @@
                 this.user.phone_number = this.$route.params.phone_number;
                 this.user.email = this.$route.params.email;
                 this.user.national_code = this.$route.params.national_code;
-                this.user.fields_of_interest = localStorage.getItem('FOI') || '';
+
+                this.user.fields_of_interest = localStorage.getItem('FOI').split(',') || [];
+                console.log(this.user)
                 return this.user ;
             },
             paymentData: function () {
