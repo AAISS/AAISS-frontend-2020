@@ -57,7 +57,7 @@
 
                                 <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                     class="choice-wrapper">
-                                    <td><input class="check-box" type="checkbox" :value="workshop.name"
+                                    <td><input class="check-box" type="checkbox" :value="workshop.id"
                                                v-model="payment.workshops"></td>
                                     <td><p>{{workshop.name}}</p></td>
                                     <td><p>{{workshop.cost}}</p>
@@ -154,7 +154,7 @@
             registerUser: function () {
                     return new Promise((resolve, reject) => {
                         axios({
-                            url: this.$store.getters.getApi + '/user',
+                            url: this.$store.getters.getApi + '/user/',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
@@ -171,7 +171,7 @@
             makePayment: function () {
                 return new Promise((resolve, reject) => {
                     axios({
-                        url: this.$store.getters.getApi + '/payment',
+                        url: this.$store.getters.getApi + '/payment/',
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -207,12 +207,15 @@
                 this.user.national_code = this.$route.params.national_code;
 
                 this.user.fields_of_interest = localStorage.getItem('FOI').split(',') || [];
-                console.log(this.user)
+                console.log(this.user);
                 return this.user ;
             },
             paymentData: function () {
                 this.payment.email = this.$route.params.email;
-                this.payment.presentations = this.presentation[0];
+                if(this.presentation.length !== 0){
+                    this.payment.presentations = this.presentation[0];
+                }
+                console.log(this.payment)
                 return this.payment
             }
         }
