@@ -27,7 +27,7 @@
                                         class="item slider-item"
                                 >
                                     <div class="content-wrapper">
-                                        <img :src="speaker.img_path" alt="speaker img" class="rounded-circle img-fluid">
+                                        <img :src="this.$store.getters.getMediaRoot + speaker.img_path" alt="speaker img" class="rounded-circle img-fluid">
                                         <p class="text-center">{{speaker.name}}</p>
                                         <p class="text-center">Works at Google</p>
                                     </div>

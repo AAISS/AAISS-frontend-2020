@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         api: 'http://localhost:8000/api',
+        mediaRoot:'http://localhost:8000' ,
         fields_of_interest: localStorage.getItem('FOI') || '',
         presenters: [],
         teachers: [],
@@ -212,7 +213,11 @@ export default new Vuex.Store({
         getCurrentTeacher:
             state => {
                 return state.currentTeacher;
-            }
+            },
+        getMediaRoot:
+            state => {
+                return state.mediaRoot;
+            },
 
     }
 })
