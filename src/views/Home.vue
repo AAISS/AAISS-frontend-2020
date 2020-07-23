@@ -525,6 +525,7 @@
     #speakersSection {
         background-color: #ceccc0;
         min-height: 100vh;
+        padding-bottom: 30px;
     }
 
     #speakersSection h1 {
