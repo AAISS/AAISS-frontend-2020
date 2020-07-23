@@ -9,6 +9,9 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="aaissNavbar">
             <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+                <li class="nav-item">
+                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">2019 Event</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" @click.prevent="handleHomeButton()">Home</a>
                 </li>
