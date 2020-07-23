@@ -4,7 +4,7 @@
             <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="img" class="rounded-circle img-fluid" draggable="false">
         </div>
         <div class="text-center speakerInfo">
-            <router-link :to="'/speakers/' + speaker.id">
+            <router-link :to="'/presenters/' + speaker.id">
                 {{speaker.name}}
             </router-link>
             <h6>{{speaker.workplace}}</h6>

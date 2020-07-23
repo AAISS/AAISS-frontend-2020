@@ -9,6 +9,7 @@ import PresentationRegister from "./views/PresentationRegister";
 import PresentationDescription from "./views/PresentationDescription";
 import WorkshopDescription from "./views/WorkshopDescription";
 import Teacher from "./views/Teacher";
+import NotFound from "./views/NotFound";
 
 Vue.use(Router);
 
@@ -59,7 +60,7 @@ export default new Router({
             name: 'description_workshop',
             component: WorkshopDescription
         },
-        {path: "*", component: Home}
+        {path: "*", component: NotFound}
 
     ]
 })
