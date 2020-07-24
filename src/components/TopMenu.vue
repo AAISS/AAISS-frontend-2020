@@ -9,9 +9,6 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="aaissNavbar">
             <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
-                <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">2019 Event</a>
-                </li>
                 <li class="nav-item active">
                     <a class="nav-link" @click.prevent="handleHomeButton()">Home</a>
                 </li>
@@ -24,11 +21,17 @@
                 <li class="nav-item">
                     <a href="http://aaiss.ceit.aut.ac.ir/#speakersSection" class="nav-link">Speakers</a>
                 </li>
+                <li class="nav-item">
+                    <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Workshops</a>
+                </li>
 <!--                <li class="nav-item">-->
 <!--                    <a href="http://aaiss.ceit.aut.ac.ir/#scheduleSection" class="nav-link">Schedule</a>-->
 <!--                </li>-->
                 <li class="nav-item">
                     <a href="http://aaiss.ceit.aut.ac.ir/#organizerSection" class="nav-link">Organizer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">AAISS 2019</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <router-link to="/staff" class="nav-link">Staff</router-link>-->
