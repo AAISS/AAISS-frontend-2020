@@ -22,7 +22,7 @@
 
 <style scoped>
     .speakerBlock {
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: #ffffff;
         min-height: 100px;
         margin-top: 15px;

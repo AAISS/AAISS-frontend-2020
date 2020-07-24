@@ -48,7 +48,7 @@
     .btn-more-info{
         font-weight: bold;
         background-color: #7a7b7d;
-        border-radius: 25px;
+        border-radius: 10px;
         color: white;
         padding: 5px 25px 5px 25px;
     }

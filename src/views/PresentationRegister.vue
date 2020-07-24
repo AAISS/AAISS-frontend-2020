@@ -241,7 +241,7 @@
     }
 
     .register-container {
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: #ffffff;
         min-height: 100px;
         min-width: 40vw;
@@ -271,7 +271,7 @@
     }
 
     .user-data {
-        border-radius: 2px;
+        border-radius: 10px;
         border: none;
         background-color: #f4f4f4;
         width: 100%;
@@ -290,7 +290,7 @@
         color: white;
         padding: 10px;
         font-weight: bolder;
-        border-radius: 30px;
+        border-radius: 10px;
         min-width: 40vw;
         min-height: 50px;
         margin-top: 20px;
@@ -332,7 +332,7 @@
         color: white;
         text-decoration: none;
         padding: 5px 15px 5px 15px;
-        border-radius: 15px;
+        border-radius: 10px;
         font-weight: bolder;
     }
 
@@ -346,7 +346,7 @@
         background-color: white;
         font-size: 12px;
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
     }
     table {
         border-collapse: collapse;

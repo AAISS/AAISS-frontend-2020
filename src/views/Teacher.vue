@@ -111,7 +111,7 @@
     }
 
     .infoBlock {
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: #ffffff;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);

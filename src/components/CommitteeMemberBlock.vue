@@ -33,7 +33,7 @@
 <style scoped>
     .speakerBlock {
         transition: all 0.1s ease-in-out;
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: #ffffff;
         height: 368px;
         margin-top: 15px;

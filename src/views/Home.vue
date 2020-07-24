@@ -591,7 +591,7 @@
     .ceitMapFrame {
         width: 100%;
         min-height: 350px;
-        border-radius: 15px;
+        border-radius: 10px;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -624,7 +624,7 @@
         background-color: white;
         font-size: 12px;
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
