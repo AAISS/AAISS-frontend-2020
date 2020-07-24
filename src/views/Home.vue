@@ -62,7 +62,7 @@
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold text-color-blue">Invited Presenters</h1>
+                        <h1 class="text-center font-weight-bold text-color-blue">Invited Speakers</h1>
                     </div>
                 </div>
                 <div class="row pt-3">

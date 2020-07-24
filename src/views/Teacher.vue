@@ -35,7 +35,7 @@
 <!--                        </time>-->
 <!--                    </p>-->
 
-                    <strong>Abstract</strong>
+                    <strong>Syllabus</strong>
                     <p class="text-justify" style="line-height:30px;">
                         {{teacher.desc}}
                     </p>
