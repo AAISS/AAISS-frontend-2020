@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
-                        <h1 class="text-center font-weight-bold  text-color-blue">Invited Teachers</h1>
+                        <h1 class="text-center font-weight-bold  text-color-blue">Workshops</h1>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -348,17 +348,18 @@
                 </div>
                 <div class="row pt-5 pb-5">
                     <div class="col-lg-6 text-white">
-
-                        <h5 class="organizerName">Students' Scientific Chapter of Computer Engineering
-                            Technology Department <br> Amirkabir University of Technology(Tehran Polytechnic)</h5>
-                        <h6 class="organizerAddress mt-5">Website : <a href="http://www.ceit-ssc.ir" target="_blank">www.ceit-ssc.ir</a>
+                        <h5 class="organizerName">
+                            Students' Scientific Chapter 
+                            <br>Computer Engineering Department 
+                            <br>Amirkabir University of Technology (Tehran Polytechnic)</h5>
+                        <h6 class="organizerAddress mt-5">
+                            Website: <a href="http://ceit-ssc.ir" target="_blank">ceit-ssc.ir</a>
                         </h6>
-                        <h6 class="organizerEmail">Email : <a
-                                href="mailto:ceit.ssc94@gmail.com">ceit.ssc94@gmail.com</a></h6>
+                        <h6 class="organizerEmail">
+                            Email: <a href="mailto:ceit.aaiss@gmail.com">ceit.aaiss@gmail.com</a></h6>
                         <div class="row pt-3">
-                            <div class="col-md-12">
-                                <img src="../assets/img/ssc-logo-white-horizontal.png" alt="ssc logo" class="img-fluid"
-                                     draggable="false">
+                            <div class="col-md-8">
+                                <img src="../assets/img/ssc-logo-white-horizontal.png" alt="ssc logo" class="img-fluid" draggable="false">
                             </div>
                         </div>
                     </div>
