@@ -6,8 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        api: 'http://localhost:8000/api',
-        mediaRoot:'http://localhost:8000' ,
+        api: 'http://aaiss.ceit.aut.ac.ir/api',
+        mediaRoot:'http://aaiss.ceit.aut.ac.ir',
         fields_of_interest: localStorage.getItem('FOI') || '',
         presenters: [],
         teachers: [],
