@@ -1,5 +1,7 @@
 <template>
     <div id="headerSection">
+        <notifications position="top center" class="noti-style"/>
+
         <div class=" pt-5">
             <div class="col-md-12">
                 <h1 class="text-center font-weight-bold">{{workshop.name}}</h1>
@@ -102,15 +104,35 @@
                 sliderValue: 2,
                 workshop: {},
                 speakers: [],
-                eachPresenter: []
+                eachPresenter: [],
+                payment: {
+                    email: "",
+                    workshops: [],
+                    presentations: false
+                }
             }
         },
         methods: {
             changeIndex(index) {
                 this.sliderValue = index;
             },
-            buy: function () {
+            buy: async function () {
+                try {
+                    const response = await this.makePayment();
+                    this.$notify({
+                        group: "auth",
+                        title: "Success",
+                        text: "Redirecting to payment page",
+                        type: "success"
+                    })
+                    window.location.replace(response.message);
+                    return true
+                } catch (e) {
+                    console.log(e);
+                    return false
 
+
+                }
             },
             getWorkshopById: function (id) {
                 return new Promise((resolve, reject) => {
@@ -128,12 +150,6 @@
                     })
                 })
             },
-            // getAllSpeakers: function () {
-            //     for (let i = 0; i <this.workshop.teachers.length ; i++) {
-            //         let newTeacher = this.$store.commit('getTeacherById', this.workshop.teachers.get(i));
-            //         this.speakers.push(newTeacher);
-            //     }
-            // },
             getTeachers: async function (workshop) {
                 for (let i = 0; i < workshop.teachers.length; i++) {
                     await this.$store.dispatch('getTeacherById', workshop.teachers[i])
@@ -161,13 +177,32 @@
                 return d.split('.')[0]
             },
 
+            makePayment: function () {
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/payment/',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        data: this.paymentData,
+                        method: 'POST',
+                    }).then((response) => {
+                        console.log(response.data)
+                        resolve(response.data);
+                        return response.data
+                    }).catch((error) => {
+                        reject(error);
+                        return error
+                    })
+                })
+            },
+
         },
         computed: {
             getDuration: function () {
                 let endHour = this.timePicker(this.workshop.end_date).split(':')[0];
                 let endMinute = this.timePicker(this.workshop.end_date).split(':')[1];
                 let endSecond = this.timePicker(this.workshop.end_date).split(':')[2];
-                console.log("KKKK")
                 console.log(endHour, endMinute, endSecond)
                 let end = new Date(0, 0, 0, endHour, endMinute, endSecond);
                 let startHour = this.timePicker(this.workshop.start_date).split(':')[0];
@@ -179,6 +214,12 @@
             },
             teachers: function () {
                 return this.eachPresenter
+            },
+            paymentData: function () {
+                this.payment.email = this.$route.params.email;
+                this.payment.workshops.push(this.$route.params.id)
+                console.log(this.payment)
+                return this.payment
             }
         },
         mounted() {
@@ -336,6 +377,13 @@
         min-height: 30px;
         margin-top: 20px;
     }
+    /*notification*/
+    .noti-style {
+        padding: 0px;
+        margin: 0px 5px 5px;
+        font-size: 15px;
+    }
+
 
     @media only screen and (min-width: 600px) and (max-width: 1000px) {
         .presentation-container {

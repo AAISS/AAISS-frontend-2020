@@ -44,7 +44,7 @@
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
-                                    <router-link to="/presentations" class="more-info">
+                                    <router-link :to="'/presentations/'+ userData.email" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -67,7 +67,7 @@
                                 <td><p>{{workshop.cost}}</p>
                                 </td>
                                 <td>
-                                    <router-link :to="'/workshop/' + workshop.id" class="more-info">
+                                    <router-link :to="'/workshop/' + workshop.id +'/'+ userData.email" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>

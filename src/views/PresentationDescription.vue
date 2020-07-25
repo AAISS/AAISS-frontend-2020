@@ -1,5 +1,6 @@
 <template>
     <div id="headerSection">
+        <notifications position="top center" class="noti-style"/>
         <div class=" pt-5">
             <div class="col-md-12">
                 <h1 class="text-center font-weight-bold">Presentation</h1>
@@ -77,6 +78,7 @@
 
 <script>
     import {Slider, SliderItem} from "vue-easy-slider";
+    import axios from "axios";
 
     export default {
         name: "PresentationDescription",
@@ -88,14 +90,34 @@
             return {
                 sliderValue: 2,
                 presenters: [],
+                payment: {
+                    email: "",
+                    workshops: [],
+                    presentations: true
+                }
             }
         },
         methods: {
             changeIndex(index) {
                 this.sliderValue = index;
             },
-            buy: function () {
+            buy: async function () {
+                try {
+                    const response = await this.makePayment();
+                    this.$notify({
+                        group: "auth",
+                        title: "Success",
+                        text: "Redirecting to payment page",
+                        type: "success"
+                    })
+                    window.location.replace(response.message);
+                    return true
+                } catch (e) {
+                    console.log(e);
+                    return false
 
+
+                }
             },
             getPresenters: async function (presentation) {
                 let eachPresenter = [];
@@ -115,11 +137,35 @@
                 var d = date.split('T')[1];
                 return d.split('.')[0]
             },
+            makePayment: function () {
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/payment/',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        data: this.paymentData,
+                        method: 'POST',
+                    }).then((response) => {
+                        console.log(response.data)
+                        resolve(response.data);
+                        return response.data
+                    }).catch((error) => {
+                        reject(error);
+                        return error
+                    })
+                })
+            },
         },
         computed: {
             presentations: function () {
                 console.log(this.$store.getters.getPresentations);
                 return this.$store.getters.getPresentations;
+            },
+            paymentData: function () {
+                this.payment.email = this.$route.params.email;
+                console.log(this.payment)
+                return this.payment
             }
         },
         mounted() {
@@ -289,6 +335,13 @@
         display: flex;
         flex-direction: column;
     }
+    /*notification*/
+    .noti-style {
+        padding: 0px;
+        margin: 0px 5px 5px;
+        font-size: 15px;
+    }
+
 
     @media only screen and (min-width: 600px) and (max-width: 1000px) {
         .presentation-container {

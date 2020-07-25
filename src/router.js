@@ -52,12 +52,12 @@ const router = new Router({
             name: 'register_presentation',
             component: PresentationRegister
         }, {
-            path: '/presentations',
+            path: '/presentations/:email/',
             name: 'description_presentation',
             component: PresentationDescription
         },
         {
-            path: '/workshop/:id',
+            path: '/workshop/:id/:email/',
             name: 'description_workshop',
             component: WorkshopDescription
         },
