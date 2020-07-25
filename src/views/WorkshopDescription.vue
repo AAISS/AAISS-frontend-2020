@@ -45,8 +45,8 @@
                             <div v-html="workshop.desc" class="text-justify description" style="line-height:30px;"></div>
                             <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true"
                                                                      class="text-danger"> FULL </span></p>
-                            <p>Workshop Level: {{workshop.level}}</p>
-                            <p>Workshop Duration: {{getDuration}} Minutes</p>
+                            <p>Level: {{workshop.level}}</p>
+                            <p>Duration: {{getDuration}} Minutes</p>
                             <p>Prerequisites: {{workshop.prerequisites }}</p>
                             <h6 v-if="workshop.has_project === true">This workshop has project.</h6>
                             <div class="date-time-wrapper">
