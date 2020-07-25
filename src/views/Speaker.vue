@@ -46,6 +46,11 @@
 
                     <strong>Bio</strong>
                     <p class="text-justify" style="line-height:30px">
+                        {{presenter.bio}}
+                    </p>
+
+                    <strong v-if="presenter.cv_path !== ''">CV</strong>
+                    <p v-if="presenter.cv_path !== ''" class="text-justify" style="line-height:30px" >
                         {{presenter.cv_path}}
                     </p>
 
