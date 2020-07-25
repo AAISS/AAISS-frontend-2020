@@ -63,6 +63,8 @@
 
 <script>
 
+    import axios from "axios";
+
     export default {
         name: "UserRegister",
         data: function () {
@@ -113,6 +115,11 @@
             navigateToNextPage: function () {
                 // this.checkForm()
                 if (this.errors.length === 0) {
+                    if (this.user.fields_of_interest[0] === ""){
+                        this.user.fields_of_interest = [];
+                        console.log(this.user.fields_of_interest )
+                    }
+                    this.registerUser()
                     console.log("hi")
                     this.$router.push({
                         name: 'register_presentation',
@@ -128,7 +135,24 @@
                     localStorage.setItem('FOI', this.user.fields_of_interest)
 
                 }
-            }
+            },
+            registerUser: function () {
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/user/',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        data: this.user,
+                        method: 'POST',
+                    }).then((response) => {
+                        console.log(response.data)
+                        resolve(response.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                })
+            },
 
 
         },

@@ -9,6 +9,7 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="aaissNavbar">
             <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+
                 <li class="nav-item active">
                     <a class="nav-link" @click.prevent="handleHomeButton()">Home</a>
                 </li>
@@ -19,10 +20,10 @@
 <!--                    <a href="http://aaiss.ceit.aut.ac.ir/#committeeSection" class="nav-link">Committee</a>-->
 <!--                </li>-->
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/#speakersSection" class="nav-link">Speakers</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/#speakersSection" class="nav-link">Presenters</a>
                 </li>
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Workshops</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Teachers</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <a href="http://aaiss.ceit.aut.ac.ir/#scheduleSection" class="nav-link">Schedule</a>-->
@@ -31,7 +32,10 @@
                     <a href="http://aaiss.ceit.aut.ac.ir/#organizerSection" class="nav-link">Organizer</a>
                 </li>
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">AAISS 2019</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/workshops+presentation" class="nav-link">All Workshops and Presentations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">2019 AAISS</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <router-link to="/staff" class="nav-link">Staff</router-link>-->

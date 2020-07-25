@@ -63,6 +63,7 @@
     }
     *{
         scroll-behavior: smooth;
+        font-variant-numeric: normal;
     }
 
     html, body {
@@ -70,12 +71,13 @@
     }
 
     @font-face {
-        font-family: 'iransans';
-        src : url('assets/fonts/iranSansFarsiNumber.ttf') format('truetype');
+        font-family: system-ui;
+        /*src : url('assets/fonts/iranSansFarsiNumber.ttf') format('truetype');*/
+
     }
 
     .iransans {
-        font-family : 'iransans';
+        font-family: system-ui;
     }
     .fade-enter-active,
     .fade-leave-active {

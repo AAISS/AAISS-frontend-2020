@@ -42,8 +42,13 @@
 
                     <strong>Bio</strong>
                     <p class="text-justify" style="line-height:30px">
-                        {{teacher.cv_path}}
+                        {{teacher.bio}}
                     </p>
+
+                    <strong v-if="teacher.cv_path !== ''">CV</strong>
+                    <a v-if="teacher.cv_path !== ''" class="text-justify" style="line-height:30px">
+                        {{teacher.cv_path}}
+                    </a>
 
                 </div>
             </div>

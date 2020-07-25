@@ -2,7 +2,7 @@
     <div id="headerSection">
         <div class=" pt-5">
             <div class="col-md-12">
-                <h1 class="text-center font-weight-bold">Register</h1>
+                <h1 class="text-center font-weight-bold">Workshops and Presentation</h1>
             </div>
         </div>
 
@@ -13,14 +13,6 @@
                         <h5 v-if="presentations.length !== 0" class="text-center font-weight-bold">Presentations</h5>
                         <h5 v-else class="text-center font-weight-bold ">Workshops</h5>
                     </div>
-
-                    <form
-                            id="app"
-                            @submit="buy()"
-                            action="https://vuejs.org/"
-                            method="post"
-                            class="pt-3 table-responsive"
-                    >
 
                         <table class="table table-sm">
                             <thead>
@@ -36,8 +28,7 @@
 
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
-                                <td><input class="check-box" type="checkbox" :value="true"
-                                           v-model="presentation"></td>
+                                <td>
                                 <td><p>presentation</p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
@@ -57,8 +48,7 @@
 
                                 <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                     class="choice-wrapper">
-                                    <td><input class="check-box" type="checkbox" :value="workshop.id"
-                                               v-model="payment.workshops"></td>
+                                    <td>
                                     <td><p>{{workshop.name}}</p></td>
                                     <td><p>{{workshop.cost}}</p>
                                     </td>
@@ -78,14 +68,10 @@
 
                         </div>
 
-                    </form>
                 </div>
 
             </div>
-            <div class="sub-register">
 
-                <input @click="buy" class="button" type="submit" value="Register and Buy">
-            </div>
         </div>
     </div>
 </template>

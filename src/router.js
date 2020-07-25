@@ -3,17 +3,18 @@ import Router from 'vue-router'
 import Landing from "./views/Landing";
 import Home from "./views/Home";
 import Speaker from "./views/Speaker";
-import Staff from "./views/Staff";
+
 import UserRegister from "./views/UserRegister";
 import PresentationRegister from "./views/PresentationRegister";
 import PresentationDescription from "./views/PresentationDescription";
 import WorkshopDescription from "./views/WorkshopDescription";
 import Teacher from "./views/Teacher";
 import NotFound from "./views/NotFound";
-
+import store from "./store";
+import PresentationAndWorkshops from "./views/PresentationAndWorkshops";
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -46,11 +47,11 @@ export default new Router({
             path: '/register/user',
             name: 'register_user',
             component: UserRegister
-        },{
+        }, {
             path: '/register/presentation/:name/:email/:national_code/:phone_number',
             name: 'register_presentation',
             component: PresentationRegister
-        },{
+        }, {
             path: '/presentations',
             name: 'description_presentation',
             component: PresentationDescription
@@ -60,7 +61,38 @@ export default new Router({
             name: 'description_workshop',
             component: WorkshopDescription
         },
-        {path: "*", component: NotFound}
+        {
+            path: '/workshops+presentation',
+            name: 'presentation_workshops',
+            component: PresentationAndWorkshops
+        },
+        {
+            path: "*",
+            name: 'not-found',
+            component: NotFound
+        }
+
 
     ]
+
+
 })
+
+export default router
+
+// const openRegister = ['register_user', 'register_presentation', 'description_workshop', 'description_presentation'];
+// router.beforeEach((to, from, next) => {
+//     store.dispatch('getRegisterStatus')
+//     console.log(store.getters.getRegisterOpen)
+//     if (openRegister.includes(to.name)) {
+//         if (store.getters.getRegisterOpen === 'open') {
+//             next()
+//         } else {
+//             next(from.fullPath);
+//         }
+//     } else {
+//         next()
+//     }
+//     window.scroll(0, 0);
+// });
+//

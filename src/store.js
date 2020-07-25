@@ -6,8 +6,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        api: 'http://aaiss.ceit.aut.ac.ir/api',
-        mediaRoot:'http://aaiss.ceit.aut.ac.ir',
+        // api: 'http://aaiss.ceit.aut.ac.ir/api',
+        // mediaRoot:'http://aaiss.ceit.aut.ac.ir',
+        api: 'http://localhost:8000/api',
+        media: 'http://localhost:8000',
         fields_of_interest: localStorage.getItem('FOI') || '',
         presenters: [],
         teachers: [],
@@ -16,7 +18,8 @@ export default new Vuex.Store({
         FOI: [],
         currentPresenter: {},
         currentTeacher: {},
-        currentWorkshop: {}
+        currentWorkshop: {},
+        register: ''
     },
     mutations: {
         updatePresenters(state, newPresenter) {
@@ -43,9 +46,31 @@ export default new Vuex.Store({
         updateCurrentWorkshop(state, newWorkshop) {
             state.currentWorkshop = newWorkshop
         },
+        updateRegisterStatus(state, status) {
+            state.register = status.desc
+            console.log(state.register)
+
+        }
 
     },
     actions: {
+        getRegisterStatus: function ({commit}) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/misc/register/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateRegisterStatus', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+
+        },
         getPresenters: function ({commit}) {
             return new Promise((resolve, reject) => {
                 axios({
@@ -218,6 +243,10 @@ export default new Vuex.Store({
             state => {
                 return state.mediaRoot;
             },
+        getRegisterOpen:
+            state => {
+                return state.register;
+            }
 
     }
 })
