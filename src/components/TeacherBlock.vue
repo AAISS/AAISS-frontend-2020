@@ -7,7 +7,7 @@
             <router-link :to="'/teachers/' + speaker.id">
                 {{speaker.name}}
             </router-link>
-            <h6>{{speaker.workplace}}</h6>
+            <h6>{{workshop.name}}</h6>
         </div>
     </router-link>
 </template>
@@ -20,6 +20,14 @@
         },
         props: {
             speaker: {},
+        },
+        computed:{
+          workshop: function () {
+                return this.$store.getters.getCurrentWorkshop;
+          }
+        },
+        created(){
+            this.$store.dispatch('getWorkshopById', this.speaker.workshops[0]);
         }
     }
 </script>
