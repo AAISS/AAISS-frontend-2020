@@ -13,35 +13,35 @@
                          v-if="presentation !== presentations[presentations.length - 1]"
                          :key="presentation.id">
                         <div id="wrapper-description">
-                            <div id="right" class="sub-description">
-                                <h4 class="text-center">Speakers</h4>
-                                <Slider
-                                        animation="fade"
-                                        v-model="sliderValue"
-                                        :duration="5000"
-                                        :speed="1000"
-                                        class="slider"
-                                >
-                                    <SliderItem
-                                            v-for="speaker in getPresenters(presentation)"
-                                            :key="speaker.id"
-                                            @click="changeIndex(1)"
-                                            :style="speaker"
-                                            class="item slider-item"
-                                    >
-                                        <div class="content-wrapper">
-                                            <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img"
-                                                 class="rounded-circle img-fluid">
-                                            <p class="text-center">{{speaker.name}}</p>
-                                            <p class="text-center">{{speaker.workplace}}</p>
-                                        </div>
-                                    </SliderItem>
-                                </Slider>
+<!--                            <div id="right" class="sub-description">-->
+<!--                                <h4 class="text-center">Speakers</h4>-->
+<!--                                <Slider-->
+<!--                                        animation="fade"-->
+<!--                                        v-model="sliderValue"-->
+<!--                                        :duration="5000"-->
+<!--                                        :speed="1000"-->
+<!--                                        class="slider"-->
+<!--                                >-->
+<!--                                    <SliderItem-->
+<!--                                            v-for="speaker in getPresenters(presentation)"-->
+<!--                                            :key="speaker.id"-->
+<!--                                            @click="changeIndex(1)"-->
+<!--                                            :style="speaker"-->
+<!--                                            class="item slider-item"-->
+<!--                                    >-->
+<!--                                        <div class="content-wrapper">-->
+<!--                                            <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img"-->
+<!--                                                 class="rounded-circle img-fluid">-->
+<!--                                            <p class="text-center">{{speaker.name}}</p>-->
+<!--                                            <p class="text-center">{{speaker.workplace}}</p>-->
+<!--                                        </div>-->
+<!--                                    </SliderItem>-->
+<!--                                </Slider>-->
 
-                            </div>
+<!--                            </div>-->
 
 
-                            <div class="vl"></div>
+<!--                            <div class="vl"></div>-->
 
 
                             <div id="left" class="sub-description">
@@ -218,7 +218,7 @@
     }
 
     #left {
-        max-width: 60%;
+        /*max-width: 60%;*/
     }
 
     .text-center {

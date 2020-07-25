@@ -10,45 +10,57 @@
             <div class="pt-5  sub-wrapper">
                 <div class="presentation-container im ">
                     <div id="wrapper-description">
-                        <div id="right" class="sub-description">
-                            <h4 class="text-center">Speakers</h4>
-                            <Slider
-                                    animation="fade"
-                                    v-model="sliderValue"
-                                    :duration="5000"
-                                    :speed="1000"
-                                    class="slider"
-                            >
-                                <SliderItem
-                                        v-for="speaker in teachers"
-                                        :key="speaker.pic"
-                                        @click="changeIndex(1)"
-                                        :style="speaker"
-                                        class="item slider-item"
-                                >
-                                    <div class="content-wrapper">
-                                        <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img"
-                                             class="rounded-circle img-fluid">
-                                        <p class="text-center">{{speaker.name}}</p>
-                                    </div>
-                                </SliderItem>
-                            </Slider>
+<!--                        <div id="right" class="sub-description">-->
+<!--                            <h4 class="text-center">Speakers</h4>-->
+<!--                            <Slider-->
+<!--                                    animation="fade"-->
+<!--                                    v-model="sliderValue"-->
+<!--                                    :duration="5000"-->
+<!--                                    :speed="1000"-->
+<!--                                    class="slider"-->
+<!--                            >-->
+<!--                                <SliderItem-->
+<!--                                        v-for="speaker in teachers"-->
+<!--                                        :key="speaker.pic"-->
+<!--                                        @click="changeIndex(1)"-->
+<!--                                        :style="speaker"-->
+<!--                                        class="item slider-item"-->
+<!--                                >-->
+<!--                                    <div class="content-wrapper">-->
+<!--                                        <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img"-->
+<!--                                             class="rounded-circle img-fluid">-->
+<!--                                        <p class="text-center">{{speaker.name}}</p>-->
+<!--                                    </div>-->
+<!--                                </SliderItem>-->
+<!--                            </Slider>-->
 
-                        </div>
+<!--                        </div>-->
 
 
-                        <div class="vl"></div>
+<!--                        <div class="vl"></div>-->
 
 
                         <div id="left" class="sub-description">
                             <h4 class="text-center">Description</h4>
                             <div v-html="workshop.desc" class="text-justify description" style="line-height:30px;"></div>
-                            <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true"
-                                                                     class="text-danger"> FULL </span></p>
-                            <p>Level: {{workshop.level}}</p>
-                            <p>Duration: {{getDuration}} Minutes</p>
-                            <p>Prerequisites: {{workshop.prerequisites }}</p>
-                            <h6 v-if="workshop.has_project === true">This workshop has project.</h6>
+                            <wrap-div>
+                                <span class="detail-titles">Capacity: </span>{{workshop.capacity}} <span v-if="workshop.is_full === true"
+                                                                         class="text-danger"> FULL </span>
+                            </wrap-div>
+
+                            <wrap-div>
+                                <span class="detail-titles">Level: </span>{{workshop.level}}
+                            </wrap-div>
+
+                            <wrap-div>
+                                <span class="detail-titles">Duration: </span>{{getDuration}} Minutes
+                            </wrap-div>
+
+                            <wrap-div>
+                                <span class="detail-titles">Prerequisites: </span>{{workshop.prerequisites }}
+                            </wrap-div>
+
+                            <h6  class="detail-titles" v-if="workshop.has_project === true">This workshop has project.</h6>
                             <div class="date-time-wrapper">
                                 <div class="minor-date-time">
                                     <h5>Date</h5>
@@ -212,7 +224,7 @@
         font-weight: bolder;
     }
 
-    h5, .material-icons {
+    h5, .material-icons, .detail-titles {
         color: #B7867E;
         padding: 20px 1px 20px 1px;
         font-weight: bolder;
@@ -258,7 +270,7 @@
     }
 
     #left {
-        max-width: 60%;
+        /*max-width: 60%;*/
     }
 
     .text-center {

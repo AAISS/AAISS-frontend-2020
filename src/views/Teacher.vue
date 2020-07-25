@@ -38,6 +38,10 @@
                             <span class="font-weight-bold">Time: </span>{{timePicker(workshop.start_date)}}
                         </time>
                         <br>
+                        <duration>
+                            <span class="font-weight-bold">Workshop Duration: </span>{{getDuration}} Minutes
+                        </duration>
+                        <br>
                         <level>
 
                             <span class="font-weight-bold">Workshop Level: </span>{{workshop.level}}
@@ -94,7 +98,19 @@
             },
             workshop: function () {
                 return this.$store.getters.getCurrentWorkshop
-            }
+            },
+            getDuration: function () {
+                let endHour = this.timePicker(this.workshop.end_date).split(':')[0];
+                let endMinute = this.timePicker(this.workshop.end_date).split(':')[1];
+                let endSecond = this.timePicker(this.workshop.end_date).split(':')[2];
+                let end = new Date(0, 0, 0, endHour, endMinute, endSecond);
+                let startHour = this.timePicker(this.workshop.start_date).split(':')[0];
+                let startMinute = this.timePicker(this.workshop.start_date).split(':')[1];
+                let startSecond = this.timePicker(this.workshop.start_date).split(':')[2];
+                let start = new Date(0, 0, 0, startHour, startMinute, startSecond);
+
+                return Number(((end.getTime() - start.getTime()) / 60000).toFixed(2));
+            },
         },
         components: {
             TeacherBlock
