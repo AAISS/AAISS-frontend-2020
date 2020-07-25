@@ -58,7 +58,6 @@
                     <strong>Syllabus</strong>
                     <div v-html="workshop.desc" class="text-justify html-b" style="line-height:30px;"></div>
 
-
                     <strong>Bio</strong>
                     <p class="text-justify" style="line-height:30px">
                         {{teacher.bio}}

@@ -7,7 +7,7 @@
             <router-link :to="'/teachers/' + speaker.id">
                 {{speaker.name}}
             </router-link>
-            <h6>{{workshop.name}}</h6>
+            <h6 v-if="this.$route.name !== 'teacher'">{{Object.values(speaker.workshops)[0]}}</h6>
         </div>
     </router-link>
 </template>

@@ -42,7 +42,7 @@
 
                         <div id="left" class="sub-description">
                             <h4 class="text-center">Description</h4>
-                            <p class="text-justify description">{{workshop.desc}}</p>
+                            <div v-html="workshop.desc" class="text-justify description" style="line-height:30px;"></div>
                             <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true"
                                                                      class="text-danger"> FULL </span></p>
                             <p>Workshop Level: {{workshop.level}}</p>
