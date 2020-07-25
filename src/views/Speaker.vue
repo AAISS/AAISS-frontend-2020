@@ -5,39 +5,43 @@
             <div class="row mt-5">
                 <div class="col-lg-3">
                     <SpeakerBlock :speaker="presenter"></SpeakerBlock>
-<!--                    <button @click.prevent="showRegisterSoonMessage()"-->
-<!--                            v-if="staticParts[0].register_link == '/'"-->
-<!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
-<!--                    >-->
-<!--                        <span v-bind:class="{'small' : smallerFontSize}">-->
-<!--                            {{registerValue}}-->
-<!--                        </span>-->
-<!--                    </button>-->
-<!--                    <a v-else :href="staticParts[0].register_link"-->
-<!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
+                    <!--                    <button @click.prevent="showRegisterSoonMessage()"-->
+                    <!--                            v-if="staticParts[0].register_link == '/'"-->
+                    <!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
+                    <!--                    >-->
+                    <!--                        <span v-bind:class="{'small' : smallerFontSize}">-->
+                    <!--                            {{registerValue}}-->
+                    <!--                        </span>-->
+                    <!--                    </button>-->
+                    <!--                    <a v-else :href="staticParts[0].register_link"-->
+                    <!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
                 </div>
                 <div class="col-lg-9 infoBlock">
                     <h1 class="display-5">
                         {{presenter.paper}}
                     </h1>
 
-<!--                    <strong>-->
-<!--                        Location-->
-<!--                    </strong>-->
-<!--                    <address>-->
-<!--                        {{speaker.talk_location}}-->
-<!--                    </address>-->
+                    <!--                    <strong>-->
+                    <!--                        Location-->
+                    <!--                    </strong>-->
+                    <!--                    <address>-->
+                    <!--                        {{speaker.talk_location}}-->
+                    <!--                    </address>-->
 
-<!--                    <strong>Date and Time</strong>-->
-<!--                    <p>-->
-<!--                        <time>-->
-<!--                            {{presenter.date_and_time}}-->
-<!--                        </time>-->
-<!--                    </p>-->
+                    <strong v-if="presentation.start_date !== ''">Date and Time</strong>
+                    <p v-if="presentation.start_date !== ''">
+                        <date>
+                            <span class="font-weight-bold">On: </span> {{datePicker(presentation.start_date)}}
+                        </date>
+                        <br>
+                        <time>
+                            <span class="font-weight-bold">At: </span>{{timePicker(presentation.start_date)}}
+                        </time>
+                    </p>
 
                     <strong>Abstract</strong>
                     <p class="text-justify" style="line-height:30px;">
-                        {{presenter.desc}}
+                        {{presentation.desc}}
                     </p>
 
                     <strong>Bio</strong>
@@ -66,6 +70,9 @@
             presenter: function () {
                 console.log(this.$store.getters.getCurrentPresenter)
                 return this.$store.getters.getCurrentPresenter;
+            },
+            presentation: function () {
+                return this.$store.getters.getCurrentPresentation;
             }
         },
         components: {
@@ -79,10 +86,23 @@
                     this.registerValue = 'Registration';
                     this.smallerFontSize = false;
                 }, 2500)
-            }
+            },
+            datePicker: function (date) {
+                return date.split('T')[0];
+            },
+            timePicker: function (date) {
+                var d = date.split('T')[1];
+                return d.split('.')[0]
+            },
         },
-        created() {
-           this.$store.dispatch('getPresenterById', this.$route.params.id);
+        async created() {
+            try {
+                await this.$store.dispatch('getPresenterById', this.$route.params.id);
+                this.$store.dispatch('getPresentationById', this.presenter.presentations[0]);
+            } catch (e) {
+                console.log(e);
+            }
+
 
         },
         mounted() {

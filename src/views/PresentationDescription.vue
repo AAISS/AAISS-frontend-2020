@@ -10,8 +10,9 @@
             <div class="pt-5  sub-wrapper">
                 <div class="all-presentations-wrapper">
                     <div class="presentation-container im " v-for="presentation in presentations"
+                         v-if="presentation !== presentations[presentations.length - 1]"
                          :key="presentation.id">
-                        <div id="wrapper-description">
+                        <div id="wrapper-description" >
                             <div id="right" class="sub-description">
                                 <h4 class="text-center">Speakers</h4>
                                 <Slider

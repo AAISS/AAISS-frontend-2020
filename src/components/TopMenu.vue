@@ -32,7 +32,7 @@
                     <a href="http://aaiss.ceit.aut.ac.ir/#organizerSection" class="nav-link">Organizer</a>
                 </li>
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/workshops+presentation" class="nav-link">All Workshops and Presentations</a>
+                    <router-link to="/workshops+presentation" class="nav-link">All Workshops and Presentations</router-link>
                 </li>
                 <li class="nav-item">
                     <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">2019 AAISS</a>

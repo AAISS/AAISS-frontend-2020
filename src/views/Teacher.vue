@@ -17,9 +17,9 @@
 <!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
                 </div>
                 <div class="col-lg-9 infoBlock">
-<!--                    <h1 class="display-5">-->
-<!--                        {{teacher.paper}}-->
-<!--                    </h1>-->
+                    <h1 class="display-5">
+                        {{workshop.name}}
+                    </h1>
 
 <!--                    <strong>-->
 <!--                        Location-->
@@ -28,16 +28,30 @@
 <!--                        {{speaker.talk_location}}-->
 <!--                    </address>-->
 
-<!--                    <strong>Date and Time</strong>-->
-<!--                    <p>-->
-<!--                        <time>-->
-<!--                            {{speaker.date_and_time}}-->
-<!--                        </time>-->
-<!--                    </p>-->
+                    <strong v-if="workshop.start_date !== ''">Details</strong>
+                    <p v-if="workshop.start_date !== ''">
+                        <date>
+                            <span class="font-weight-bold">Date: </span> {{datePicker(workshop.start_date)}}
+                        </date>
+                        <br>
+                        <time>
+                            <span class="font-weight-bold">Time: </span>{{timePicker(workshop.start_date)}}
+                        </time>
+                        <br>
+                        <level>
+
+                            <span class="font-weight-bold">Workshop Level: </span>{{workshop.level}}
+                        </level>
+                        <br>
+                        <project>
+                            <span class="font-weight-bold" v-if="workshop.has_project === true">This workshop has projects</span>
+                        </project>
+                    </p>
+
 
                     <strong>Syllabus</strong>
                     <p class="text-justify" style="line-height:30px;">
-                        {{teacher.desc}}
+                        {{workshop.desc}}
                     </p>
 
                     <strong>Bio</strong>
@@ -46,9 +60,11 @@
                     </p>
 
                     <strong v-if="teacher.cv_path !== ''">CV</strong>
-                    <a v-if="teacher.cv_path !== ''" class="text-justify" style="line-height:30px">
+                    <p v-if="teacher.cv_path !== ''" class="text-justify" style="line-height:30px" >
                         {{teacher.cv_path}}
-                    </a>
+                    </p>
+
+
 
                 </div>
             </div>
@@ -72,6 +88,9 @@
 
             teacher: function () {
                 return this.$store.getters.getCurrentTeacher;
+            },
+            workshop: function () {
+                return this.$store.getters.getCurrentWorkshop
             }
         },
         components: {
@@ -85,10 +104,22 @@
                     this.registerValue = 'Registration';
                     this.smallerFontSize = false;
                 }, 2500)
-            }
+            },
+            datePicker: function (date) {
+                return date.split('T')[0];
+            },
+            timePicker: function (date) {
+                var d = date.split('T')[1];
+                return d.split('.')[0]
+            },
         },
-        created() {
-            let speakerPromise = this.$store.dispatch('getTeacherById', this.$route.params.id);
+        async created() {
+            try {
+                await this.$store.dispatch('getTeacherById', this.$route.params.id);
+                this.$store.dispatch('getWorkshopById', this.teacher.workshops[0]);
+            } catch (e) {
+                console.log(e);
+            }
         },
         mounted() {
             scrollTo(0, 0);

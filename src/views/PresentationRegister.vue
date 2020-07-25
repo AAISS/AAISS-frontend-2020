@@ -38,7 +38,8 @@
                                 class="choice-wrapper">
                                 <td><input class="check-box" type="checkbox" :value="true"
                                            v-model="presentation"></td>
-                                <td><p>presentation</p></td>
+                                <td><p>presentation <span v-if="presentations[presentations.length -1].is_full"
+                                                          class="text-danger">(FULL)</span></p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
@@ -49,25 +50,27 @@
                             </tr>
 
                             <tr class="workshop">
-                                <td v-if="workshops.length !== 0 && presentations.length !== 0" colspan="4" class="text-center font-weight-bold">
-                                    <h5  class="text-center font-weight-bold ">Workshops</h5>
+                                <td v-if="workshops.length !== 0 && presentations.length !== 0" colspan="4"
+                                    class="text-center font-weight-bold">
+                                    <h5 class="text-center font-weight-bold ">Workshops</h5>
                                 </td>
 
                             </tr>
 
-                                <tr v-for="workshop in workshops" v-bind:key="workshop.id"
-                                    class="choice-wrapper">
-                                    <td><input class="check-box" type="checkbox" :value="workshop.id"
-                                               v-model="payment.workshops"></td>
-                                    <td><p>{{workshop.name}}</p></td>
-                                    <td><p>{{workshop.cost}}</p>
-                                    </td>
-                                    <td>
-                                        <router-link :to="'/workshop/' + workshop.id" class="more-info">
-                                            More Information
-                                        </router-link>
-                                    </td>
-                                </tr>
+                            <tr v-for="workshop in workshops" v-bind:key="workshop.id"
+                                class="choice-wrapper">
+                                <td><input class="check-box" type="checkbox" :value="workshop.id"
+                                           v-model="payment.workshops"></td>
+                                <td><p>{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span>
+                                </p><span v-if="workshop.is_full" class="text-danger">(FULL)</span></td>
+                                <td><p>{{workshop.cost}}</p>
+                                </td>
+                                <td>
+                                    <router-link :to="'/workshop/' + workshop.id" class="more-info">
+                                        More Information
+                                    </router-link>
+                                </td>
+                            </tr>
 
                             </tbody>
 
@@ -129,20 +132,20 @@
                 } else this.error = false
             },
             getPresentationPrice: function () {
-                    return new Promise((resolve, reject) => {
-                        axios({
-                            url: this.$store.getters.getApi + '/misc/presentation_fee',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            method: 'GET',
-                        }).then((response) => {
-                            this.presentation_fee = response.data.desc;
-                            resolve(response.data);
-                        }).catch((error) => {
-                            reject(error);
-                        })
+                return new Promise((resolve, reject) => {
+                    axios({
+                        url: this.$store.getters.getApi + '/misc/presentation_fee',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'GET',
+                    }).then((response) => {
+                        this.presentation_fee = response.data.desc;
+                        resolve(response.data);
+                    }).catch((error) => {
+                        reject(error);
                     })
+                })
             },
 
             makePayment: function () {
@@ -170,7 +173,7 @@
             this.getPresentationPrice()
         },
 
-        computed:{
+        computed: {
             workshops: function () {
                 return this.$store.getters.getWorkshops;
             },
@@ -185,11 +188,11 @@
 
                 this.user.fields_of_interest = localStorage.getItem('FOI').split(',') || [];
                 console.log(this.user);
-                return this.user ;
+                return this.user;
             },
             paymentData: function () {
                 this.payment.email = this.$route.params.email;
-                if(this.presentation.length !== 0){
+                if (this.presentation.length !== 0) {
                     this.payment.presentations = this.presentation[0];
                 }
                 console.log(this.payment)
@@ -304,7 +307,8 @@
         flex-direction: row;
         justify-content: space-evenly;
     }
-    .more-info{
+
+    .more-info {
         background-color: #9c9ea2;
         color: white;
         text-decoration: none;
@@ -313,7 +317,7 @@
         font-weight: bolder;
     }
 
-    .more-info:hover{
+    .more-info:hover {
         box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
         background-color: #626264;
 
@@ -325,27 +329,36 @@
         padding: 10px;
         border-radius: 10px;
     }
+
     table {
         border-collapse: collapse;
         width: 100%;
         text-align: center;
     }
+
     th, td {
         border-bottom: 1px solid #ddd;
         padding: 15px;
         color: #16375a;
     }
-    th{
+
+    th {
         font-weight: bolder;
     }
-    tr:hover {background-color: #f5f5f5;}
-    .workshop:hover{background-color: white;}
-    .workshop-title{
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .workshop:hover {
+        background-color: white;
+    }
+
+    .workshop-title {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
-
 
 
     @media only screen and (min-width: 460px) and (max-width: 800px) {
@@ -363,7 +376,8 @@
 
 
     }
-    @media only screen and (min-width: 0px) and (max-width: 460px){
+
+    @media only screen and (min-width: 0px) and (max-width: 460px) {
         .register-container {
             width: 90vw;
         }
@@ -375,15 +389,16 @@
         h1 {
             padding-top: 50px;
         }
-        th, td{
+
+        th, td {
             padding: 15px 5px 15px 5px;
         }
-        .more-info{
+
+        .more-info {
             padding: 5px;
             font-size: smaller;
         }
     }
-
 
 
 </style>

@@ -19,6 +19,7 @@ export default new Vuex.Store({
         currentPresenter: {},
         currentTeacher: {},
         currentWorkshop: {},
+        currentPresentation: {},
         register: ''
     },
     mutations: {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
             state.register = status.desc
             console.log(state.register)
 
+        },
+        updateCurrentPresentation(state, presentation){
+            state.currentPresentation = presentation
         }
 
     },
@@ -174,7 +178,7 @@ export default new Vuex.Store({
         getWorkshopById: function ({commit}, id) {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: this.getters.getApi + '/teacher/' + id,
+                    url: this.getters.getApi + '/workshop/' + id,
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -197,6 +201,22 @@ export default new Vuex.Store({
                     method: 'GET',
                 }).then((response) => {
                     commit('updatePresentations', response.data);
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+            })
+        },
+        getPresentationById: function ({commit}, id) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: this.getters.getApi + '/presentation/' + id,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'GET',
+                }).then((response) => {
+                    commit('updateCurrentPresentation', response.data);
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
@@ -246,6 +266,14 @@ export default new Vuex.Store({
         getRegisterOpen:
             state => {
                 return state.register;
+            },
+        getCurrentPresentation:
+            state => {
+                return state.currentPresentation
+            },
+        getCurrentWorkshop:
+            state => {
+                return state.currentWorkshop
             }
 
     }

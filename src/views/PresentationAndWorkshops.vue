@@ -29,7 +29,7 @@
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
                                 <td>
-                                <td><p>presentation</p></td>
+                                <td><p>presentation <span v-if="presentations[presentations.length -1].is_full" class="text-danger">(FULL)</span></p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
@@ -48,8 +48,8 @@
 
                                 <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                     class="choice-wrapper">
-                                    <td>
-                                    <td><p>{{workshop.name}}</p></td>
+                                    <td >
+                                    <td><p >{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span></p></td>
                                     <td><p>{{workshop.cost}}</p>
                                     </td>
                                     <td>
@@ -97,7 +97,7 @@
                     email: "",
                     workshops: [],
                     presentations: false
-                }
+                },
 
             }
         },
@@ -148,6 +148,11 @@
                     })
                 })
             },
+            getActiveColor: function (workshop) {
+                if( workshop.is_full){
+                    return 'red'
+                }else return '#16375a';
+            }
 
         },
         created() {
@@ -180,7 +185,9 @@
                 }
                 console.log(this.payment)
                 return this.payment
-            }
+            },
+
+
         }
     }
 </script>
@@ -244,7 +251,6 @@
 
     p {
         margin: 0;
-        color: #16375a;
     }
 
     .button {

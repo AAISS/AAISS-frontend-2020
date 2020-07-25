@@ -45,7 +45,7 @@
                             <p class="text-justify description">{{workshop.desc}}</p>
                             <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true" class="text-danger"> FULL </span>  </p>
                             <p>Workshop Level: {{workshop.level}}</p>
-                            <h6 v-if="workshop.has_project = true">This workshop has projects</h6>
+                            <h6 v-if="workshop.has_project === true">This workshop has projects</h6>
                             <div class="date-time-wrapper">
                                 <div class="minor-date-time">
                                     <h5>Date</h5>
