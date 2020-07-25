@@ -112,27 +112,39 @@
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
             },
-            navigateToNextPage: function () {
+            navigateToNextPage: async function () {
                 // this.checkForm()
                 if (this.errors.length === 0) {
-                    if (this.user.fields_of_interest[0] === ""){
+                    if (this.user.fields_of_interest[0] === "") {
                         this.user.fields_of_interest = [];
-                        console.log(this.user.fields_of_interest )
+                        console.log(this.user.fields_of_interest)
                     }
-                    this.registerUser()
-                    console.log("hi")
-                    this.$router.push({
-                        name: 'register_presentation',
-                        params: {
-                            name: this.user.name,
-                            email: this.user.email,
-                            national_code: this.user.national_code,
-                            // fields_of_interest: this.user.fields_of_interest,
-                            phone_number: this.user.phone_number
-                        }
-                    })
 
-                    localStorage.setItem('FOI', this.user.fields_of_interest)
+                    try {
+                        const response = await this.registerUser();
+                       console.log(response);
+                       if(response.message === "User already exist" || response.message === "User created"){
+                           this.$router.push({
+                               name: 'register_presentation',
+                               params: {
+                                   name: this.user.name,
+                                   email: this.user.email,
+                                   national_code: this.user.national_code,
+                                   // fields_of_interest: this.user.fields_of_interest,
+                                   phone_number: this.user.phone_number
+                               }
+                           })
+                           localStorage.setItem('FOI', this.user.fields_of_interest)
+                       }
+                        return true
+                    } catch (e) {
+                        console.log(e);
+                        return false
+                    }
+
+
+
+
 
                 }
             },
@@ -146,10 +158,11 @@
                         data: this.user,
                         method: 'POST',
                     }).then((response) => {
-                        console.log(response.data)
                         resolve(response.data);
+                        return response.data
                     }).catch((error) => {
                         reject(error);
+                        return error
                     })
                 })
             },

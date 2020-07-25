@@ -36,7 +36,7 @@
 
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
-                                <td><input class="check-box" type="checkbox" :value="true"
+                                <td><input v-if="!presentations[presentations.length -1].is_full" class="check-box" type="checkbox" :value="true"
                                            v-model="presentation"></td>
                                 <td><p class="text-left">presentation <span v-if="presentations[presentations.length -1].is_full"
                                                           class="text-danger">(FULL)</span></p></td>
@@ -59,10 +59,10 @@
 
                             <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                 class="choice-wrapper">
-                                <td><input class="check-box" type="checkbox" :value="workshop.id"
+                                <td><input v-if="!workshop.is_full" class="check-box" type="checkbox" :value="workshop.id"
                                            v-model="payment.workshops"></td>
                                 <td><p class="text-left">{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span>
-                                </p><span v-if="workshop.is_full" class="text-danger">(FULL)</span></td>
+                                </p></td>
                                 <td><p>{{workshop.cost}}</p>
                                 </td>
                                 <td>
@@ -122,7 +122,16 @@
             buy: async function () {
                 this.checkItems();
                 if (this.error === false) {
-                    this.makePayment()
+                    try {
+                        const response = await this.makePayment();
+                        window.location.replace(response.message);
+                        return true
+                    } catch (e) {
+                        console.log(e);
+                        return false
+                    }
+
+
                 }
             },
             checkItems: function () {
@@ -160,8 +169,10 @@
                     }).then((response) => {
                         console.log(response.data)
                         resolve(response.data);
+                        return response.data
                     }).catch((error) => {
                         reject(error);
+                        return error
                     })
                 })
             },
