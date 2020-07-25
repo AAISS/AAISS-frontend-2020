@@ -18,7 +18,7 @@
                             <thead>
                             <tr class="workshop">
                                 <th scope="col"></th>
-                                <th scope="col">Title</th>
+                                <th scope="col text-left">Title</th>
                                 <th scope="col">Price</th>
                                 <th scope="col"></th>
                             </tr>
@@ -29,7 +29,7 @@
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
                                 <td>
-                                <td><p>presentation <span v-if="presentations[presentations.length -1].is_full" class="text-danger">(FULL)</span></p></td>
+                                <td><p class="text-left">presentation <span v-if="presentations[presentations.length -1].is_full" class="text-danger">(FULL)</span></p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
@@ -49,7 +49,7 @@
                                 <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                     class="choice-wrapper">
                                     <td >
-                                    <td><p >{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span></p></td>
+                                    <td><p class="text-left">{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span></p></td>
                                     <td><p>{{workshop.cost}}</p>
                                     </td>
                                     <td>

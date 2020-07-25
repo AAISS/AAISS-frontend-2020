@@ -38,7 +38,7 @@
                                 class="choice-wrapper">
                                 <td><input class="check-box" type="checkbox" :value="true"
                                            v-model="presentation"></td>
-                                <td><p>presentation <span v-if="presentations[presentations.length -1].is_full"
+                                <td><p class="text-left">presentation <span v-if="presentations[presentations.length -1].is_full"
                                                           class="text-danger">(FULL)</span></p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
@@ -61,7 +61,7 @@
                                 class="choice-wrapper">
                                 <td><input class="check-box" type="checkbox" :value="workshop.id"
                                            v-model="payment.workshops"></td>
-                                <td><p>{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span>
+                                <td><p class="text-left">{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span>
                                 </p><span v-if="workshop.is_full" class="text-danger">(FULL)</span></td>
                                 <td><p>{{workshop.cost}}</p>
                                 </td>

@@ -20,10 +20,10 @@
 <!--                    <a href="http://aaiss.ceit.aut.ac.ir/#committeeSection" class="nav-link">Committee</a>-->
 <!--                </li>-->
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/#speakersSection" class="nav-link">Presenters</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/#speakersSection" class="nav-link">Speakers</a>
                 </li>
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Teachers</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Workshops</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <a href="http://aaiss.ceit.aut.ac.ir/#scheduleSection" class="nav-link">Schedule</a>-->
@@ -35,7 +35,7 @@
                     <router-link to="/workshops+presentation" class="nav-link">All Workshops and Presentations</router-link>
                 </li>
                 <li class="nav-item">
-                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">2019 AAISS</a>
+                    <a href="http://aaiss.ceit.aut.ac.ir/2019" class="nav-link">AAISS 2019</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <router-link to="/staff" class="nav-link">Staff</router-link>-->

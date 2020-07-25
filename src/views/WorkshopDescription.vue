@@ -20,16 +20,15 @@
                                     class="slider"
                             >
                                 <SliderItem
-                                        v-for="speaker in speakers"
-                                        :key="speaker.img_path"
+                                        v-for="speaker in teachers"
+                                        :key="speaker.pic"
                                         @click="changeIndex(1)"
                                         :style="speaker"
                                         class="item slider-item"
                                 >
                                     <div class="content-wrapper">
-                                        <img :src="this.$store.getters.getMediaRoot + speaker.img_path" alt="speaker img" class="rounded-circle img-fluid">
+                                        <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img" class="rounded-circle img-fluid">
                                         <p class="text-center">{{speaker.name}}</p>
-                                        <p class="text-center">Works at Google</p>
                                     </div>
                                 </SliderItem>
                             </Slider>
@@ -45,7 +44,8 @@
                             <p class="text-justify description">{{workshop.desc}}</p>
                             <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true" class="text-danger"> FULL </span>  </p>
                             <p>Workshop Level: {{workshop.level}}</p>
-                            <h6 v-if="workshop.has_project === true">This workshop has projects</h6>
+                            <p>Workshop Duration: {{getDuration}} Minutes</p>
+                            <h6 v-if="workshop.has_project === true">This workshop has project.</h6>
                             <div class="date-time-wrapper">
                                 <div class="minor-date-time">
                                     <h5>Date</h5>
@@ -86,7 +86,8 @@
             return {
                 sliderValue: 2,
                 workshop: {},
-                speakers: []
+                speakers: [],
+                eachPresenter: []
             }
         },
         methods: {
@@ -112,16 +113,24 @@
                     })
                 })
             },
-            getAllSpeakers: function () {
-                for (let i = 0; i <this.workshop.teachers.length ; i++) {
-                    let newTeacher = this.$store.commit('getTeacherById', this.workshop.teachers.get(i));
-                    this.speakers.push(newTeacher);
+            // getAllSpeakers: function () {
+            //     for (let i = 0; i <this.workshop.teachers.length ; i++) {
+            //         let newTeacher = this.$store.commit('getTeacherById', this.workshop.teachers.get(i));
+            //         this.speakers.push(newTeacher);
+            //     }
+            // },
+            getTeachers: async function (workshop) {
+                for (let i = 0; i < workshop.teachers.length; i++) {
+                    await this.$store.dispatch('getTeacherById', workshop.teachers[i])
+                    this.eachPresenter.push(this.$store.getters.getCurrentTeacher)
                 }
+                console.log(this.eachPresenter)
+
             },
             sendRequest: async function () {
                 try {
                     await this.getWorkshopById(this.$route.params.id)
-                    this.getAllSpeakers()
+                    this.getTeachers(this.$store.getters.getCurrentWorkshop)
                     return true
                 } catch (e) {
                     console.log(e);
@@ -133,18 +142,38 @@
             },
             timePicker: function (date){
                 var d= date.split('T')[1];
+                d = d.split('Z')[0];
                 return  d.split('.')[0]
             },
+
+        },
+        computed:{
+            getDuration: function () {
+                let endHour = this.timePicker(this.workshop.end_date).split(':')[0];
+                let endMinute = this.timePicker(this.workshop.end_date).split(':')[1];
+                let endSecond = this.timePicker(this.workshop.end_date).split(':')[2];
+                console.log("KKKK")
+                console.log(endHour, endMinute, endSecond)
+                let end = new Date(0,0,0, endHour, endMinute, endSecond);
+                let startHour = this.timePicker(this.workshop.start_date).split(':')[0];
+                let startMinute = this.timePicker(this.workshop.start_date).split(':')[1];
+                let startSecond = this.timePicker(this.workshop.start_date).split(':')[2];
+                let start = new Date(0,0,0, startHour, startMinute, startSecond);
+
+                return Number(((end.getTime() - start.getTime())/60000).toFixed(2));
+            },
+            teachers: function () {
+                return this.eachPresenter
+            }
         },
         mounted() {
             setTimeout(
                 () =>
                     1000
             );
-            console.log(this.presentation.speakers);
         },
-        created() {
-          this.sendRequest()
+        async created() {
+            await this.sendRequest()
         }
     }
 </script>

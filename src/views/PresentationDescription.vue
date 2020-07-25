@@ -12,7 +12,7 @@
                     <div class="presentation-container im " v-for="presentation in presentations"
                          v-if="presentation !== presentations[presentations.length - 1]"
                          :key="presentation.id">
-                        <div id="wrapper-description" >
+                        <div id="wrapper-description">
                             <div id="right" class="sub-description">
                                 <h4 class="text-center">Speakers</h4>
                                 <Slider
@@ -23,7 +23,7 @@
                                         class="slider"
                                 >
                                     <SliderItem
-                                            v-for="speaker in presenters"
+                                            v-for="speaker in getPresenters(presentation)"
                                             :key="speaker.id"
                                             @click="changeIndex(1)"
                                             :style="speaker"
@@ -97,23 +97,23 @@
             buy: function () {
 
             },
-            getAllSpeakers: function () {
-                let eachPresentation = [];
-                for (let i = 0; i <this.$store.getters.getPresentations; i++) {
-                    for (let j = 0; j <this.$store.getters.getPresentations.presenters.length ; j++) {
-                        let newPresenter = this.$store.commit('getPresenterById', this.$store.getters.getPresentations.presenters.get(i));
-                        eachPresentation.push(newPresenter);
-                    }
-                    this.presenters.push(eachPresentation);
-                    eachPresentation= [];
+            getPresenters: async function (presentation) {
+                let eachPresenter = [];
+                for (let i = 0; i < presentation.presenters.length; i++) {
+                    await this.$store.dispatch('getPresenterById', presentation.presenters[i])
+                    eachPresenter.push(this.$store.getters.getCurrentPresenter)
                 }
+                console.log(eachPresenter)
+
+                return eachPresenter;
+
             },
-            datePicker: function (date){
-                return  date.split('T')[0];
+            datePicker: function (date) {
+                return date.split('T')[0];
             },
-            timePicker: function (date){
-                var d= date.split('T')[1];
-                return  d.split('.')[0]
+            timePicker: function (date) {
+                var d = date.split('T')[1];
+                return d.split('.')[0]
             },
         },
         computed: {
@@ -128,8 +128,13 @@
                     1000
             );
         },
-        created() {
-            this.$store.dispatch('getPresentations');
+        async created() {
+
+            try {
+                await this.$store.dispatch('getPresentations');
+            } catch (e) {
+                console.log(e);
+            }
         },
 
     }
@@ -279,7 +284,8 @@
         min-height: 30px;
         margin-top: 20px;
     }
-    .all-presentations-wrapper{
+
+    .all-presentations-wrapper {
         display: flex;
         flex-direction: column;
     }

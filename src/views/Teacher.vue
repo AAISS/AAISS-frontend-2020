@@ -44,7 +44,7 @@
                         </level>
                         <br>
                         <project>
-                            <span class="font-weight-bold" v-if="workshop.has_project === true">This workshop has projects</span>
+                            <span class="font-weight-bold" v-if="workshop.has_project === true">This workshop has project.</span>
                         </project>
                     </p>
 
@@ -110,13 +110,14 @@
             },
             timePicker: function (date) {
                 var d = date.split('T')[1];
+                d = d.split('Z')[0];
                 return d.split('.')[0]
             },
         },
         async created() {
             try {
                 await this.$store.dispatch('getTeacherById', this.$route.params.id);
-                this.$store.dispatch('getWorkshopById', this.teacher.workshops[0]);
+                await this.$store.dispatch('getWorkshopById', this.teacher.workshops[0]);
             } catch (e) {
                 console.log(e);
             }
