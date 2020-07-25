@@ -31,8 +31,6 @@
                         <p>Email</p>
                         <input class="user-data" v-model="user.email" type="email" placeholder="">
 
-                        <p>National Code</p>
-                        <input class="user-data" v-model="user.national_code" type="text" placeholder="">
 
                         <p>Fields Of Interest</p>
                         <div class="check-box-wrapper">
@@ -73,7 +71,6 @@
                 user: {
                     name: "",
                     email: "",
-                    national_code: "",
                     fields_of_interest: [],
                     phone_number: ""
                 },
@@ -91,11 +88,8 @@
                 if (!this.user.phone_number) {
                     this.errors.push("Phone number required.");
                 }
-                if (!this.user.national_code) {
-                    this.errors.push("National code required.");
-                }
-                if (this.user.national_code.length !== 10) {
-                    this.errors.push("National code must be 10 characters.");
+                if(!this.validNumber){
+                    this.errors.push("Phone number not valid.");
                 }
                 if (!this.user.email) {
                     this.errors.push('Email required.');
@@ -112,6 +106,11 @@
             validEmail: function (email) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
+            },
+            validNumber: function(number){
+                var re = /^[0-9]*$/gm;
+                return re.test(number)
+
             },
             navigateToNextPage: async function () {
                 // this.checkForm()
