@@ -27,7 +27,8 @@
                                         class="item slider-item"
                                 >
                                     <div class="content-wrapper">
-                                        <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img" class="rounded-circle img-fluid">
+                                        <img :src="this.$store.getters.getMediaRoot + speaker.pic" alt="speaker img"
+                                             class="rounded-circle img-fluid">
                                         <p class="text-center">{{speaker.name}}</p>
                                     </div>
                                 </SliderItem>
@@ -42,9 +43,11 @@
                         <div id="left" class="sub-description">
                             <h4 class="text-center">Description</h4>
                             <p class="text-justify description">{{workshop.desc}}</p>
-                            <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true" class="text-danger"> FULL </span>  </p>
+                            <p>Capacity: {{workshop.capacity}} <span v-if="workshop.is_full === true"
+                                                                     class="text-danger"> FULL </span></p>
                             <p>Workshop Level: {{workshop.level}}</p>
                             <p>Workshop Duration: {{getDuration}} Minutes</p>
+                            <p>Prerequisites: {{workshop.prerequisites }}</p>
                             <h6 v-if="workshop.has_project === true">This workshop has project.</h6>
                             <div class="date-time-wrapper">
                                 <div class="minor-date-time">
@@ -97,7 +100,7 @@
             buy: function () {
 
             },
-            getWorkshopById:function (id) {
+            getWorkshopById: function (id) {
                 return new Promise((resolve, reject) => {
                     axios({
                         url: this.$store.getters.getApi + '/workshop/' + id,
@@ -137,30 +140,30 @@
                     return false
                 }
             },
-            datePicker: function (date){
-                return  date.split('T')[0];
+            datePicker: function (date) {
+                return date.split('T')[0];
             },
-            timePicker: function (date){
-                var d= date.split('T')[1];
+            timePicker: function (date) {
+                var d = date.split('T')[1];
                 d = d.split('Z')[0];
-                return  d.split('.')[0]
+                return d.split('.')[0]
             },
 
         },
-        computed:{
+        computed: {
             getDuration: function () {
                 let endHour = this.timePicker(this.workshop.end_date).split(':')[0];
                 let endMinute = this.timePicker(this.workshop.end_date).split(':')[1];
                 let endSecond = this.timePicker(this.workshop.end_date).split(':')[2];
                 console.log("KKKK")
                 console.log(endHour, endMinute, endSecond)
-                let end = new Date(0,0,0, endHour, endMinute, endSecond);
+                let end = new Date(0, 0, 0, endHour, endMinute, endSecond);
                 let startHour = this.timePicker(this.workshop.start_date).split(':')[0];
                 let startMinute = this.timePicker(this.workshop.start_date).split(':')[1];
                 let startSecond = this.timePicker(this.workshop.start_date).split(':')[2];
-                let start = new Date(0,0,0, startHour, startMinute, startSecond);
+                let start = new Date(0, 0, 0, startHour, startMinute, startSecond);
 
-                return Number(((end.getTime() - start.getTime())/60000).toFixed(2));
+                return Number(((end.getTime() - start.getTime()) / 60000).toFixed(2));
             },
             teachers: function () {
                 return this.eachPresenter
@@ -208,7 +211,8 @@
         padding: 20px;
         font-weight: bolder;
     }
-    h5, .material-icons{
+
+    h5, .material-icons {
         color: #B7867E;
         padding: 20px 1px 20px 1px;
         font-weight: bolder;
@@ -335,25 +339,30 @@
         h1 {
             padding-top: 50px;
         }
-         #wrapper-description{
-             flex-direction: column-reverse;
-         }
-         .sub-description{
-             min-width: 100%;
-         }
-         #right{
-             min-height: 40%;
-         }
-         #left{
-             min-height: 55%;
-         }
-         .vl{
-             border-left: none;
-             border-bottom: 2px solid #ceccc0;
-             min-width: 90%;
-             min-height: 0px;
-             margin: 15px 3vw 15px 3vw;
-         }
+
+        #wrapper-description {
+            flex-direction: column-reverse;
+        }
+
+        .sub-description {
+            min-width: 100%;
+        }
+
+        #right {
+            min-height: 40%;
+        }
+
+        #left {
+            min-height: 55%;
+        }
+
+        .vl {
+            border-left: none;
+            border-bottom: 2px solid #ceccc0;
+            min-width: 90%;
+            min-height: 0px;
+            margin: 15px 3vw 15px 3vw;
+        }
 
     }
 
@@ -369,25 +378,31 @@
         h1 {
             padding-top: 50px;
         }
-        #wrapper-description{
+
+        #wrapper-description {
             flex-direction: column-reverse;
         }
-        .sub-description{
+
+        .sub-description {
             min-width: 100%;
         }
-        #right{
+
+        #right {
             min-height: 30%;
         }
-        #left{
+
+        #left {
             min-height: 65%;
         }
-        .vl{
+
+        .vl {
             border-left: none;
             border-bottom: 2px solid #ceccc0;
             min-width: 90%;
             min-height: 0px;
             margin: 15px 3vw 15px 3vw;
         }
+
         img {
             width: 30vw;
             height: 30vw;

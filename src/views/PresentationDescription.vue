@@ -103,7 +103,7 @@
                     await this.$store.dispatch('getPresenterById', presentation.presenters[i])
                     eachPresenter.push(this.$store.getters.getCurrentPresenter)
                 }
-                console.log(eachPresenter)
+
 
                 return eachPresenter;
 

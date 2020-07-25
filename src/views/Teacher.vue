@@ -5,28 +5,28 @@
             <div class="row mt-5">
                 <div class="col-lg-3">
                     <TeacherBlock :speaker="teacher"></TeacherBlock>
-<!--                    <button @click.prevent="showRegisterSoonMessage()"-->
-<!--                            v-if="staticParts[0].register_link == '/'"-->
-<!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
-<!--                    >-->
-<!--                        <span v-bind:class="{'small' : smallerFontSize}">-->
-<!--                            {{registerValue}}-->
-<!--                        </span>-->
-<!--                    </button>-->
-<!--                    <a v-else :href="staticParts[0].register_link"-->
-<!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
+                    <!--                    <button @click.prevent="showRegisterSoonMessage()"-->
+                    <!--                            v-if="staticParts[0].register_link == '/'"-->
+                    <!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
+                    <!--                    >-->
+                    <!--                        <span v-bind:class="{'small' : smallerFontSize}">-->
+                    <!--                            {{registerValue}}-->
+                    <!--                        </span>-->
+                    <!--                    </button>-->
+                    <!--                    <a v-else :href="staticParts[0].register_link"-->
+                    <!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
                 </div>
                 <div class="col-lg-9 infoBlock">
                     <h1 class="display-5">
                         {{workshop.name}}
                     </h1>
 
-<!--                    <strong>-->
-<!--                        Location-->
-<!--                    </strong>-->
-<!--                    <address>-->
-<!--                        {{speaker.talk_location}}-->
-<!--                    </address>-->
+                    <!--                    <strong>-->
+                    <!--                        Location-->
+                    <!--                    </strong>-->
+                    <!--                    <address>-->
+                    <!--                        {{speaker.talk_location}}-->
+                    <!--                    </address>-->
 
                     <strong v-if="workshop.start_date !== ''">Details</strong>
                     <p v-if="workshop.start_date !== ''">
@@ -43,16 +43,21 @@
                             <span class="font-weight-bold">Workshop Level: </span>{{workshop.level}}
                         </level>
                         <br>
+                        <prerequisites v-if="workshop.prerequisites !== ''">
+                            <span class="font-weight-bold">Prerequisites: </span>{{workshop.prerequisites }}
+                        </prerequisites>
+                        <br>
                         <project>
                             <span class="font-weight-bold" v-if="workshop.has_project === true">This workshop has project.</span>
                         </project>
+
                     </p>
+
 
 
                     <strong>Syllabus</strong>
-                    <p class="text-justify" style="line-height:30px;">
-                        {{workshop.desc}}
-                    </p>
+                    <div v-html="workshop.desc" class="text-justify html-b" style="line-height:30px;"></div>
+
 
                     <strong>Bio</strong>
                     <p class="text-justify" style="line-height:30px">
@@ -60,10 +65,9 @@
                     </p>
 
                     <strong v-if="teacher.cv_path !== ''">CV</strong>
-                    <p v-if="teacher.cv_path !== ''" class="text-justify" style="line-height:30px" >
+                    <p v-if="teacher.cv_path !== ''" class="text-justify" style="line-height:30px">
                         {{teacher.cv_path}}
                     </p>
-
 
 
                 </div>
@@ -157,7 +161,7 @@
         padding: 20px;
     }
 
-    .infoBlock p, address {
+    .infoBlock p, address, .html-b {
         padding: 5px 30px;
     }
 
