@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-lg-9 infoBlock">
                     <h1 class="display-5">
-                        {{presenter.paper}}
+                        {{presentation.name}}
                     </h1>
 
                     <!--                    <strong>-->
