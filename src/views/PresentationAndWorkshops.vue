@@ -33,7 +33,7 @@
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
-                                    <router-link to="/presentations/none'" class="more-info">
+                                    <router-link to="/presentations/none" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
