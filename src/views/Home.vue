@@ -32,13 +32,6 @@
                                 <h2 class="font-weight-bold text-center text-color-blue">About the Event</h2>
                                 <p class="text-justify aboutText text-color-blue">
                                     {{about}}
-                                    <br>
-                                    <router-link to="/workshops+presentation" class="ps-link">
-                                        Presentation and workshops
-                                        <span class="material-icons">
-                                             launch
-                                        </span>
-                                    </router-link>
                                 </p>
                             </div>
                         </div>
