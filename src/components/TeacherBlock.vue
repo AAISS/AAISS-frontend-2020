@@ -27,7 +27,6 @@
           }
         },
         created(){
-            this.$store.dispatch('getWorkshopById', this.speaker.workshops[0]);
         }
     }
 </script>
