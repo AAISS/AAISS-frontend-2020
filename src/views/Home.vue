@@ -622,7 +622,7 @@
 
     .aboutText {
         font-weight: bolder;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     td:first-child {
