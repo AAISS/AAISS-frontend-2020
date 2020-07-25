@@ -1,5 +1,6 @@
 <template>
     <div id="registerSection">
+        <notifications position="top center" class="noti-style"/>
         <div class="pt-5">
             <div class="col-md-12">
                 <h1 class="text-center font-weight-bold">Register</h1>
@@ -122,28 +123,38 @@
 
                     try {
                         const response = await this.registerUser();
-                       console.log(response);
-                       if(response.message === "User already exist" || response.message === "User created"){
-                           this.$router.push({
-                               name: 'register_presentation',
-                               params: {
-                                   name: this.user.name,
-                                   email: this.user.email,
-                                   national_code: this.user.national_code,
-                                   // fields_of_interest: this.user.fields_of_interest,
-                                   phone_number: this.user.phone_number
-                               }
-                           })
-                           localStorage.setItem('FOI', this.user.fields_of_interest)
-                       }
+                        console.log(response);
+                        if (response.message === "User already exist" || response.message === "User created") {
+                            this.$notify({
+                                group: "auth",
+                                title: "Success",
+                                text: response.message,
+                                type: "success"
+                            })
+                            this.$router.push({
+                                name: 'register_presentation',
+                                params: {
+                                    name: this.user.name,
+                                    email: this.user.email,
+                                    national_code: this.user.national_code,
+                                    // fields_of_interest: this.user.fields_of_interest,
+                                    phone_number: this.user.phone_number
+                                }
+                            })
+                            localStorage.setItem('FOI', this.user.fields_of_interest)
+                        } else {
+                            this.$notify({
+                                group: "auth",
+                                title: "Error",
+                                text: "Something went wrong!",
+                                type: "error"
+                            })
+                        }
                         return true
                     } catch (e) {
                         console.log(e);
                         return false
                     }
-
-
-
 
 
                 }
@@ -277,6 +288,13 @@
 
     .errors {
         margin-top: 30px;
+    }
+
+    /*notification*/
+    .noti-style {
+        padding: 0px;
+        margin: 0px 5px 5px;
+        font-size: 15px;
     }
 
     @media only screen and (min-width: 500px) and (max-width: 767.98px) {

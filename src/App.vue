@@ -2,6 +2,7 @@
     <div class="h-100">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet">
+        <notifications group="auth" position="top center"></notifications>
         <vue-particles
                 color="#b2b4ae"
                 :particleOpacity="1"
@@ -101,5 +102,15 @@
         left: 0;
         height: 100%;
         width: 100%;
+    }
+    .notification-title {
+        font-family : system-ui !important;
+        direction: rtl !important;
+        text-align:left;
+    }
+    .notification-content {
+        font-family : system-ui !important;
+        direction: ltr !important;
+        text-align:left;
     }
 </style>

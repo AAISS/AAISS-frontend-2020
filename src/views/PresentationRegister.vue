@@ -1,5 +1,6 @@
 <template>
     <div id="headerSection">
+        <notifications position="top center" class="noti-style"/>
         <div class=" pt-5">
             <div class="col-md-12">
                 <h1 class="text-center font-weight-bold">Register</h1>
@@ -124,6 +125,12 @@
                 if (this.error === false) {
                     try {
                         const response = await this.makePayment();
+                        this.$notify({
+                            group: "auth",
+                            title: "Success",
+                            text: "Redirecting to payment page",
+                            type: "success"
+                        })
                         window.location.replace(response.message);
                         return true
                     } catch (e) {
@@ -369,6 +376,12 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+    }
+    /*notification*/
+    .noti-style {
+        padding: 0px;
+        margin: 0px 5px 5px;
+        font-size: 15px;
     }
 
 
