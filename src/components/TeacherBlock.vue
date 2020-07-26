@@ -5,7 +5,7 @@
         </div>
         <div class="text-center speakerInfo">
             <router-link :to="'/teachers/' + speaker.id">
-                {{speaker.name}}
+                <h5>{{speaker.name}}</h5>
             </router-link>
             <h6 v-if="this.$route.name !== 'teacher'">{{Object.values(speaker.workshops)[0]}}</h6>
         </div>
@@ -38,6 +38,7 @@
         background-color: #ffffff;
         height: 350px;
         margin-top: 15px;
+        padding: 10px;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -62,13 +63,13 @@
 
     .speakerInfo h5 {
         color: #328ebf;
+        font-size: 1em;
+        margin-bottom: 20px;
     }
 
     .speakerInfo h6 {
-        margin-top: 20px;
         color: #707070;
-        line-height: 30px;
-        padding: 5px 10px;
+        line-height: 25px;
     }
 
     .speakerInfo {
