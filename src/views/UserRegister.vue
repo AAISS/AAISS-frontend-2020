@@ -134,10 +134,8 @@
                             this.$router.push({
                                 name: 'register_presentation',
                                 params: {
-                                    name: this.user.name,
                                     email: this.user.email,
                                     // fields_of_interest: this.user.fields_of_interest,
-                                    phone_number: this.user.phone_number
                                 }
                             })
                             localStorage.setItem('FOI', this.user.fields_of_interest)

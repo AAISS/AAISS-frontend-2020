@@ -113,34 +113,41 @@
                 this.sliderValue = index;
             },
             buy: async function () {
-                try {
-                    this.$notify({
-                        group: "auth",
-                        title: "",
-                        text: "Validating your request",
-                        type: "warn"
-                    })
-                    const response = await this.makePayment();
-                    this.$notify({
-                        group: "auth",
-                        title: "Success",
-                        text: "Redirecting to payment page",
-                        type: "success"
-                    })
-                    window.location.replace(response.message);
-                    return true
-                } catch (e) {
-                    console.log(e);
-                    this.$notify({
-                        group: "auth",
-                        title: "Error",
-                        text: "Internal Error",
-                        type: "error"
-                    });
-                    return false
 
-
-                }
+                this.$router.push({
+                    name: 'register_presentation',
+                    params: {
+                        email: this.$route.params.email,
+                    }
+                })
+                // try {
+                //     this.$notify({
+                //         group: "auth",
+                //         title: "",
+                //         text: "Validating your request",
+                //         type: "warn"
+                //     })
+                //     const response = await this.makePayment();
+                //     this.$notify({
+                //         group: "auth",
+                //         title: "Success",
+                //         text: "Redirecting to payment page",
+                //         type: "success"
+                //     })
+                //     window.location.replace(response.message);
+                //     return true
+                // } catch (e) {
+                //     console.log(e);
+                //     this.$notify({
+                //         group: "auth",
+                //         title: "Error",
+                //         text: "Internal Error",
+                //         type: "error"
+                //     });
+                //     return false
+                //
+                //
+                // }
             },
             getWorkshopById: function (id) {
                 return new Promise((resolve, reject) => {

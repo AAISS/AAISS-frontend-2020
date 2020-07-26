@@ -53,7 +53,7 @@ const router = new Router({
             component: () =>
                 import(/* webpackChunkName: "register_user" */"./views/UserRegister")
         }, {
-            path: '/register/presentation/:name/:email/:phone_number',
+            path: '/register/presentation/:email',
             name: 'register_presentation',
             component: () =>
                 import(/* webpackChunkName: "register_presentation" */"./views/PresentationRegister")
