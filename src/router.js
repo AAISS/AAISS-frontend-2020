@@ -13,6 +13,7 @@ import NotFound from "./views/NotFound";
 import store from "./store";
 import PresentationAndWorkshops from "./views/PresentationAndWorkshops";
 import SuccessShopping from "./views/SuccessShopping";
+import NotSuccessShopping from "./views/NotSuccessShopping";
 Vue.use(Router);
 
 const router = new Router({
@@ -27,7 +28,8 @@ const router = new Router({
         {
             path: '/',
             name: 'Home',
-            component: Home
+            component: () =>
+                import(/* webpackChunkName: "Home" */"./views/Home")
         },
         {
             path: '/presenters/:id',
@@ -37,7 +39,8 @@ const router = new Router({
         {
             path: '/teachers/:id',
             name: 'teacher',
-            component: Teacher,
+            component: () =>
+                import(/* webpackChunkName: "teacher" */"./views/Teacher")
         },
         // {
         //     path: '/staff',
@@ -47,36 +50,50 @@ const router = new Router({
         {
             path: '/register/user',
             name: 'register_user',
-            component: UserRegister
+            component: () =>
+                import(/* webpackChunkName: "register_user" */"./views/UserRegister")
         }, {
             path: '/register/presentation/:name/:email/:phone_number',
             name: 'register_presentation',
-            component: PresentationRegister
+            component: () =>
+                import(/* webpackChunkName: "register_presentation" */"./views/PresentationRegister")
         }, {
             path: '/presentations/:email/show',
             name: 'description_presentation',
-            component: PresentationDescription
+            component: () =>
+                import(/* webpackChunkName: "description_presentation" */"./views/PresentationDescription")
         },
         {
             path: '/workshop/:id/:email/show',
             name: 'description_workshop',
-            component: WorkshopDescription
+            component: () =>
+                import(/* webpackChunkName: "description_workshop" */"./views/WorkshopDescription")
         },
         {
             path: '/workshops+presentation',
             name: 'presentation_workshops',
-            component: PresentationAndWorkshops
+            component: () =>
+                import(/* webpackChunkName: "presentation_workshops" */"./views/PresentationAndWorkshops")
         },
         {
             path: "*",
             name: 'not-found',
-            component: NotFound
+            component:  () =>
+                import(/* webpackChunkName: "not-found" */"./views/NotFound")
         },
         {
             path: "/successful",
             name: 'SuccessShopping',
-            component: SuccessShopping
+            component: () =>
+                import(/* webpackChunkName: "SuccessShopping" */"./views/SuccessShopping")
+        },
+        {
+            path: "/notsuccessful",
+            name: 'NotSuccessShopping',
+            component: () =>
+                import(/* webpackChunkName: "NotSuccessShopping" */"./views/NotSuccessShopping")
         }
+
 
 
     ]
