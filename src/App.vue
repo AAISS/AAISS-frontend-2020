@@ -2,7 +2,7 @@
     <div class="h-100">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet">
-        <notifications group="auth" position="top center"></notifications>
+        <notifications group="auth" position="top center" classes="my-vue-notification"></notifications>
         <vue-particles
                 color="#b2b4ae"
                 :particleOpacity="1"
@@ -48,20 +48,8 @@
     }
 </script>
 
-<style>
+<style lang="scss">
 
-    .slider-btn-left {
-        background: linear-gradient(90deg,rgb(230 230 230 / 10%),rgba(0,0,0,0)) !important;
-    }
-
-    .slider-btn-right {
-        background: linear-gradient(90deg,rgb(230 230 230 / 10%),rgba(0,0,0,0)) !important;
-    }
-
-    .slider-icon{
-        border-left: 2px solid rgb(39 35 35 / 60%) !important;
-        border-bottom: 2px solid rgb(0 0 0 / 60%) !important;
-    }
     *{
         scroll-behavior: smooth;
         font-variant-numeric: normal;
@@ -114,15 +102,6 @@
         text-align:left;
     }
     .vue-notification{
-    &.warn {
-         background: #ffb648;
-         border-left-color: #f48a06;
-     }
-
-    &.error {
-         background: #E54D42;
-         border-left-color: #B82E24;
-     }
 
     &.success {
          background: #16375a !important;
