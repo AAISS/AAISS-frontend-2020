@@ -88,7 +88,7 @@
                 if (!this.user.phone_number) {
                     this.errors.push("Phone number required.");
                 }
-                if(!this.validNumber(this.user.phone_number)){
+                if(!this.validNumber(this.user.phone_number) || this.user.phone_number.length > 12){
                     this.errors.push("Phone number not valid.");
                 }
                 if (!this.user.email) {
