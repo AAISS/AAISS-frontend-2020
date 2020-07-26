@@ -73,7 +73,6 @@
             }
         }, computed: {
             presenter: function () {
-                console.log(this.$store.getters.getCurrentPresenter)
                 return this.$store.getters.getCurrentPresenter;
             },
             presentation: function () {

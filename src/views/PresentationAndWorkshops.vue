@@ -141,7 +141,6 @@
                         data: this.paymentData,
                         method: 'POST',
                     }).then((response) => {
-                        console.log(response.data)
                         resolve(response.data);
                     }).catch((error) => {
                         reject(error);

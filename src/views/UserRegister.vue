@@ -109,7 +109,6 @@
             },
             validNumber: function(number){
                 var re = /^[0-9]+$/;
-                console.log(re.test(number))
                 return re.test(number)
 
             },
@@ -118,12 +117,10 @@
                 if (this.errors.length === 0) {
                     if (this.user.fields_of_interest[0] === "") {
                         this.user.fields_of_interest = [];
-                        console.log(this.user.fields_of_interest)
                     }
 
                     try {
                         const response = await this.registerUser();
-                        console.log(response);
                         if (response.message === "User already exist" || response.message === "User created") {
                             this.$notify({
                                 group: "auth",
@@ -188,7 +185,6 @@
         },
         computed: {
             FOI: function () {
-                console.log(this.$store.getters.getFOI)
                 return this.$store.getters.getFOI;
             }
         }

@@ -165,7 +165,6 @@
                         data: this.paymentData,
                         method: 'POST',
                     }).then((response) => {
-                        console.log(response.data)
                         resolve(response.data);
                         return response.data
                     }).catch((error) => {
@@ -177,12 +176,10 @@
         },
         computed: {
             presentations: function () {
-                console.log(this.$store.getters.getPresentations);
                 return this.$store.getters.getPresentations;
             },
             paymentData: function () {
                 this.payment.email = this.$route.params.email;
-                console.log(this.payment)
                 return this.payment
             }
         },

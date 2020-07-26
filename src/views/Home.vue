@@ -408,11 +408,9 @@
         },
         computed: {
             presenters: function () {
-                console.log(this.$store.getters.getPresenters)
                 return this.$store.getters.getPresenters;
             },
             teachers: function () {
-                console.log(this.$store.getters.getTeachers)
                 return this.$store.getters.getTeachers;
             },
 

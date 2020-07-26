@@ -6,10 +6,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        // api: 'http://aaiss.ceit.aut.ac.ir/api',
-        // mediaRoot:'http://aaiss.ceit.aut.ac.ir',
-        api: 'http://localhost:8000/api',
-        media: 'http://localhost:8000',
+        api: 'http://aaiss.ceit.aut.ac.ir/api',
+        mediaRoot:'http://aaiss.ceit.aut.ac.ir',
+        // api: 'http://localhost:8000/api',
+        // media: 'http://localhost:8000',
         fields_of_interest: localStorage.getItem('FOI') || '',
         presenters: [],
         teachers: [],
@@ -49,7 +49,6 @@ export default new Vuex.Store({
         },
         updateRegisterStatus(state, status) {
             state.register = status.desc
-            console.log(state.register)
 
         },
         updateCurrentPresentation(state, presentation){

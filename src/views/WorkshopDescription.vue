@@ -170,7 +170,6 @@
                     await this.$store.dispatch('getTeacherById', workshop.teachers[i])
                     this.eachPresenter.push(this.$store.getters.getCurrentTeacher)
                 }
-                console.log(this.eachPresenter)
 
             },
             sendRequest: async function () {
@@ -202,7 +201,6 @@
                         data: this.paymentData,
                         method: 'POST',
                     }).then((response) => {
-                        console.log(response.data)
                         resolve(response.data);
                         return response.data
                     }).catch((error) => {
@@ -218,7 +216,6 @@
                 let endHour = this.timePicker(this.workshop.end_date).split(':')[0];
                 let endMinute = this.timePicker(this.workshop.end_date).split(':')[1];
                 let endSecond = this.timePicker(this.workshop.end_date).split(':')[2];
-                console.log(endHour, endMinute, endSecond)
                 let end = new Date(0, 0, 0, endHour, endMinute, endSecond);
                 let startHour = this.timePicker(this.workshop.start_date).split(':')[0];
                 let startMinute = this.timePicker(this.workshop.start_date).split(':')[1];
@@ -233,7 +230,6 @@
             paymentData: function () {
                 this.payment.email = this.$route.params.email;
                 this.payment.workshops.push(this.$route.params.id)
-                console.log(this.payment)
                 return this.payment
             }
         },
