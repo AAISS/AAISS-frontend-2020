@@ -44,7 +44,7 @@
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
-                                    <router-link :to="'/presentations/'+ userData.email" class="more-info">
+                                    <router-link :to="'/presentations/'+ userData.email + '/show'" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -67,7 +67,7 @@
                                 <td><p>{{workshop.cost}}</p>
                                 </td>
                                 <td>
-                                    <router-link :to="'/workshop/' + workshop.id +'/'+ userData.email" class="more-info">
+                                    <router-link :to="'/workshop/' + workshop.id +'/'+ userData.email + '/show'" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -124,17 +124,29 @@
                 this.checkItems();
                 if (this.error === false) {
                     try {
+                        this.$notify({
+                            group: "auth",
+                            title: "",
+                            text: "Validating your request",
+                            type: "warn"
+                        });
                         const response = await this.makePayment();
                         this.$notify({
                             group: "auth",
                             title: "Success",
                             text: "Redirecting to payment page",
                             type: "success"
-                        })
+                        });
                         window.location.replace(response.message);
                         return true
                     } catch (e) {
                         console.log(e);
+                        this.$notify({
+                            group: "auth",
+                            title: "Error",
+                            text: "Internal Error",
+                            type: "error"
+                        });
                         return false
                     }
 

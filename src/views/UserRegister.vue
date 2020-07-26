@@ -88,7 +88,7 @@
                 if (!this.user.phone_number) {
                     this.errors.push("Phone number required.");
                 }
-                if(!this.validNumber){
+                if(!this.validNumber(this.user.phone_number)){
                     this.errors.push("Phone number not valid.");
                 }
                 if (!this.user.email) {
@@ -108,7 +108,8 @@
                 return re.test(email);
             },
             validNumber: function(number){
-                var re = /^[0-9]*$/gm;
+                var re = /^[1-9]\d*$/;
+                console.log(re.test(number))
                 return re.test(number)
 
             },
@@ -135,7 +136,6 @@
                                 params: {
                                     name: this.user.name,
                                     email: this.user.email,
-                                    national_code: this.user.national_code,
                                     // fields_of_interest: this.user.fields_of_interest,
                                     phone_number: this.user.phone_number
                                 }
@@ -152,6 +152,12 @@
                         return true
                     } catch (e) {
                         console.log(e);
+                        this.$notify({
+                            group: "auth",
+                            title: "Error",
+                            text: "Internal Error",
+                            type: "error"
+                        });
                         return false
                     }
 

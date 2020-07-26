@@ -79,7 +79,7 @@
                                     <p>{{this.timePicker(workshop.start_date)}}</p>
                                 </div>
                             </div>
-                            <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit" value="Register and Buy">
+                            <input v-if="paymentData.email !== 'none' && !workshop.is_full" @click="buy()" class="register-button button" type="submit" value="Register and Buy">
                         </div>
                     </div>
                 </div>
@@ -90,15 +90,11 @@
 </template>
 
 <script>
-    import {Slider, SliderItem} from "vue-easy-slider";
-    import axios from "axios";
+
+    import * as axios from "axios";
 
     export default {
         name: "WorkshopDescription",
-        components: {
-            Slider,
-            SliderItem
-        },
         data: function () {
             return {
                 sliderValue: 2,
@@ -118,6 +114,12 @@
             },
             buy: async function () {
                 try {
+                    this.$notify({
+                        group: "auth",
+                        title: "",
+                        text: "Validating your request",
+                        type: "warn"
+                    })
                     const response = await this.makePayment();
                     this.$notify({
                         group: "auth",
@@ -129,6 +131,12 @@
                     return true
                 } catch (e) {
                     console.log(e);
+                    this.$notify({
+                        group: "auth",
+                        title: "Error",
+                        text: "Internal Error",
+                        type: "error"
+                    });
                     return false
 
 

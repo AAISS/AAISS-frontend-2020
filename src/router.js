@@ -12,6 +12,7 @@ import Teacher from "./views/Teacher";
 import NotFound from "./views/NotFound";
 import store from "./store";
 import PresentationAndWorkshops from "./views/PresentationAndWorkshops";
+import SuccessShopping from "./views/SuccessShopping";
 Vue.use(Router);
 
 const router = new Router({
@@ -48,16 +49,16 @@ const router = new Router({
             name: 'register_user',
             component: UserRegister
         }, {
-            path: '/register/presentation/:name/:email/:national_code/:phone_number',
+            path: '/register/presentation/:name/:email/:phone_number',
             name: 'register_presentation',
             component: PresentationRegister
         }, {
-            path: '/presentations/:email/',
+            path: '/presentations/:email/show',
             name: 'description_presentation',
             component: PresentationDescription
         },
         {
-            path: '/workshop/:id/:email/',
+            path: '/workshop/:id/:email/show',
             name: 'description_workshop',
             component: WorkshopDescription
         },
@@ -70,6 +71,11 @@ const router = new Router({
             path: "*",
             name: 'not-found',
             component: NotFound
+        },
+        {
+            path: "/successful",
+            name: 'SuccessShopping',
+            component: SuccessShopping
         }
 
 

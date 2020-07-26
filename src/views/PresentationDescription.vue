@@ -46,7 +46,7 @@
 
 
                             <div id="left" class="sub-description">
-                                <h4 class="text-center">Description</h4>
+                                <h4 class="text-center">{{presentation.name}}</h4>
                                 <p class="text-justify description">{{presentation.desc}}</p>
                                 <div class="date-time-wrapper">
                                     <div class="minor-date-time">
@@ -64,7 +64,7 @@
                                         <p>{{timePicker(presentation.start_date)}}</p>
                                     </div>
                                 </div>
-                                <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit"
+                                <input v-if="paymentData.email !== 'none' && !presentations[presentations.length - 1].is_full" @click="buy()" class="register-button button" type="submit"
                                        value="Register and Buy">
                             </div>
                         </div>
@@ -83,8 +83,7 @@
     export default {
         name: "PresentationDescription",
         components: {
-            Slider,
-            SliderItem
+
         },
         data: function () {
             return {
@@ -103,6 +102,12 @@
             },
             buy: async function () {
                 try {
+                    this.$notify({
+                        group: "auth",
+                        title: "",
+                        text: "Validating your request",
+                        type: "warn"
+                    })
                     const response = await this.makePayment();
                     this.$notify({
                         group: "auth",
@@ -114,6 +119,12 @@
                     return true
                 } catch (e) {
                     console.log(e);
+                    this.$notify({
+                        group: "auth",
+                        title: "Error",
+                        text: "Internal Error",
+                        type: "error"
+                    });
                     return false
 
 
