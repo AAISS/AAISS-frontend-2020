@@ -108,7 +108,7 @@
                 return re.test(email);
             },
             validNumber: function(number){
-                var re = /^[1-9]\d*$/;
+                var re = /^[0-9]+$/;
                 console.log(re.test(number))
                 return re.test(number)
 
