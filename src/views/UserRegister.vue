@@ -135,7 +135,7 @@
                                     // fields_of_interest: this.user.fields_of_interest,
                                 }
                             })
-                            localStorage.setItem('FOI', this.user.fields_of_interest)
+                            // localStorage.setItem('FOI', this.user.fields_of_interest)
                         } else {
                             this.$notify({
                                 group: "auth",

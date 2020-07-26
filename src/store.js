@@ -10,7 +10,6 @@ export default new Vuex.Store({
         mediaRoot:'http://aaiss.ceit.aut.ac.ir',
         // api: 'http://localhost:8000/api',
         // media: 'http://localhost:8000',
-        fields_of_interest: localStorage.getItem('FOI') || '',
         presenters: [],
         teachers: [],
         presentations: [],
