@@ -113,4 +113,20 @@
         direction: ltr !important;
         text-align:left;
     }
+    .vue-notification{
+    &.warn {
+         background: #ffb648;
+         border-left-color: #f48a06;
+     }
+
+    &.error {
+         background: #E54D42;
+         border-left-color: #B82E24;
+     }
+
+    &.success {
+         background: #16375a !important;
+         border-left-color: #122c48 !important;
+     }
+    }
 </style>
