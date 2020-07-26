@@ -64,7 +64,7 @@
                                         <p>{{timePicker(presentation.start_date)}}</p>
                                     </div>
                                 </div>
-                                <input v-if="paymentData.email !== 'none' && !presentations[presentations.length - 1].is_full" @click="buy()" class="register-button button" type="submit"
+                                <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit"
                                        value="Register and Buy">
                             </div>
                         </div>
