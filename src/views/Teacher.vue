@@ -52,7 +52,7 @@
                         </prerequisites>
                         <br>
                         <project>
-                            <span class="font-weight-bold" v-if="workshop.has_project === true">This workshop has project.</span>
+                            <span class="font-weight-bold" v-if="workshop.has_project === true">Participants will develop a project in this workshop.</span>
                         </project>
 
                     </p>
@@ -173,7 +173,7 @@
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         margin-top: 15px;
-        padding: 20px;
+        padding: 25px 25px 25px 30px;
     }
 
     .infoBlock p, address, .html-b {

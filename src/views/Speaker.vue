@@ -142,6 +142,7 @@
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         margin-top: 15px;
+        padding: 25px 25px 25px 30px;
     }
 
     .infoBlock p, address {

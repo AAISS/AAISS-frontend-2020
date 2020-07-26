@@ -369,7 +369,7 @@
                     <div class="col-lg-6 text-white">
 
                         <h5 class="organizerName">Students' Scientific Chapter of Computer Engineering
-                            Department <br> Amirkabir University of Technology(Tehran Polytechnic)</h5>
+                            Department of Amirkabir University of Technology</h5>
                         <h6 class="organizerAddress mt-5">Website : <a href="http://ceit-ssc.ir" target="_blank">ceit-ssc.ir</a>
                         </h6>
                         <h6 class="organizerEmail">
