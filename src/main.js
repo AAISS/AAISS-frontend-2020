@@ -4,7 +4,8 @@ import VueParticles from 'vue-particles'
 import router from './router'
 import store from './store'
 import Notifications from 'vue-notification'
-
+import 'bootstrap'; 
+import 'bootstrap/dist/css/bootstrap.min.css'
 var VueScrollTo = require('vue-scrollto');
 Vue.use(VueScrollTo);
 
