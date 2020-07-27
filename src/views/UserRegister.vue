@@ -182,11 +182,11 @@
         },
         async mounted() {
             await this.$store.dispatch('getRegisterStatus');
-            if (this.$store.getters.getRegistrationStatus === 'false') {
-                this.$router.push({
-                    name: 'Home',
-                })
-            }
+            // if (this.$store.getters.getRegistrationStatus === 'false') {
+            //     this.$router.push({
+            //         name: 'Home',
+            //     })
+            // }
         },
         computed: {
             FOI: function () {
