@@ -302,6 +302,7 @@
         padding: 5px 15px 5px 15px;
         border-radius: 10px;
         font-weight: bolder;
+        display:flex
     }
 
     .more-info:hover{
@@ -335,6 +336,9 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+    }
+    .workshop{
+        flex: initial;
     }
 
 
