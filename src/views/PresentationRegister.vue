@@ -105,11 +105,7 @@
                 error: false,
                 presentation_fee: "default",
                 user: {
-                    name: "",
                     email: "",
-                    national_code: "",
-                    fields_of_interest: [],
-                    phone_number: ""
                 },
                 payment: {
                     email: "",
@@ -200,6 +196,7 @@
         created() {
             this.$store.dispatch('getWorkshops');
             this.$store.dispatch('getPresentations');
+            console.log(this.$store.getters.getWorkshops)
             this.getPresentationPrice()
         },
 
@@ -211,13 +208,7 @@
                 return this.$store.getters.getPresentations;
             },
             userData: function () {
-                this.user.name = this.$route.params.name;
-                this.user.phone_number = this.$route.params.phone_number;
                 this.user.email = this.$route.params.email;
-                this.user.national_code = this.$route.params.national_code;
-
-                this.user.fields_of_interest = localStorage.getItem('FOI').split(',') || [];
-                console.log(this.user);
                 return this.user;
             },
             paymentData: function () {
@@ -225,7 +216,6 @@
                 if (this.presentation.length !== 0) {
                     this.payment.presentations = this.presentation[0];
                 }
-                console.log(this.payment)
                 return this.payment
             }
         }
