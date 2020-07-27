@@ -368,7 +368,7 @@
                     <div class="col-md-12 justify-content-center">
                         <button @click.prevent="showRegisterSoonMessage()"
                                 v-if="register === '/'"
-                                class="btn btn-primary btn-lg btn-block float-left regBtn">
+                                class="btn btn-lg btn-block float-left regBtn">
             <span v-bind:class="{'small' : smallerFontSize}">
                                                 {{registerValue}}
                                                 </span>
@@ -623,7 +623,7 @@
 
     .regBtn:hover {
         color: white;
-        background-color: #C6C2C4;
+        background-color: #16375a;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);

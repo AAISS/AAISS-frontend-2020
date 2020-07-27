@@ -395,7 +395,7 @@
 
     .regBtn:hover {
         color: white;
-        background-color: #C6C2C4;
+        background-color: #16375a;
         -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
