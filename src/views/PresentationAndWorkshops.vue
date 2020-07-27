@@ -382,7 +382,7 @@
         flex: initial;
     }
     #scheduleSection {
-        min-height: 100vh;
+        min-height: 30vh;
     }
     .regBtn {
         background-color: white;

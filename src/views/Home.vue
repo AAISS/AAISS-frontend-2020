@@ -586,7 +586,7 @@
 
     #scheduleSection {
         background-color: #ceccc0;
-        min-height: 100vh;
+        min-height: 30vh;
     }
 
     #scheduleSection h1 {
