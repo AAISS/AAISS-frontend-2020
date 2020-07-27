@@ -79,7 +79,7 @@
                                     <p>{{this.timePicker(workshop.start_date)}}</p>
                                 </div>
                             </div>
-                            <input v-if="paymentData.email !== 'none'" class="register-button button" type="submit" value="Register and Buy">
+                            <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit" value="Register and Buy">
                         </div>
                     </div>
                 </div>
