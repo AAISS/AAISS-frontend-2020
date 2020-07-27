@@ -88,7 +88,7 @@
                 if (!this.user.phone_number) {
                     this.errors.push("Phone number required.");
                 }
-                if(!this.validNumber(this.user.phone_number) || this.user.phone_number.length > 12){
+                if (!this.validNumber(this.user.phone_number) || this.user.phone_number.length > 12) {
                     this.errors.push("Phone number not valid.");
                 }
                 if (!this.user.email) {
@@ -107,7 +107,7 @@
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
             },
-            validNumber: function(number){
+            validNumber: function (number) {
                 var re = /^[0-9]+$/;
                 return re.test(number)
 
@@ -128,7 +128,7 @@
                                 text: response.message,
                                 type: "success"
                             })
-                           await localStorage.setItem('email', this.user.email)
+                            await localStorage.setItem('email', this.user.email)
                             this.$router.push({
                                 name: 'register_presentation',
                             })
@@ -177,7 +177,16 @@
 
         },
         created() {
-            this.$store.dispatch('getFieldsOfInterest');
+             this.$store.dispatch('getFieldsOfInterest');
+
+        },
+        async mounted() {
+            await this.$store.dispatch('getRegisterStatus');
+            if (this.$store.getters.getRegistrationStatus === 'false') {
+                this.$router.push({
+                    name: 'Home',
+                })
+            }
         },
         computed: {
             FOI: function () {
