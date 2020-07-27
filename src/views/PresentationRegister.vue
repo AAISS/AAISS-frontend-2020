@@ -133,7 +133,7 @@
                             text: "Redirecting to payment page",
                             type: "success"
                         });
-                        localStorage.clear();
+                        await localStorage.clear();
                         window.location.replace(response.message);
                         return true
                     } catch (e) {

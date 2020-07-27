@@ -10,6 +10,9 @@ export default new Vuex.Store({
         mediaRoot:'http://aaiss.ceit.aut.ac.ir',
         // api: 'http://localhost:8000/api',
         // media: 'http://localhost:8000',
+
+
+
         presenters: [],
         teachers: [],
         presentations: [],
@@ -20,7 +23,7 @@ export default new Vuex.Store({
         currentTeacher: {},
         currentWorkshop: {},
         currentPresentation: {},
-        register: ''
+        register: 'false'
     },
     mutations: {
         updatePresenters(state, newPresenter) {
@@ -84,6 +87,7 @@ export default new Vuex.Store({
                     method: 'GET',
                 }).then((response) => {
                     commit('updatePresenters', response.data);
+                    console.log(response.data)
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
@@ -118,6 +122,8 @@ export default new Vuex.Store({
                     method: 'GET',
                 }).then((response) => {
                     commit('updateTeachers', response.data);
+                    console.log(response.data)
+
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
@@ -222,7 +228,6 @@ export default new Vuex.Store({
                 })
             })
         },
-
     },
 
 
@@ -262,7 +267,7 @@ export default new Vuex.Store({
             state => {
                 return state.mediaRoot;
             },
-        getRegisterOpen:
+        getRegistrationStatus:
             state => {
                 return state.register;
             },

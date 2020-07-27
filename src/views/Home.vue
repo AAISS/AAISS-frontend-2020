@@ -40,24 +40,24 @@
             </div>
         </section>
 
-<!--        <section id="presentation-and-workshops" class="sub-section" v-if="about!== '' ">-->
-<!--            <div class="container">-->
-<!--                <div class="row justify-content-center">-->
-<!--                    <div class="col-md-12 justify-content-center">-->
-<!--                        <div class="row">-->
-<!--                            <div class="mx-auto">-->
-<!--                                <router-link to="/workshops+presentation" class="button">-->
-<!--                                    Presentation and workshops-->
-<!--                                    <span class="material-icons">-->
-<!--                                      launch-->
-<!--                                    </span>-->
-<!--                                </router-link>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
+        <!--        <section id="presentation-and-workshops" class="sub-section" v-if="about!== '' ">-->
+        <!--            <div class="container">-->
+        <!--                <div class="row justify-content-center">-->
+        <!--                    <div class="col-md-12 justify-content-center">-->
+        <!--                        <div class="row">-->
+        <!--                            <div class="mx-auto">-->
+        <!--                                <router-link to="/workshops+presentation" class="button">-->
+        <!--                                    Presentation and workshops-->
+        <!--                                    <span class="material-icons">-->
+        <!--                                      launch-->
+        <!--                                    </span>-->
+        <!--                                </router-link>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </section>-->
 
 
         <!--        <section id="committeeSection">-->
@@ -77,7 +77,7 @@
         <!--        </section>-->
 
 
-        <section id="speakersSection" v-if="presenters.length !== 0">
+        <section id="speakersSection" v-if="presenters.length !== 0" >
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
@@ -91,6 +91,7 @@
                 </div>
             </div>
         </section>
+
 
         <section id="teacherSection" v-if="teachers.length !== 0">
             <div class="container">
@@ -106,6 +107,8 @@
                 </div>
             </div>
         </section>
+
+
 
         <!--        <section id="scheduleSection">-->
         <!--            <div class="container">-->
@@ -358,6 +361,26 @@
         <!--            </div>-->
         <!--        </section>-->
 
+
+        <section id="scheduleSection">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 justify-content-center">
+                        <button @click.prevent="showRegisterSoonMessage()"
+                                v-if="register === '/'"
+                                class="btn btn-primary btn-lg btn-block float-left regBtn">
+            <span v-bind:class="{'small' : smallerFontSize}">
+                                                {{registerValue}}
+                                                </span>
+                        </button>
+                        <a v-else :href="register"
+                           class="btn btn-primary btn-lg btn-block float-left regBtn"
+                           target="_blank">{{registerValue}}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="organizerSection">
             <div class="container">
                 <div class="row pt-5">
@@ -400,7 +423,6 @@
         name: 'Home',
         data: function () {
             return {
-                register_link: "/",
                 registerValue: 'Registration',
                 smallerFontSize: false,
                 about: "",
@@ -413,6 +435,12 @@
             teachers: function () {
                 return this.$store.getters.getTeachers;
             },
+            register: function () {
+                if(this.$store.getters.getRegistrationStatus === 'false'){
+                    return "/"
+                }
+                return "/register/user"
+            }
 
         },
         components: {
@@ -446,8 +474,9 @@
             },
         },
         created() {
-            let promisedTeachers = this.$store.dispatch('getTeachers');
-            let promisedPresenters = this.$store.dispatch('getPresenters');
+            this.$store.dispatch('getPresenters');
+            this.$store.dispatch('getTeachers');
+            this.$store.dispatch('getRegisterStatus');
             this.getAbout();
 
         },
@@ -587,7 +616,7 @@
         background-color: white;
         margin-top: 50px;
         margin-bottom: 50px;
-        color: #C6C2C4;
+        color: #797B7F;
         border: none;
         font-size: 2rem;
     }
@@ -651,16 +680,18 @@
         display: flex;
         justify-content: center;
     }
-    .ps-link{
+
+    .ps-link {
         text-decoration: none;
         color: #B7867E;
     }
-    .ps-link:hover{
+
+    .ps-link:hover {
         color: #8e5751;
     }
-    .material-icons{
-    }
 
+    .material-icons {
+    }
 
 
     @media only screen and (min-width: 416px) and (max-width: 767.98px) {

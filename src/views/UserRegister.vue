@@ -128,7 +128,7 @@
                                 text: response.message,
                                 type: "success"
                             })
-                            localStorage.setItem('email', this.user.email)
+                           await localStorage.setItem('email', this.user.email)
                             this.$router.push({
                                 name: 'register_presentation',
                             })

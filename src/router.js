@@ -1,20 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Landing from "./views/Landing";
 import Home from "./views/Home";
 import Speaker from "./views/Speaker";
-
-import UserRegister from "./views/UserRegister";
-import PresentationRegister from "./views/PresentationRegister";
-import PresentationDescription from "./views/PresentationDescription";
-import WorkshopDescription from "./views/WorkshopDescription";
-import Teacher from "./views/Teacher";
-import NotFound from "./views/NotFound";
 import store from "./store";
-import PresentationAndWorkshops from "./views/PresentationAndWorkshops";
-import SuccessShopping from "./views/SuccessShopping";
-import NotSuccessShopping from "./views/NotSuccessShopping";
-
 Vue.use(Router);
 
 const router = new Router({
@@ -29,8 +17,9 @@ const router = new Router({
         {
             path: '/',
             name: 'Home',
-            component: () =>
-                import(/* webpackChunkName: "Home" */"./views/Home")
+            // component: () =>
+            //     import(/* webpackChunkName: "Home" */"./views/Home")
+            component: Home
         },
         {
             path: '/presenters/:id',
