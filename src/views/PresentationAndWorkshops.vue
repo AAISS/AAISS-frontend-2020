@@ -72,7 +72,27 @@
 
             </div>
 
+
+            <section id="scheduleSection">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 justify-content-center">
+                            <button @click.prevent="showRegisterSoonMessage()"
+                                    v-if="register === '/'"
+                                    class="btn btn-primary btn-lg btn-block float-left regBtn">
+            <span v-bind:class="{'small' : smallerFontSize}">
+                                                {{registerValue}}
+                                                </span>
+                            </button>
+                            <a v-else :href="register"
+                               class="btn btn-primary btn-lg btn-block float-left regBtn"
+                               target="_blank">{{registerValue}}</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
+
     </div>
 </template>
 
@@ -98,10 +118,20 @@
                     workshops: [],
                     presentations: false
                 },
+                registerValue: 'Registration',
+                smallerFontSize: false,
 
             }
         },
         methods: {
+            showRegisterSoonMessage: function () {
+                this.registerValue = 'Registration is closed.';
+                this.smallerFontSize = true;
+                setTimeout(() => {
+                    this.registerValue = 'Registration';
+                    this.smallerFontSize = false;
+                }, 2500)
+            },
             buy: async function () {
                 this.checkItems();
                 if (this.error === false) {
@@ -157,6 +187,7 @@
         created() {
             this.$store.dispatch('getWorkshops');
             this.$store.dispatch('getPresentations');
+            this.$store.dispatch('getRegisterStatus');
             this.getPresentationPrice()
         },
 
@@ -176,6 +207,12 @@
                 this.user.fields_of_interest = localStorage.getItem('FOI').split(',') || [];
                 console.log(this.user);
                 return this.user ;
+            },
+            register: function () {
+                if(this.$store.getters.getRegistrationStatus === 'false'){
+                    return "/"
+                }
+                return "/register/user"
             },
             paymentData: function () {
                 this.payment.email = this.email;
@@ -344,6 +381,27 @@
     .workshop{
         flex: initial;
     }
+    #scheduleSection {
+        background-color: #ceccc0;
+        min-height: 100vh;
+    }
+    .regBtn {
+        background-color: white;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        color: #797B7F;
+        border: none;
+        font-size: 2rem;
+    }
+
+    .regBtn:hover {
+        color: white;
+        background-color: #C6C2C4;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    }
+
 
 
 

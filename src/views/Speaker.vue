@@ -5,16 +5,16 @@
             <div class="row mt-5">
                 <div class="col-lg-3">
                     <SpeakerBlock :speaker="presenter"></SpeakerBlock>
-                    <!--                    <button @click.prevent="showRegisterSoonMessage()"-->
-                    <!--                            v-if="staticParts[0].register_link == '/'"-->
-                    <!--                            class="btn btn-primary btn-lg btn-block float-left regBtn"-->
-                    <!--                    >-->
-                    <!--                        <span v-bind:class="{'small' : smallerFontSize}">-->
-                    <!--                            {{registerValue}}-->
-                    <!--                        </span>-->
-                    <!--                    </button>-->
-                    <!--                    <a v-else :href="staticParts[0].register_link"-->
-                    <!--                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
+                                        <button @click.prevent="showRegisterSoonMessage()"
+                                                v-if="register === '/'"
+                                                class="btn btn-primary btn-lg btn-block float-left regBtn"
+                                        >
+                                            <span v-bind:class="{'small' : smallerFontSize}">
+                                                {{registerValue}}
+                                            </span>
+                                        </button>
+                    <a v-else :href="register"
+                       class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>
                 </div>
                 <div class="col-lg-9 infoBlock">
                     <h1 class="display-5">
@@ -77,6 +77,12 @@
             },
             presentation: function () {
                 return this.$store.getters.getCurrentPresentation;
+            },
+            register: function () {
+                if(this.$store.getters.getRegistrationStatus === 'false'){
+                    return "/"
+                }
+                return "/register/user"
             }
         },
         components: {
@@ -104,6 +110,8 @@
             try {
                 await this.$store.dispatch('getPresenterById', this.$route.params.id);
                 this.$store.dispatch('getPresentationById', this.presenter.presentations[0]);
+                this.$store.dispatch('getRegisterStatus');
+
             } catch (e) {
                 console.log(e);
             }
