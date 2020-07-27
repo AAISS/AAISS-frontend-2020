@@ -44,7 +44,7 @@
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
-                                    <router-link :to="'/presentations/'+ userData.email + '/show'" class="more-info">
+                                    <router-link :to="'/presentations'+ '/show'" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -67,7 +67,7 @@
                                 <td><p>{{workshop.cost}}</p>
                                 </td>
                                 <td>
-                                    <router-link :to="'/workshop/' + workshop.id +'/'+ userData.email + '/show'" class="more-info">
+                                    <router-link :to="'/workshop/' + workshop.id  + '/show'" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -133,6 +133,7 @@
                             text: "Redirecting to payment page",
                             type: "success"
                         });
+                        localStorage.clear();
                         window.location.replace(response.message);
                         return true
                     } catch (e) {
@@ -140,7 +141,7 @@
                         this.$notify({
                             group: "auth",
                             title: "Error",
-                            text: "Internal Error",
+                            text: "Internal Server Error",
                             type: "error"
                         });
                         return false
@@ -182,7 +183,6 @@
                         data: this.paymentData,
                         method: 'POST',
                     }).then((response) => {
-                        console.log(response.data)
                         resolve(response.data);
                         return response.data
                     }).catch((error) => {
@@ -196,7 +196,6 @@
         created() {
             this.$store.dispatch('getWorkshops');
             this.$store.dispatch('getPresentations');
-            console.log(this.$store.getters.getWorkshops)
             this.getPresentationPrice()
         },
 
@@ -208,15 +207,18 @@
                 return this.$store.getters.getPresentations;
             },
             userData: function () {
-                this.user.email = this.$route.params.email;
+                this.user.email = this.email;
                 return this.user;
             },
             paymentData: function () {
-                this.payment.email = this.$route.params.email;
+                this.payment.email = this.email;
                 if (this.presentation.length !== 0) {
                     this.payment.presentations = this.presentation[0];
                 }
                 return this.payment
+            },
+            email: function () {
+                return this.$store.getters.getEmail
             }
         }
     }

@@ -14,6 +14,7 @@ import store from "./store";
 import PresentationAndWorkshops from "./views/PresentationAndWorkshops";
 import SuccessShopping from "./views/SuccessShopping";
 import NotSuccessShopping from "./views/NotSuccessShopping";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -53,18 +54,18 @@ const router = new Router({
             component: () =>
                 import(/* webpackChunkName: "register_user" */"./views/UserRegister")
         }, {
-            path: '/register/presentation/:email',
+            path: '/register/presentation',
             name: 'register_presentation',
             component: () =>
                 import(/* webpackChunkName: "register_presentation" */"./views/PresentationRegister")
         }, {
-            path: '/presentations/:email/show',
+            path: '/presentations/show',
             name: 'description_presentation',
             component: () =>
                 import(/* webpackChunkName: "description_presentation" */"./views/PresentationDescription")
         },
         {
-            path: '/workshop/:id/:email/show',
+            path: '/workshop/:id/show',
             name: 'description_workshop',
             component: () =>
                 import(/* webpackChunkName: "description_workshop" */"./views/WorkshopDescription")
@@ -78,7 +79,7 @@ const router = new Router({
         {
             path: "*",
             name: 'not-found',
-            component:  () =>
+            component: () =>
                 import(/* webpackChunkName: "not-found" */"./views/NotFound")
         },
         {
@@ -95,7 +96,6 @@ const router = new Router({
         }
 
 
-
     ]
 
 
@@ -103,19 +103,20 @@ const router = new Router({
 
 export default router
 
-// const openRegister = ['register_user', 'register_presentation', 'description_workshop', 'description_presentation'];
-// router.beforeEach((to, from, next) => {
-//     store.dispatch('getRegisterStatus')
-//     console.log(store.getters.getRegisterOpen)
-//     if (openRegister.includes(to.name)) {
-//         if (store.getters.getRegisterOpen === 'open') {
-//             next()
-//         } else {
-//             next(from.fullPath);
-//         }
-//     } else {
-//         next()
-//     }
-//     window.scroll(0, 0);
-// });
-//
+const requiredAuth = ['register_presentation'];
+// const notRequiredAuth = ['signin', 'signup' , 'forget'];
+router.beforeEach((to, from, next) => {
+    if (requiredAuth.includes(to.name)) {
+        //check if user is logged in
+        if (store.getters.getEmail !== "") {
+            next()
+        } else {
+            next('/');
+        }
+    } else {
+        next()
+    }
+    window.scroll(0, 0);
+});
+
+

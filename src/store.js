@@ -14,6 +14,7 @@ export default new Vuex.Store({
         teachers: [],
         presentations: [],
         workshops: [],
+        email: localStorage.getItem('email') || "",
         FOI: [],
         currentPresenter: {},
         currentTeacher: {},
@@ -272,6 +273,10 @@ export default new Vuex.Store({
         getCurrentWorkshop:
             state => {
                 return state.currentWorkshop
+            },
+        getEmail:
+            state => {
+                return state.email
             }
 
     }

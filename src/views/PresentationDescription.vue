@@ -64,7 +64,7 @@
                                         <p>{{timePicker(presentation.start_date)}}</p>
                                     </div>
                                 </div>
-                                <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit"
+                                <input v-if="paymentData.email !== ''" @click="buy()" class="register-button button" type="submit"
                                        value="Register and Buy">
                             </div>
                         </div>
@@ -103,9 +103,7 @@
             buy: async function () {
                 this.$router.push({
                     name: 'register_presentation',
-                    params: {
-                        email: this.$route.params.email,
-                    }
+
                 })
 
                 // try {
@@ -179,8 +177,11 @@
                 return this.$store.getters.getPresentations;
             },
             paymentData: function () {
-                this.payment.email = this.$route.params.email;
+                this.payment.email = this.email;
                 return this.payment
+            },
+            email: function () {
+                return this.$store.getters.getEmail
             }
         },
         mounted() {

@@ -45,22 +45,22 @@
                         <div id="left" class="sub-description">
                             <h4 class="text-center">Description</h4>
                             <div v-html="workshop.desc" class="text-justify description" style="line-height:30px;"></div>
-                            <wrap-div>
+                            <div>
                                 <span class="detail-titles">Capacity: </span>{{workshop.capacity}} <span v-if="workshop.is_full === true"
                                                                          class="text-danger"> FULL </span>
-                            </wrap-div>
+                            </div>
 
-                            <wrap-div>
+                            <div>
                                 <span class="detail-titles">Level: </span>{{workshop.level}}
-                            </wrap-div>
+                            </div>
 
-                            <wrap-div>
+                            <div>
                                 <span class="detail-titles">Duration: </span>{{getDuration}} Minutes
-                            </wrap-div>
+                            </div>
 
-                            <wrap-div>
+                            <div>
                                 <span class="detail-titles">Prerequisites: </span>{{workshop.prerequisites }}
-                            </wrap-div>
+                            </div>
 
                             <h6  class="detail-titles" v-if="workshop.has_project === true">This workshop has project.</h6>
                             <div class="date-time-wrapper">
@@ -79,7 +79,7 @@
                                     <p>{{this.timePicker(workshop.start_date)}}</p>
                                 </div>
                             </div>
-                            <input v-if="paymentData.email !== 'none'" @click="buy()" class="register-button button" type="submit" value="Register and Buy">
+                            <input v-if="paymentData.email !== ''" @click="buy()" class="register-button button" type="submit" value="Register and Buy">
                         </div>
                     </div>
                 </div>
@@ -116,9 +116,7 @@
 
                 this.$router.push({
                     name: 'register_presentation',
-                    params: {
-                        email: this.$route.params.email,
-                    }
+
                 })
                 // try {
                 //     this.$notify({
@@ -165,23 +163,23 @@
                     })
                 })
             },
-            getTeachers: async function (workshop) {
-                for (let i = 0; i < workshop.teachers.length; i++) {
-                    await this.$store.dispatch('getTeacherById', workshop.teachers[i])
-                    this.eachPresenter.push(this.$store.getters.getCurrentTeacher)
-                }
-
-            },
-            sendRequest: async function () {
-                try {
-                    await this.getWorkshopById(this.$route.params.id)
-                    this.getTeachers(this.$store.getters.getCurrentWorkshop)
-                    return true
-                } catch (e) {
-                    console.log(e);
-                    return false
-                }
-            },
+            // getTeachers: async function (workshop) {
+            //     for (let i = 0; i < workshop.teachers.length; i++) {
+            //         await this.$store.dispatch('getTeacherById', workshop.teachers[i])
+            //         this.eachPresenter.push(this.$store.getters.getCurrentTeacher)
+            //     }
+            //
+            // },
+            // sendRequest: async function () {
+            //     try {
+            //         await this.getWorkshopById(this.$route.params.id)
+            //         this.getTeachers(this.$store.getters.getCurrentWorkshop)
+            //         return true
+            //     } catch (e) {
+            //         console.log(e);
+            //         return false
+            //     }
+            // },
             datePicker: function (date) {
                 return date.split('T')[0];
             },
@@ -228,9 +226,12 @@
                 return this.eachPresenter
             },
             paymentData: function () {
-                this.payment.email = this.$route.params.email;
+                this.payment.email = this.email;
                 this.payment.workshops.push(this.$route.params.id)
                 return this.payment
+            },
+            email: function () {
+                return this.$store.getters.getEmail
             }
         },
         mounted() {
@@ -240,7 +241,7 @@
             );
         },
         async created() {
-            await this.sendRequest()
+            await this.getWorkshopById(this.$route.params.id)
         }
     }
 </script>

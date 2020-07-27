@@ -33,7 +33,7 @@
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
-                                    <router-link to="/presentations/none/show" class="more-info">
+                                    <router-link to="/presentations/show" class="more-info">
                                         More Information
                                     </router-link>
                                 </td>
@@ -53,7 +53,7 @@
                                     <td><p>{{workshop.cost}}</p>
                                     </td>
                                     <td>
-                                        <router-link :to="'/workshop/' + workshop.id+ '/none/show'" class="more-info">
+                                        <router-link :to="'/workshop/' + workshop.id+ '/show'" class="more-info">
                                             More Information
                                         </router-link>
                                     </td>
@@ -178,13 +178,17 @@
                 return this.user ;
             },
             paymentData: function () {
-                this.payment.email = this.$route.params.email;
+                this.payment.email = this.email;
                 if(this.presentation.length !== 0){
                     this.payment.presentations = this.presentation[0];
                 }
                 console.log(this.payment)
                 return this.payment
             },
+            email: function () {
+                return this.$store.getters.getEmail
+            }
+
 
 
         }

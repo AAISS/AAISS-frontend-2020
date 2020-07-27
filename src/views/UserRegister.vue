@@ -128,14 +128,10 @@
                                 text: response.message,
                                 type: "success"
                             })
+                            localStorage.setItem('email', this.user.email)
                             this.$router.push({
                                 name: 'register_presentation',
-                                params: {
-                                    email: this.user.email,
-                                    // fields_of_interest: this.user.fields_of_interest,
-                                }
                             })
-                            // localStorage.setItem('FOI', this.user.fields_of_interest)
                         } else {
                             this.$notify({
                                 group: "auth",
