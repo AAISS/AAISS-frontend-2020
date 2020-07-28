@@ -97,6 +97,7 @@ const requiredAuth = ['register_presentation'];
 router.beforeEach((to, from, next) => {
     if (requiredAuth.includes(to.name)) {
         //check if user is logged in
+        console.log(store.getters.getEmail)
         if (store.getters.getEmail !== "") {
             next()
         } else {

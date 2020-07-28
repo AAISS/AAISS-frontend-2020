@@ -56,6 +56,9 @@ export default new Vuex.Store({
         },
         updateCurrentPresentation(state, presentation){
             state.currentPresentation = presentation
+        },
+        updateEmail(state){
+            state.email = localStorage.getItem('email') || "";
         }
 
     },

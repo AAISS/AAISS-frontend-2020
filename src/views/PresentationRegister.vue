@@ -37,10 +37,15 @@
 
                             <tr v-if="presentations.length !== 0"
                                 class="choice-wrapper">
-                                <td><input v-if="!presentations[presentations.length -1].is_full" class="check-box" type="checkbox" :value="true"
-                                           v-model="presentation"></td>
-                                <td><p class="text-left">presentation <span v-if="presentations[presentations.length -1].is_full"
-                                                          class="text-danger">(FULL)</span></p></td>
+                                <td><input
+                                        v-if="!presentations[presentations.length -1].is_full && !registeredPresentation"
+                                        class="check-box" type="checkbox" :value="true"
+                                        v-model="presentation"></td>
+                                <td><p class="text-left">presentation <span
+                                        v-if="presentations[presentations.length -1].is_full"
+                                        class="text-danger font-weight-bold">(FULL)</span><span
+                                        v-if="registeredPresentation"
+                                        class="text-success font-weight-bold">(REGISTERED)</span></p></td>
                                 <td><p>{{presentation_fee}}</p>
                                 </td>
                                 <td>
@@ -60,9 +65,14 @@
 
                             <tr v-for="workshop in workshops" v-bind:key="workshop.id"
                                 class="choice-wrapper">
-                                <td><input v-if="!workshop.is_full" class="check-box" type="checkbox" :value="workshop.id"
+                                <td><input v-if="!workshop.is_full && !registeredWorkshops.includes(workshop.id)"
+                                           class="check-box" type="checkbox" :value="workshop.id"
                                            v-model="payment.workshops"></td>
-                                <td><p class="text-left">{{workshop.name}} <span v-if="workshop.is_full" class="text-danger">(FULL)</span>
+                                <td><p class="text-left">{{workshop.name}} <span v-if="workshop.is_full"
+                                                                                 class="text-danger font-weight-bold">(FULL)</span>
+                                    <span
+                                            v-if="registeredWorkshops.includes(workshop.id)"
+                                            class="text-success font-weight-bold">(REGISTERED)</span>
                                 </p></td>
                                 <td><p>{{workshop.cost}}</p>
                                 </td>
@@ -192,7 +202,9 @@
                 })
             },
 
+
         },
+
         created() {
             this.$store.dispatch('getWorkshops');
             this.$store.dispatch('getPresentations');
@@ -219,7 +231,27 @@
             },
             email: function () {
                 return this.$store.getters.getEmail
+            },
+            registeredPresentation: function () {
+                if (localStorage.getItem('presentations') === null){
+                    return false
+                }
+                if (localStorage.getItem('presentations') === 'false')
+                    return false
+                return true
+            },
+            registeredWorkshops: function () {
+                if (localStorage.getItem('workshops') === null){
+                    return []
+                }
+                let workshops = localStorage.getItem('workshops')
+                let w = workshops.split(',').map(function (item) {
+                    return parseInt(item, 10);
+                });
+                return w
+
             }
+
         }
     }
 </script>
@@ -337,7 +369,7 @@
         padding: 5px 15px 5px 15px;
         border-radius: 10px;
         font-weight: bolder;
-        display:flex
+        display: flex
     }
 
     .more-info:hover {
@@ -382,9 +414,11 @@
         flex-direction: row;
         justify-content: center;
     }
-    .workshop{
+
+    .workshop {
         flex: initial;
     }
+
     /*notification*/
     .noti-style {
         padding: 0px;

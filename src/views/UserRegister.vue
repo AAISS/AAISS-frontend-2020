@@ -10,7 +10,7 @@
         <div class="register-wrapper">
             <div class="pt-5  sub-register">
                 <div class="register-container im ">
-                    <div class="col-md-12">
+                    <div >
                         <h5 class="text-center font-weight-bold">Personal Information</h5>
                     </div>
 
@@ -122,13 +122,20 @@
                     try {
                         const response = await this.registerUser();
                         if (response.message === "User already exist" || response.message === "User created") {
+                            await localStorage.setItem('email', this.user.email);
+                            await this.$store.commit('updateEmail');
+                            if(response.hasOwnProperty('presentations')){
+                                await localStorage.setItem('presentations', response.presentations);
+                            }
+                            if(response.hasOwnProperty('workshops')){
+                                await localStorage.setItem('workshops', response.workshops);
+                            }
                             this.$notify({
                                 group: "auth",
                                 title: "Success",
                                 text: response.message,
                                 type: "success"
                             })
-                            await localStorage.setItem('email', this.user.email)
                             this.$router.push({
                                 name: 'register_presentation',
                             })
@@ -177,7 +184,8 @@
 
         },
         created() {
-             this.$store.dispatch('getFieldsOfInterest');
+            localStorage.clear();
+            this.$store.dispatch('getFieldsOfInterest');
 
         },
         async mounted() {
@@ -227,6 +235,8 @@
         justify-content: center;
         z-index: 20;
         padding: 3vw;
+        flex: initial;
+
     }
 
     .register-container {
@@ -238,6 +248,7 @@
     .sub-register {
         display: flex;
         justify-content: center;
+        flex: initial;
     }
 
     h5 {
