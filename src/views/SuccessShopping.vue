@@ -2,7 +2,7 @@
     <div class="base">
         <div class="sub">
             <h1>Your registration was <span class="blue">Successful!</span></h1>
-            <p class="title blue list">Your have registered:</p>
+            <p class="title blue list">Your have registered for these so far:</p>
             <br>
             <ul class="list">
 
