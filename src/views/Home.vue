@@ -120,7 +120,7 @@
                             <table class="table table-bordered table-sm">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Index</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Lecturer</th>
