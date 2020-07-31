@@ -259,7 +259,6 @@
                         let str = "";
                         if(i < workshop.teachers.length -1) str = "/";
                             for (let j = 0; j <teachers.length ; j++) {
-                                console.log(teachers[j].id, "   ", workshop.teachers[i]);
                             if(teachers[j].id === workshop.teachers[i])
                                 eachTalk.lecturer = eachTalk.lecturer.concat(teachers[j].name, str);
                         }
@@ -270,8 +269,6 @@
                 });
 
                 const sortedTalks = talks.sort((a, b) => a.date - b.date)
-
-                console.log(sortedTalks)
 
                 return sortedTalks
 

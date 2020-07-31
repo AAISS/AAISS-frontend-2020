@@ -25,9 +25,9 @@
                 <li class="nav-item">
                     <a href="http://aaiss.ceit.aut.ac.ir/#teacherSection" class="nav-link">Workshops</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a href="http://aaiss.ceit.aut.ac.ir/#scheduleSection" class="nav-link">Schedule</a>-->
-<!--                </li>-->
+                <li class="nav-item">
+                    <a href="http://aaiss.ceit.aut.ac.ir/#scheduleSection" class="nav-link">Schedule</a>
+                </li>
                 <li class="nav-item">
                     <a href="http://aaiss.ceit.aut.ac.ir/#organizerSection" class="nav-link">Organizer</a>
                 </li>
