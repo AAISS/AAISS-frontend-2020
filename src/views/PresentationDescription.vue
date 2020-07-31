@@ -151,6 +151,7 @@
             },
             timePicker: function (date) {
                 var d = date.split('T')[1];
+                d = d.split('Z')[0];
                 return d.split('.')[0]
             },
             makePayment: function () {

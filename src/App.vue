@@ -33,6 +33,8 @@
 <script>
 
     import TopMenu from "./components/TopMenu";
+    import moment from 'moment-timezone'
+    moment.tz.setDefault('Asia/Amman')
 
     export default {
         name: 'App',

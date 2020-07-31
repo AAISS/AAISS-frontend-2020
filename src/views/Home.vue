@@ -77,7 +77,7 @@
         <!--        </section>-->
 
 
-        <section id="speakersSection" v-if="presenters.length !== 0" >
+        <section id="speakersSection" v-if="presenters.length !== 0">
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-md-12">
@@ -109,260 +109,48 @@
         </section>
 
 
-
-        <!--        <section id="scheduleSection">-->
-        <!--            <div class="container">-->
-        <!--                <div class="row pt-5">-->
-        <!--                    <div class="col-md-12">-->
-        <!--                        <h1 class="text-center font-weight-bold text-color-blue">Schedule</h1>-->
-        <!--                    </div>-->
-        <!--                    <div class="col-md-12">-->
-        <!--                        <div class="table-responsive">-->
-        <!--                            <table class="table table-bordered table-sm">-->
-        <!--                                <thead>-->
-        <!--                                <tr>-->
-        <!--                                    <th scope="col">Index</th>-->
-        <!--                                    <th scope="col">Title (level)</th>-->
-        <!--                                    <th scope="col">Lecturer / Type</th>-->
-        <!--                                    <th scope="col">Timing</th>-->
-        <!--                                </tr>-->
-        <!--                                </thead>-->
-        <!--                                <tbody>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="4" class="firstSpecRow text-center font-weight-bold">-->
-        <!--                                        1st Day (Tuesday - 23rd of July / 1st of Mordad)-->
-        <!--                                    </td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <th class="text-center">0</th>-->
-        <!--                                    <th>Registration</th>-->
-        <!--                                    <th></th>-->
-        <!--                                    <th>07:30 – 07:45</th>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <th class="text-center">0</th>-->
-        <!--                                    <th>Opening</th>-->
-        <!--                                    <th></th>-->
-        <!--                                    <th>07:45 – 08:15</th>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>1</td>-->
-        <!--                                    <td>Learning to Rank for E-commerce (Intermediate)</td>-->
-        <!--                                    <td>Ehsan Ebrahimzadeh / Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>08:15 – 09:15</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>2</td>-->
-        <!--                                    <td>A Closed-Form Learned Pooling for Deep Classification Networks (Intermediate)-->
-        <!--                                    </td>-->
-        <!--                                    <td>Hossein Mobahi / Google-->
-        <!--                                        Hangout-->
-        <!--                                    </td>-->
-        <!--                                    <td>09:15 – 10:15</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Break</td>-->
-        <!--                                    <td>10:15 – 10:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>3</td>-->
-        <!--                                    <td>Describing Images by Semantic Modeling using Attributes and Tags-->
-        <!--                                        (Intermediate)-->
-        <!--                                    </td>-->
-        <!--                                    <td>Mahdi M. Kalayeh /-->
-        <!--                                        Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>10:30 – 11:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>4</td>-->
-        <!--                                    <td>Holistic Video Understanding (Intermediate)</td>-->
-        <!--                                    <td>Mohsen Fayyaz / Skype</td>-->
-        <!--                                    <td>11:30 – 12:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Lunch and Prayers</td>-->
-        <!--                                    <td>12:30 – 13:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>5</td>-->
-        <!--                                    <td>Compressed DNNs and their fault resiliency (Intermediate)</td>-->
-        <!--                                    <td>Majid Sabbagh /-->
-        <!--                                        Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>13:30 – 14:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>6</td>-->
-        <!--                                    <td>Corpus based Machine Translation (Intermediate)</td>-->
-        <!--                                    <td>Heshaam Faili / In person-->
-        <!--                                    </td>-->
-        <!--                                    <td>14:30 – 15:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Break</td>-->
-        <!--                                    <td>15:30 – 15:45</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>7</td>-->
-        <!--                                    <td>Generative Adversarial Networks: Image and Text Generation (Intermediate)</td>-->
-        <!--                                    <td>Mahdieh Soleymani / In person</td>-->
-        <!--                                    <td>15:45 – 16:45</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>8</td>-->
-        <!--                                    <td>Building a descriptive graph for a galaxy simulation (Intermediate)</td>-->
-        <!--                                    <td>Abolfazl Taghribi /-->
-        <!--                                        Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>16:45 – 17:45</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="4" class="text-center font-weight-bold">2nd Day (Wednesday - 24th of-->
-        <!--                                        July / 2nd of Mordad)-->
-        <!--                                    </td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>9</td>-->
-        <!--                                    <td>From Genes To Cognition (Intermediate)</td>-->
-        <!--                                    <td>Sajjad Torabian / In person</td>-->
-        <!--                                    <td>08:15 – 09:15</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>10</td>-->
-        <!--                                    <td>Neuroscience-inspired Computer Vision (Intermediate)</td>-->
-        <!--                                    <td>Mohammad-Reza Abolghasemi-Dehaqani / In person-->
-        <!--                                    </td>-->
-        <!--                                    <td>09:15 – 10:15</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Break</td>-->
-        <!--                                    <td>10:15 – 10:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>11</td>-->
-        <!--                                    <td>Machine Vision as a way of Overcoming Human Visual Disorders (Intermediate)</td>-->
-        <!--                                    <td>Farrokh Karimi / In-->
-        <!--                                        person-->
-        <!--                                    </td>-->
-        <!--                                    <td>10:30 – 11:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>12</td>-->
-        <!--                                    <td>Consistent Online Optimization (Intermediate)</td>-->
-        <!--                                    <td>Mohammad Reza Karimi / Skype</td>-->
-        <!--                                    <td>11:30 – 12:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Lunch and Prayers</td>-->
-        <!--                                    <td>12:30 – 13:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>13</td>-->
-        <!--                                    <td>The Application of Fuzzy Deep Systems in Medical Data Analysis (Intermediate)-->
-        <!--                                    </td>-->
-        <!--                                    <td>Raheleh Davoodi / In person</td>-->
-        <!--                                    <td>13:30 – 14:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>14</td>-->
-        <!--                                    <td>Semantic Segmentation of Images using Deep Convolutional Neural Networks-->
-        <!--                                        (Advanced)-->
-        <!--                                    </td>-->
-        <!--                                    <td>Fahimeh Fooladgar / In person</td>-->
-        <!--                                    <td>14:30 – 15:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Break</td>-->
-        <!--                                    <td>15:30 – 15:45</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>15</td>-->
-        <!--                                    <td>Attacks & Defenses for Deep Neural Networks (Advanced)</td>-->
-        <!--                                    <td>Mohammad Khalooei / In person</td>-->
-        <!--                                    <td>15:45 – 16:45</td>-->
-
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>16</td>-->
-        <!--                                    <td>A geometric perspective on the robustness of deep networks (Advanced)</td>-->
-        <!--                                    <td>Seyed Mohsen Moosavi Dezfooli / In person</td>-->
-        <!--                                    <td>16:45 – 17:45</td>-->
-        <!--                                </tr>-->
-
-        <!--                                <tr>-->
-        <!--                                    <td colspan="4" class="text-center font-weight-bold">3rd Day (Thursday - 25th of-->
-        <!--                                        July / 3rd of Mordad)-->
-        <!--                                    </td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>17</td>-->
-        <!--                                    <td>Uncertainty estimation with Deep Networks (Advanced)</td>-->
-        <!--                                    <td>Hossein Azizpour / Skype</td>-->
-        <!--                                    <td>08:15 – 09:15</td>-->
-
-        <!--                                </tr>-->
-
-        <!--                                <tr>-->
-        <!--                                    <td>18</td>-->
-        <!--                                    <td>Representation Learning Without Labels (Advanced)</td>-->
-        <!--                                    <td>Ali Eslami / Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>09:15 – 10:15</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td colspan="3" class="text-center font-weight-bold">Break</td>-->
-        <!--                                    <td>10:15 – 10:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>19</td>-->
-        <!--                                    <td>The spatiotemporal neural dynamics of perceptual processes in the brain and deep-->
-        <!--                                        network models (Advanced)-->
-        <!--                                    </td>-->
-        <!--                                    <td>Yalda Mohsenzadeh / Skype-->
-        <!--                                    </td>-->
-        <!--                                    <td>10:30 – 11:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>20</td>-->
-        <!--                                    <td>Manifold optimization in machine learning (Advanced)</td>-->
-        <!--                                    <td>Reshad Hosseini / Skype</td>-->
-        <!--                                    <td>11:30 – 12:30</td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>-</td>-->
-        <!--                                    <th>Closing</th>-->
-        <!--                                    <td></td>-->
-        <!--                                    <td>12:30 - 13:00</td>-->
-        <!--                                </tr>-->
-        <!--                                </tbody>-->
-        <!--                            </table>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="row justify-content-center">-->
-        <!--                    <div class="col-md-12 justify-content-center">-->
-        <!--                        <div class="row">-->
-        <!--                            <div class="col-md-12 mx-auto">-->
-        <!--                                <button @click.prevent="showRegisterSoonMessage()"-->
-        <!--                                        v-if="register_link === '/'"-->
-        <!--                                        class="btn btn-primary btn-lg btn-block float-left regBtn">-->
-        <!--                                    <span v-bind:class="{'small' : smallerFontSize}">-->
-        <!--                                    {{registerValue}}-->
-        <!--                                    </span>-->
-        <!--                                </button>-->
-        <!--                                <a v-else :href="register_link"-->
-        <!--                                   class="btn btn-primary btn-lg btn-block float-left regBtn" target="_blank">{{registerValue}}</a>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </section>-->
-
-
         <section id="scheduleSection">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col-md-12">
+                        <h1 class="text-center font-weight-bold text-color-blue">Schedule</h1>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Index</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Lecturer</th>
+                                    <th scope="col">Timing</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+<!--                                <tr>-->
+<!--                                    <td colspan="4" class="firstSpecRow text-center font-weight-bold">-->
+<!--                                        1st Day (Tuesday - 12th of Aguste / 1st of Mordad)-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <tr v-for="talk in sortTable" :key="talk.name">
+                                    <td>{{talk.date.toDateString()}}</td>
+                                    <td>{{talk.name}}</td>
+                                    <td>{{talk.type}}</td>
+                                    <td>{{talk.lecturer}}
+                                    </td>
+                                    <td>{{talk.date.toUTCString().split(' ')[4]}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="buttonSection">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 justify-content-center">
@@ -426,6 +214,8 @@
                 registerValue: 'Registration',
                 smallerFontSize: false,
                 about: "",
+                workshops: [],
+                presentations: [],
             }
         },
         computed: {
@@ -436,11 +226,56 @@
                 return this.$store.getters.getTeachers;
             },
             register: function () {
-                if(this.$store.getters.getRegistrationStatus === 'false'){
+                if (this.$store.getters.getRegistrationStatus === 'false') {
                     return "/"
                 }
                 return "/register/user"
-            }
+            },
+            sortTable: function () {
+                let talks = [];
+                let presenters = this.$store.getters.getPresenters;
+                let teachers = this.$store.getters.getTeachers;
+                this.presentations.forEach(function (presentation) {
+                    if(!presentation.hasOwnProperty('is_full') ){
+                        let eachTalk = new Object();
+                        eachTalk.name = presentation.name;
+                        eachTalk.date = new Date(Date.parse(presentation.start_date));
+                        for (let i = 0; i < presenters.length; i++) {
+                            if (presenters[i].id === presentation.presenters[0])
+                                eachTalk.lecturer = presenters[i].name;
+                        }
+                        eachTalk.type = 'Presentation';
+                        talks.push(eachTalk);
+                    }
+
+                });
+
+                this.workshops.forEach(function (workshop) {
+                    let eachTalk = new Object();
+                    eachTalk.name = workshop.name;
+                    eachTalk.date = new Date(Date.parse(workshop.start_date));
+                    eachTalk.lecturer = ""
+                    for (let i = 0; i <workshop.teachers.length ; i++) {
+                        let str = "";
+                        if(i < workshop.teachers.length -1) str = "/";
+                            for (let j = 0; j <teachers.length ; j++) {
+                                console.log(teachers[j].id, "   ", workshop.teachers[i]);
+                            if(teachers[j].id === workshop.teachers[i])
+                                eachTalk.lecturer = eachTalk.lecturer.concat(teachers[j].name, str);
+                        }
+                    }
+                    eachTalk.type = 'Workshop';
+
+                    talks.push(eachTalk);
+                });
+
+                const sortedTalks = talks.sort((a, b) => a.date - b.date)
+
+                console.log(sortedTalks)
+
+                return sortedTalks
+
+            },
 
         },
         components: {
@@ -455,6 +290,7 @@
                     this.registerValue = 'Registration';
                     this.smallerFontSize = false;
                 }, 2500)
+
             },
             getAbout: function () {
                 return new Promise((resolve, reject) => {
@@ -472,11 +308,20 @@
                     })
                 })
             },
+
+            getTableData: async function () {
+                await this.$store.dispatch('getPresenters');
+                await this.$store.dispatch('getTeachers');
+                await this.$store.dispatch('getPresentations');
+                await this.$store.dispatch('getWorkshops');
+                this.workshops = this.$store.getters.getWorkshops;
+                this.presentations = this.$store.getters.getPresentations;
+            }
         },
         created() {
-            this.$store.dispatch('getPresenters');
-            this.$store.dispatch('getTeachers');
+
             this.$store.dispatch('getRegisterStatus');
+            this.getTableData();
             this.getAbout();
 
         },
@@ -585,6 +430,10 @@
     }
 
     #scheduleSection {
+        background-color: #ceccc0;
+    }
+
+    #buttonSection {
         background-color: #ceccc0;
         min-height: 30vh;
     }

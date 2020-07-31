@@ -7,8 +7,10 @@ import Notifications from 'vue-notification'
 import 'bootstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css'
 var VueScrollTo = require('vue-scrollto');
+import moment from 'moment'
 Vue.use(VueScrollTo);
 
+Vue.prototype.moment = moment
 Vue.config.productionTip = false;
 Vue.use(VueParticles);
 Vue.use(Notifications)

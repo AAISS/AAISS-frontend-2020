@@ -62,7 +62,7 @@
                                 <span class="detail-titles">Prerequisites: </span>{{workshop.prerequisites }}
                             </div>
 
-                            <h6  class="detail-titles" v-if="workshop.has_project === true">This workshop has project.</h6>
+                            <h6  class="detail-titles" v-if="workshop.has_project === true">Participants will develop a project in this workshop.</h6>
                             <div class="date-time-wrapper">
                                 <div class="minor-date-time">
                                     <h5>Date</h5>

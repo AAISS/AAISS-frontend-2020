@@ -12,6 +12,9 @@
                 <div class="register-container im ">
                     <div >
                         <h5 class="text-center font-weight-bold">Personal Information</h5>
+                        <br>
+                        <p class="pink-text">Please note that you can register multiple times with the <i><u>same information</u></i>.</p>
+                        <br>
                     </div>
 
                     <form
@@ -310,6 +313,10 @@
         padding: 0px;
         margin: 0px 5px 5px;
         font-size: 15px;
+    }
+
+    .pink-text{
+        color: #8e5751;
     }
 
     @media only screen and (min-width: 500px) and (max-width: 767.98px) {
