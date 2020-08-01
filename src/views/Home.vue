@@ -121,25 +121,37 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Lecturer</th>
                                     <th scope="col">Timing</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Lecturer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-<!--                                <tr>-->
-<!--                                    <td colspan="4" class="firstSpecRow text-center font-weight-bold">-->
-<!--                                        1st Day (Tuesday - 12th of Aguste / 1st of Mordad)-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-                                <tr v-for="talk in sortTable" :key="talk.name">
+                                <tr>
+                                    <td colspan="4" class="firstSpecRow text-center font-weight-bold">
+                                        Workshops
+                                    </td>
+                                </tr>
+                                <tr v-for="talk in sortTable" :key="talk.name"  v-if="talk.type === 'Workshop'">
                                     <td>{{talk.date.toDateString()}}</td>
-                                    <td>{{talk.name}}</td>
-                                    <td>{{talk.type}}</td>
+                                    <td>{{talk.date.toUTCString().split(' ')[4].split(':')[0] +":"+talk.date.toUTCString().split(' ')[4].split(':')[1]}}</td>
+                                    <td >{{talk.name}}</td>
                                     <td>{{talk.lecturer}}
                                     </td>
-                                    <td>{{talk.date.toUTCString().split(' ')[4]}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="firstSpecRow text-center font-weight-bold">
+                                        Presentations
+                                    </td>
+                                </tr>
+                                <tr v-for="talk in sortTable" :key="talk.name" v-if="talk.type === 'Presentation'">
+                                    <td>{{talk.date.toDateString()}}</td>
+                                    <td>{{talk.date.toUTCString().split(' ')[4].split(':')[0] +":"+talk.date.toUTCString().split(' ')[4].split(':')[1]}}</td>
+                                    <td>{{talk.name}}</td>
+                                    <td>{{talk.lecturer}}
+                                    </td>
+
                                 </tr>
                                 </tbody>
                             </table>
@@ -509,7 +521,6 @@
 
     td[colspan="4"] {
         font-size: 16.5px;
-        color: #10a3f0;
     }
 
     .table-responsive {
@@ -539,6 +550,8 @@
     .material-icons {
     }
 
+    .firstSpecRow{
+    }
 
     @media only screen and (min-width: 416px) and (max-width: 767.98px) {
 
