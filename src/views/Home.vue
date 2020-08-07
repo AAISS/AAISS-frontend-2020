@@ -17,9 +17,6 @@
             </div>
             <img src="../assets/img/bigLogoLanding.png" alt="logo image" class="img-fluid brainImage noSelect"
                  draggable="false">
-
-            <img src="../assets/img/autLogo.png" class="position-absolute autLogo noSelect"
-                 alt="amirkabir logo" draggable="false">
         </section>
 
 
