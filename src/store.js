@@ -66,7 +66,7 @@ export default new Vuex.Store({
         getRegisterStatus: function ({commit}) {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: this.getters.getApi + '/misc/register/',
+                    url: this.getters.getApi + '/misc/register2020/',
                     headers: {
                         'Content-Type': 'application/json',
                     },
